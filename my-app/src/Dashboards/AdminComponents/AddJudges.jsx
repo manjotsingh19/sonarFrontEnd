@@ -81,7 +81,7 @@ function AddJudges() {
 
                         <MDBRow className=' pb-md-2'>
                             <MDBCol md='4'>
-                                <MDBCheckbox name='flexCheck' id='penalist' value={checkedpen} onChange={(e) => handleCheck(e)} label='Penalist' />
+                                <MDBCheckbox name='flexCheck' id='penalist' value={checkedpen} onChange={(e) => handleInput(e)} label='Penalist' />
                             </MDBCol>
 
                             <MDBCol md='4'>
