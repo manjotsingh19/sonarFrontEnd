@@ -327,9 +327,9 @@ function RegistrationForm() {
 
 
 
+{/* /////////////////////////////////////////////////////////////////////// */}
 
-
-                <select md='3' value={selectedOption} onChange={handleSelect}>
+                <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)}>
                   <option value="">Select Domain</option>
                   <option value="option1">Option 1</option>
                   <option value="option2">Option 2</option>

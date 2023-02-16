@@ -8,9 +8,7 @@ import Form from "react-bootstrap/Form";
 function AddDomain() {
     const [isSubmit, setSubmit] = useState(false);
     const [errors, serErrors] = useState({});
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    
+
     const handleclick = () => {
 
     }
@@ -36,7 +34,10 @@ function AddDomain() {
 
                             {/* sbow doamin list */}
                             <MDBCol md='4' >
-                                <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll", minWidth: '22rem' }}>
+                                <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll",maxHeight:"100px", minWidth: '22rem'}}>
+                                    <MDBListGroupItem>Cras justo odio <button style={{ color: "red" }}>remove</button></MDBListGroupItem>
+                                    <MDBListGroupItem>Porta ac consectetur ac</MDBListGroupItem>
+                                    <MDBListGroupItem>Vestibulum at eros</MDBListGroupItem>
                                     <MDBListGroupItem>Cras justo odio <button style={{ color: "red" }}>remove</button></MDBListGroupItem>
                                     <MDBListGroupItem>Porta ac consectetur ac</MDBListGroupItem>
                                     <MDBListGroupItem>Vestibulum at eros</MDBListGroupItem>
