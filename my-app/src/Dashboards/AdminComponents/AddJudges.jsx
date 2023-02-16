@@ -1,36 +1,53 @@
 import { MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 
 function AddJudges() {
-
-
-
     const [judges, setJudges] = useState({
         name: '',
         email: '',
         phone: '',
-        role:'', 
+        role: '',
     });
 
     const [errors, serErrors] = useState({});
 
 
+    /////////////////////////////Connect to server/////////////////////////////////////////////
+    useEffect(() => {
+        console.log(errors);
+        if (Object.keys(errors).length === 0) {
+            console.log(judges);
+
+            axios.post('/user', judges)
+                .then((response) => {
+                    console.log(response);
+
+                }, (error) => {
+                    console.log(error);
+                });
+
+        }
+    }, [errors]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         serErrors(validate(judges));
-        console.log(judges);
     }
 
     const handleInput = (e) => {
         const { id, value } = e.target;
         setJudges({ ...judges, [id]: value });
     }
+
+
     const myStyle = {
         color: 'red'
     }
-    
-    const handleRole = (e)=>{
-        setJudges({...judges, role: e.target.value});
+
+    const handleRole = (e) => {
+        setJudges({ ...judges, role: e.target.value });
     }
 
     const validate = (judges) => {
@@ -39,19 +56,19 @@ function AddJudges() {
         const regexPh = /^[0-9]{10}$/;
 
         if (!judges.name) {
-            errorsObj.name = 'Participent name is required';
+            errorsObj.name = 'Name is required';
         }
         if (!judges.email) {
-            errorsObj.email = 'Participent email is required';
+            errorsObj.email = 'Email is required';
         }
         else if (!regex.test(judges.email)) {
-            errorsObj.email = "this is not a valid email";
+            errorsObj.email = "This is not a valid email";
         }
         if (!judges.phone) {
-            errorsObj.phone = 'Participent number is required';
+            errorsObj.phone = 'Number is required';
         }
         else if (!regexPh.test(judges.phone)) {
-            errorsObj.phone = "This is not a valid phone number";
+            errorsObj.phone = "Enter valid phone number";
         }
 
         return errorsObj;
@@ -85,8 +102,8 @@ function AddJudges() {
                         <MDBRow className=' pb-md-2'>
 
                             <div onChange={(e) => handleRole(e)}  >
-                                <input type="radio" value="penelist" name="role"  /> Penalist
-                                <input type="radio" value="judge" name="role" style={{marginLeft:"25px"}}/> Judge
+                                <input type="radio" value="penelist" name="role" /> Penalist
+                                <input type="radio" value="judge" name="role" style={{ marginLeft: "25px" }} /> Judge
                             </div>
 
 

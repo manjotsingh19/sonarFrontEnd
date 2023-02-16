@@ -1,22 +1,43 @@
-import {MDBTextArea, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn,  MDBInput } from 'mdb-react-ui-kit';
+import { MDBTextArea, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import Form from "react-bootstrap/Form";
+import axios from 'axios';
+
 
 function CreateEvent() {
     const [errors, serErrors] = useState({});
-    const [event,setEvent]=useState({
+    const [event, setEvent] = useState({
         name: '',
-        startDate:'',
+        startDate: '',
         endDate: '',
-        description:'',
+        description: '',
     });
+
+
+    /////////////////////////////Connect to server/////////////////////////////////////////////
+
+    useEffect(() => {
+        console.log(errors);
+        if (Object.keys(errors).length === 0) {
+            console.log(event);
+
+            axios.post('/event', event)
+                .then((response) => {
+                    console.log(response);
+
+                }, (error) => {
+                    console.log(error);
+                });
+
+        }
+    }, [errors]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         serErrors(validate(event));
-        console.log(event);
     }
-    
+
     const handleInput = (e) => {
         const { id, value } = e.target;
         setEvent({ ...event, [id]: value });
@@ -26,16 +47,16 @@ function CreateEvent() {
         const errorsObj = {};
 
         if (!event.name) {
-            errorsObj.name = 'Participent name is required';
+            errorsObj.name = 'Name is required';
         }
-        if(!event.description){
+        if (!event.description) {
             errorsObj.description = 'Description is required';
         }
-        if(!event.startDate ||!event.endDate){
+        if (!event.startDate || !event.endDate) {
             errorsObj.endDate = 'Please select a date';
             errorsObj.startDate = 'Please select a date';
         }
-        if(event.startDate>event.endDate){
+        if (event.startDate > event.endDate) {
             errorsObj.endDate = 'Enter valid date';
             errorsObj.startDate = 'Enter valid date';
         }
@@ -54,7 +75,7 @@ function CreateEvent() {
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='4' >
-                                <MDBInput id="name" value={event.name} onChange={(e) => handleInput(e)}  wrapperClass='mb-2' required className='col-md-4' label='Name' size='md' type='text' />
+                                <MDBInput id="name" value={event.name} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Name' size='md' type='text' />
                                 <p style={myStyle}>{errors.name}</p>
                             </MDBCol>
 
@@ -94,7 +115,7 @@ function CreateEvent() {
                                 </MDBCol>
 
                                 <MDBCol md='9' className='pe-5'>
-                                    <MDBTextArea id="description" value={event.description} onChange={(e) => handleInput(e)}  label='' rows={3} style={{ resize: "none" }} required className='col-md-4' />
+                                    <MDBTextArea id="description" value={event.description} onChange={(e) => handleInput(e)} label='' rows={3} style={{ resize: "none" }} required className='col-md-4' />
                                     <p style={myStyle}>{errors.description}</p>
                                 </MDBCol>
 
@@ -113,7 +134,7 @@ function CreateEvent() {
                 </MDBCard>
 
             </MDBRow>
-            </>
+        </>
     )
 }
 
