@@ -23,11 +23,6 @@ function AddJudges() {
     }
     
     const handleInput = (e) => {
-        setCheckPen(e.target.checkedpen);
-        setCheckJudge(e.target.checkedJudge);
-        judges.penalist = e.target.checkedpen;
-        judges.judge = e.target.checkedJudge;
-
         const { id, value } = e.target;
         setJudges({ ...judges, [id]: value });
     }
@@ -86,11 +81,11 @@ function AddJudges() {
 
                         <MDBRow className=' pb-md-2'>
                             <MDBCol md='4'>
-                                <MDBCheckbox name='flexCheck' id='penalist' value={!checkedpen} onChange={(e) => handleInput(e)} label='Penalist' />
+                                <MDBCheckbox name='flexCheck' id='penalist' value={checkedpen} onChange={(e) => handleCheck(e)} label='Penalist' />
                             </MDBCol>
 
                             <MDBCol md='4'>
-                                <MDBCheckbox name='flexCheck' id='judge' value={!checkedJudge} onChange={(e) => handleInput(e)} label='Judge' />
+                                <MDBCheckbox name='flexCheck' id='judge' value={checkedJudge} onChange={(e) => handleInput(e)} label='Judge' />
                             </MDBCol>
                         </MDBRow>
                         <div className='col-12 '>

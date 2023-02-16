@@ -12,7 +12,12 @@ function RegistrationForm() {
   const [isSubmit, setSubmit] = useState(false);
   const [errors, serErrors] = useState({});
   const [selectedOption, setSelectedOption] = useState("");
+  const [addBtn, setAddBtn] = useState(false);
 
+
+  const handleAddBtn = () => {
+    setAddBtn(true);
+  }
 
   // for drop down meny only
   const handleSelect = (event) => {
@@ -67,12 +72,13 @@ function RegistrationForm() {
       console.log(teamForm);
 
       axios.post('/login', teamForm)
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
-      
+        .then((response) => {
+          console.log(response);
+
+        }, (error) => {
+          console.log(error);
+        });
+
     }
   }, [errors]);
 
@@ -85,46 +91,46 @@ function RegistrationForm() {
       errorsObj.team = 'Team is required';
     }
     if (!teamForm.n1) {
-      errorsObj.n1 = 'Participent name is required';
+      errorsObj.n1 = 'Participant name is required';
     }
     if (!teamForm.e1) {
-      errorsObj.e1 = 'Participent email is required';
+      errorsObj.e1 = 'Participant email is required';
     }
     else if (!regex.test(teamForm.e1)) {
       errorsObj.e1 = "this is not a valid email";
     }
     if (!teamForm.ph1) {
-      errorsObj.ph1 = 'Participent number is required';
+      errorsObj.ph1 = 'Participant number is required';
     }
     else if (!regexPh.test(teamForm.ph1)) {
       errorsObj.ph1 = "This is not a valid phone number";
     }
     if (!teamForm.n2) {
-      errorsObj.n2 = 'Participent name is required';
+      errorsObj.n2 = 'Participant name is required';
     }
     if (!teamForm.e2) {
-      errorsObj.e2 = 'Participent email is required';
+      errorsObj.e2 = 'Participant email is required';
     }
     else if (!regex.test(teamForm.e2)) {
       errorsObj.e2 = "This is not a valid email";
     }
     if (!teamForm.ph2) {
-      errorsObj.ph2 = 'Participent number is required';
+      errorsObj.ph2 = 'Participant number is required';
     }
     else if (!regexPh.test(teamForm.ph2)) {
       errorsObj.ph2 = "This is not a valid phone number";
     }
     if (!teamForm.n3) {
-      errorsObj.n3 = 'Participent name is required';
+      errorsObj.n3 = 'Participant name is required';
     }
     if (!teamForm.e3) {
-      errorsObj.e3 = 'Participent email is required';
+      errorsObj.e3 = 'Participant email is required';
     }
     else if (!regex.test(teamForm.e3)) {
       errorsObj.e3 = "This is not a valid email";
     }
     if (!teamForm.ph3) {
-      errorsObj.ph3 = 'Participent number is required';
+      errorsObj.ph3 = 'Participant number is required';
     }
     else if (!regexPh.test(teamForm.ph3)) {
       errorsObj.ph3 = "This is not a valid phone number";
@@ -146,28 +152,32 @@ function RegistrationForm() {
     if (!teamForm.problemD) {
       errorsObj.problemD = 'Problem description is required';
     }
+    if(teamForm.ph1!='' && teamForm.ph2!='' && teamForm.ph3!='') {
     if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4 || teamForm.ph2 === teamForm.ph3 || teamForm.ph2 === teamForm.ph4 || teamForm.ph3 === teamForm.ph4) {
       if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4) {
-        errorsObj.ph1 = "duplicate entries found";
+        errorsObj.ph1 = "Duplicate entries found";
       }
       else if (teamForm.ph2 === teamForm.ph3 || teamForm.ph2 === teamForm.ph4) {
-        errorsObj.ph2 = "duplicate entries found";
+        errorsObj.ph2 = "Duplicate entries found";
       }
       else if (teamForm.ph3 === teamForm.ph4) {
-        errorsObj.ph3 = "duplicate entries found";
+        errorsObj.ph3 = "Duplicate entries found";
       }
     }
+  }
+  if(teamForm.e1!='' && teamForm.e2!='' && teamForm.e3!=''){
     if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4 || teamForm.e2 === teamForm.e3 || teamForm.e2 === teamForm.e4 || teamForm.e3 === teamForm.e4) {
       if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4) {
-        errorsObj.e1 = "duplicate entries found";
+        errorsObj.e1 = "Duplicate entries found";
       }
       else if (teamForm.e2 === teamForm.e3 || teamForm.e2 === teamForm.e4) {
-        errorsObj.e2 = "duplicate entries found";
+        errorsObj.e2 = "Duplicate entries found";
       }
       else if (teamForm.e3 === teamForm.e4) {
-        errorsObj.e3 = "duplicate entries found";
+        errorsObj.e3 = "Duplicate entries found";
       }
     }
+  }
     return errorsObj;
   }
 
@@ -207,7 +217,7 @@ function RegistrationForm() {
 
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Participent-1</h6>
+                    <h6 className="mb-0">Participant-1 <span style={{ color: "red"}}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='3' >
@@ -233,7 +243,7 @@ function RegistrationForm() {
 
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Participent-2</h6>
+                    <h6 className="mb-0">Participant-2 <span style={{ color: "red"}}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='3' >
@@ -259,7 +269,7 @@ function RegistrationForm() {
 
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Participent-3</h6>
+                    <h6 className="mb-0">Participant-3 <span style={{ color: "red"}}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='3' >
@@ -279,29 +289,43 @@ function RegistrationForm() {
                   </MDBCol>
                 </MDBRow>
 
-                <MDBRow className='align-items-center pt-0 pb-5'>
+                {/* ////////////////add button   //////////// */}
+
+                {!addBtn && (
+                  <div className='col-12' style={{textAlign: "right"}}>
+                    <MDBBtn  onClick={handleAddBtn} >Add more</MDBBtn>
+                  </div>
+                )}
+                 
 
 
-                  <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Participent-4</h6>
-                  </MDBCol>
+                {addBtn && (
+                  <MDBRow className='align-items-center pt-0 pb-5'>
 
 
-                  <MDBCol md='3' >
+                    <MDBCol md='3' className='ps-5'>
+                      <h6 className="mb-0">Participant-4</h6>
+                    </MDBCol>
 
-                    <MDBInput id="n4" value={teamForm.n4} onChange={(e) => handleInput(e)} wrapperClass='mb-2' label='Name' size='md' type='text' />
-                  </MDBCol>
 
-                  <MDBCol md='3'>
-                    <MDBInput id="e4" value={teamForm.e4} onChange={(e) => handleInput(e)} wrapperClass='mb-2' label='Email' size='md' type='email' />
-                    <p style={myStyle}>{errors.e4}</p>
-                  </MDBCol>
+                    <MDBCol md='3' >
 
-                  <MDBCol md='3'>
-                    <MDBInput id="ph4" value={teamForm.ph4} onChange={(e) => handleInput(e)} label='Phone number' type='tel' />
-                    <p style={myStyle}>{errors.ph4}</p>
-                  </MDBCol>
-                </MDBRow>
+                      <MDBInput id="n4" value={teamForm.n4} onChange={(e) => handleInput(e)} wrapperClass='mb-2' label='Name' size='md' type='text' />
+                    </MDBCol>
+
+                    <MDBCol md='3'>
+                      <MDBInput id="e4" value={teamForm.e4} onChange={(e) => handleInput(e)} wrapperClass='mb-2' label='Email' size='md' type='email' />
+                      <p style={myStyle}>{errors.e4}</p>
+                    </MDBCol>
+
+                    <MDBCol md='3'>
+                      <MDBInput id="ph4" value={teamForm.ph4} onChange={(e) => handleInput(e)} label='Phone number' type='tel' />
+                      <p style={myStyle}>{errors.ph4}</p>
+                    </MDBCol>
+                  </MDBRow>
+                )}
+
+
 
 
 
