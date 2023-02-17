@@ -6,9 +6,12 @@ import LoginPage from './Components/LoginPage';
 import RegistrationForm from './Components/RegistrationForm';
 import Frontpage from './Components/Frontpage';
 import Admin from './Dashboards/AdminComponents/Admin';
+import Navbar from './Components/Navbar';
 
 function App() {
   return (
+    <>
+    <Navbar/>
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<Frontpage/>}/>
@@ -17,6 +20,7 @@ function App() {
           <Route path="/AdminDashboard" element={<Admin />} />
         </Routes>
   </BrowserRouter>
+  </>
   );
 }
 

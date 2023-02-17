@@ -76,7 +76,7 @@ function AddJudges() {
     return (
         <>
             <MDBRow className='justify-content-center align-items-center m-5'>
-                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4">Admin Dashboard</h3>
+                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Admin Dashboard</h3>
                 <MDBCard>
                     <MDBCardBody className='px-8'>
 

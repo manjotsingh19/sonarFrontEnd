@@ -69,7 +69,7 @@ function RegistrationForm() {
     if (Object.keys(errors).length === 0 && isSubmit) {
       console.log(teamForm);
 
-      axios.post('/RegistrationForm', teamForm)
+      axios.post('/', teamForm)
         .then((response) => {
           console.log(response);
 
@@ -153,7 +153,7 @@ function RegistrationForm() {
     if (!teamForm.problemD) {
       errorsObj.problemD = 'Problem description is required';
     }
-    if (teamForm.ph1 != '' && teamForm.ph2 != '' && teamForm.ph3 != '') {
+    if (teamForm.ph1 !== '' && teamForm.ph2 !== '' && teamForm.ph3 !== '') {
       if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4 || teamForm.ph2 === teamForm.ph3 || teamForm.ph2 === teamForm.ph4 || teamForm.ph3 === teamForm.ph4) {
         if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4) {
           errorsObj.ph1 = "Duplicate entries found";
@@ -166,7 +166,7 @@ function RegistrationForm() {
         }
       }
     }
-    if (teamForm.e1 != '' && teamForm.e2 != '' && teamForm.e3 != '') {
+    if (teamForm.e1 !== '' && teamForm.e2 !== '' && teamForm.e3 !== '') {
       if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4 || teamForm.e2 === teamForm.e3 || teamForm.e2 === teamForm.e4 || teamForm.e3 === teamForm.e4) {
         if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4) {
           errorsObj.e1 = "Duplicate entries found";
@@ -198,7 +198,7 @@ function RegistrationForm() {
             <MDBCard>
               <MDBCardBody className='px-8'>
 
-                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Registration Form</h3>
 
                 <MDBRow className='align-items-center pt-0 pb-4 '>
 
