@@ -1,7 +1,5 @@
 import React from 'react';
-import { validation, MDBTextArea, MDBValidationItem, inputGroup, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBDropdown, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBRadio, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { MDBTextArea, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -71,7 +69,7 @@ function RegistrationForm() {
     if (Object.keys(errors).length === 0 && isSubmit) {
       console.log(teamForm);
 
-      axios.post('/login', teamForm)
+      axios.post('/', teamForm)
         .then((response) => {
           console.log(response);
 
@@ -146,38 +144,41 @@ function RegistrationForm() {
         errorsObj.e4 = "This is not a valid email";
       }
     }
+    if (!teamForm.domain) {
+      errorsObj.domain = "Domain not specified";
+    }
     if (!teamForm.problemS) {
       errorsObj.problemS = 'Problem statement is required';
     }
     if (!teamForm.problemD) {
       errorsObj.problemD = 'Problem description is required';
     }
-    if(teamForm.ph1!='' && teamForm.ph2!='' && teamForm.ph3!='') {
-    if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4 || teamForm.ph2 === teamForm.ph3 || teamForm.ph2 === teamForm.ph4 || teamForm.ph3 === teamForm.ph4) {
-      if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4) {
-        errorsObj.ph1 = "Duplicate entries found";
-      }
-      else if (teamForm.ph2 === teamForm.ph3 || teamForm.ph2 === teamForm.ph4) {
-        errorsObj.ph2 = "Duplicate entries found";
-      }
-      else if (teamForm.ph3 === teamForm.ph4) {
-        errorsObj.ph3 = "Duplicate entries found";
-      }
-    }
-  }
-  if(teamForm.e1!='' && teamForm.e2!='' && teamForm.e3!=''){
-    if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4 || teamForm.e2 === teamForm.e3 || teamForm.e2 === teamForm.e4 || teamForm.e3 === teamForm.e4) {
-      if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4) {
-        errorsObj.e1 = "Duplicate entries found";
-      }
-      else if (teamForm.e2 === teamForm.e3 || teamForm.e2 === teamForm.e4) {
-        errorsObj.e2 = "Duplicate entries found";
-      }
-      else if (teamForm.e3 === teamForm.e4) {
-        errorsObj.e3 = "Duplicate entries found";
+    if (teamForm.ph1 !== '' && teamForm.ph2 !== '' && teamForm.ph3 !== '') {
+      if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4 || teamForm.ph2 === teamForm.ph3 || teamForm.ph2 === teamForm.ph4 || teamForm.ph3 === teamForm.ph4) {
+        if (teamForm.ph1 === teamForm.ph2 || teamForm.ph1 === teamForm.ph3 || teamForm.ph1 === teamForm.ph4) {
+          errorsObj.ph1 = "Duplicate entries found";
+        }
+        else if (teamForm.ph2 === teamForm.ph3 || teamForm.ph2 === teamForm.ph4) {
+          errorsObj.ph2 = "Duplicate entries found";
+        }
+        else if (teamForm.ph3 === teamForm.ph4) {
+          errorsObj.ph3 = "Duplicate entries found";
+        }
       }
     }
-  }
+    if (teamForm.e1 !== '' && teamForm.e2 !== '' && teamForm.e3 !== '') {
+      if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4 || teamForm.e2 === teamForm.e3 || teamForm.e2 === teamForm.e4 || teamForm.e3 === teamForm.e4) {
+        if (teamForm.e1 === teamForm.e2 || teamForm.e1 === teamForm.e3 || teamForm.e1 === teamForm.e4) {
+          errorsObj.e1 = "Duplicate entries found";
+        }
+        else if (teamForm.e2 === teamForm.e3 || teamForm.e2 === teamForm.e4) {
+          errorsObj.e2 = "Duplicate entries found";
+        }
+        else if (teamForm.e3 === teamForm.e4) {
+          errorsObj.e3 = "Duplicate entries found";
+        }
+      }
+    }
     return errorsObj;
   }
 
@@ -197,7 +198,7 @@ function RegistrationForm() {
             <MDBCard>
               <MDBCardBody className='px-8'>
 
-                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Registration Form</h3>
 
                 <MDBRow className='align-items-center pt-0 pb-4 '>
 
@@ -217,7 +218,7 @@ function RegistrationForm() {
 
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Participant-1 <span style={{ color: "red"}}>*</span></h6>
+                    <h6 className="mb-0">Participant-1 <span style={{ color: "red" }}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='3' >
@@ -243,7 +244,7 @@ function RegistrationForm() {
 
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Participant-2 <span style={{ color: "red"}}>*</span></h6>
+                    <h6 className="mb-0">Participant-2 <span style={{ color: "red" }}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='3' >
@@ -269,7 +270,7 @@ function RegistrationForm() {
 
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Participant-3 <span style={{ color: "red"}}>*</span></h6>
+                    <h6 className="mb-0">Participant-3 <span style={{ color: "red" }}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='3' >
@@ -292,11 +293,11 @@ function RegistrationForm() {
                 {/* ////////////////add button   //////////// */}
 
                 {!addBtn && (
-                  <div className='col-12' style={{textAlign: "right"}}>
-                    <MDBBtn  onClick={handleAddBtn} >Add more</MDBBtn>
+                  <div className='col-12' style={{ textAlign: "right" }}>
+                    <MDBBtn onClick={handleAddBtn} >Add more</MDBBtn>
                   </div>
                 )}
-                 
+
 
 
                 {addBtn && (
@@ -327,14 +328,24 @@ function RegistrationForm() {
 
 
 
+                {/* /////////////////////////////////////////////////////////////////////// */}
 
 
-                <select md='3' value={selectedOption} onChange={handleSelect}>
-                  <option value="">Select Domain</option>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                </select>
+                <MDBRow className='align-items-center pt-2 pb-3'>
+
+                  <MDBCol md='3' className='ps-5'>
+                    <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{border:"5px"}}>
+                      <option value="">Select Domain</option>
+                      <option value="option1">Option 1</option>
+                      <option value="option2">Option 2</option>
+                      <option value="option3">Option 3</option>
+                    </select>
+                    <p style={myStyle}>{errors.domain}</p>
+                  </MDBCol>
+                </MDBRow>
+
+
+
 
 
 

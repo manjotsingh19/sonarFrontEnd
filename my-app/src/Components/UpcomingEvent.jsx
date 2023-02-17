@@ -1,7 +1,7 @@
 import React from "react";
 import Laptop from "../assets/laptop.jpg";
 
-const Analytics = () => {
+const UpcomingEvent = () => {
   return (
     <div className="w-full bg-white py-16 px-4">
       <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
@@ -19,9 +19,9 @@ const Analytics = () => {
             presentations until the deadline for this round anytime during the
             challenge window. 
           </p>
-          <button className="bg-black text-[#df5200] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
+          {/* <button className="bg-black text-[#df5200] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
             Register
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
@@ -39,13 +39,13 @@ const Analytics = () => {
             presentations until the deadline for this round anytime during the
             challenge window. 
           </p>
-          <button className="bg-black text-[#df5200] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
+          {/* <button className="bg-black text-[#df5200] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
             Register
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default Analytics;
+export default UpcomingEvent;

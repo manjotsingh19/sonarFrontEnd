@@ -1,33 +1,53 @@
 import { MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 
 function AddJudges() {
-    const [checkedpen, setCheckPen] = useState(false);
-    const [checkedJudge, setCheckJudge] = useState(false);
-
     const [judges, setJudges] = useState({
         name: '',
         email: '',
         phone: '',
-        penalist: checkedpen,
-        judge: checkedJudge,
+        role: '',
     });
 
     const [errors, serErrors] = useState({});
 
 
+    /////////////////////////////Connect to server/////////////////////////////////////////////
+    useEffect(() => {
+        console.log(errors);
+        if (Object.keys(errors).length === 0) {
+            console.log(judges);
+
+            axios.post('/user', judges)
+                .then((response) => {
+                    console.log(response);
+
+                }, (error) => {
+                    console.log(error);
+                });
+
+        }
+    }, [errors]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         serErrors(validate(judges));
-        console.log(judges);
     }
-    
+
     const handleInput = (e) => {
         const { id, value } = e.target;
         setJudges({ ...judges, [id]: value });
     }
+
+
     const myStyle = {
         color: 'red'
+    }
+
+    const handleRole = (e) => {
+        setJudges({ ...judges, role: e.target.value });
     }
 
     const validate = (judges) => {
@@ -36,19 +56,19 @@ function AddJudges() {
         const regexPh = /^[0-9]{10}$/;
 
         if (!judges.name) {
-            errorsObj.name = 'Participent name is required';
+            errorsObj.name = 'Name is required';
         }
         if (!judges.email) {
-            errorsObj.email = 'Participent email is required';
+            errorsObj.email = 'Email is required';
         }
         else if (!regex.test(judges.email)) {
-            errorsObj.email = "this is not a valid email";
+            errorsObj.email = "This is not a valid email";
         }
         if (!judges.phone) {
-            errorsObj.phone = 'Participent number is required';
+            errorsObj.phone = 'Number is required';
         }
         else if (!regexPh.test(judges.phone)) {
-            errorsObj.phone = "This is not a valid phone number";
+            errorsObj.phone = "Enter valid phone number";
         }
 
         return errorsObj;
@@ -56,7 +76,7 @@ function AddJudges() {
     return (
         <>
             <MDBRow className='justify-content-center align-items-center m-5'>
-                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4">Admin Dashboard</h3>
+                <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Admin Dashboard</h3>
                 <MDBCard>
                     <MDBCardBody className='px-8'>
 
@@ -80,13 +100,13 @@ function AddJudges() {
                         </MDBRow>
 
                         <MDBRow className=' pb-md-2'>
-                            <MDBCol md='4'>
-                                <MDBCheckbox name='flexCheck' id='penalist' value={checkedpen} onChange={(e) => handleInput(e)} label='Penalist' />
-                            </MDBCol>
 
-                            <MDBCol md='4'>
-                                <MDBCheckbox name='flexCheck' id='judge' value={checkedJudge} onChange={(e) => handleInput(e)} label='Judge' />
-                            </MDBCol>
+                            <div onChange={(e) => handleRole(e)}  >
+                                <input type="radio" value="penelist" name="role" /> Penalist
+                                <input type="radio" value="judge" name="role" style={{ marginLeft: "25px" }} /> Judge
+                            </div>
+
+
                         </MDBRow>
                         <div className='col-12 '>
                             <MDBBtn onClick={handleSubmit} >Add</MDBBtn>

@@ -2,21 +2,56 @@ import { validation, MDBListGroup, MDBListGroupItem, MDBTextArea, MDBValidationI
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Form from "react-bootstrap/Form";
+import axios from 'axios';
+
 
 function AddDomain() {
-    const [isSubmit, setSubmit] = useState(false);
     const [errors, serErrors] = useState({});
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    
-    const handleclick = () => {
+    const [domains, setDomains] = useState({
+        domain: '',
+    })
 
-    }
-    const handleInput = () => {
 
+
+    /////////////////////////////Connect to server/////////////////////////////////////////////
+
+    useEffect(() => {
+        console.log(errors);
+        if (Object.keys(errors).length === 0) {
+            console.log(domains);
+
+            axios.post('/domain', domains)
+                .then((response) => {
+                    console.log(response);
+
+                }, (error) => {
+                    console.log(error);
+                });
+
+        }
+    }, [errors]);
+
+    const handleAdd = (e) => {
+        e.preventDefault();
+        serErrors(validate(domains));
     }
+
+    const handleInput = (e) => {
+        const { id, value } = e.target;
+        setDomains({ ...domains, [id]: value });
+    }
+
+    const validate = (domains) => {
+        const errorsObj = {};
+
+        if (!domains.domain) {
+            errorsObj.domain = 'Write a domain name';
+        }
+
+        return errorsObj;
+    }
+
+
     const myStyle = {
         color: 'red'
     }
@@ -30,26 +65,26 @@ function AddDomain() {
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='4' >
-                                <MDBInput id="n1" onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Domain' size='md' type='text' />
-                                <p style={myStyle}>{errors.n1}</p>
+                                <MDBInput id="domain" value={domains.domain} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Domain' size='md' type='text' />
+                                <p style={myStyle}>{errors.domain}</p>
                             </MDBCol>
 
                             {/* sbow doamin list */}
                             <MDBCol md='4' >
-                                <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll", minWidth: '22rem' }}>
+                                <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll", maxHeight: "100px", minWidth: '22rem' }}>
+                                    <MDBListGroupItem>Cras justo odio <button style={{ color: "red" }}>remove</button></MDBListGroupItem>
+                                    <MDBListGroupItem>Porta ac consectetur ac</MDBListGroupItem>
+                                    <MDBListGroupItem>Vestibulum at eros</MDBListGroupItem>
                                     <MDBListGroupItem>Cras justo odio <button style={{ color: "red" }}>remove</button></MDBListGroupItem>
                                     <MDBListGroupItem>Porta ac consectetur ac</MDBListGroupItem>
                                     <MDBListGroupItem>Vestibulum at eros</MDBListGroupItem>
                                 </MDBListGroup>
                             </MDBCol>
-
-
-
                         </MDBRow>
 
 
                         <div className='col-12 '>
-                            <MDBBtn onClick={handleclick} >Add</MDBBtn>
+                            <MDBBtn onClick={handleAdd} >Add</MDBBtn>
                         </div>
 
                     </MDBCardBody>
