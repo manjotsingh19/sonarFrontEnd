@@ -1,6 +1,6 @@
 import React from 'react'
 import Hero from './Hero'
-import Analytics from './Analytics'
+import UpcomingEvent from './UpcomingEvent'
 import Footer from './Footer'
 import Cards from './Cards'
 import Navbar from './Navbar'
@@ -11,7 +11,7 @@ function Frontpage() {
     <div>
       {/* <Navbar /> */}
       <Hero />
-      <Analytics />
+      <UpcomingEvent />
       <Cards />
       <Footer />
     </div>
