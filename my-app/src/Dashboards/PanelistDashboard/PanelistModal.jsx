@@ -50,7 +50,6 @@ export default function PanelistModal({ item }) {
                 <p>{description}</p>
               </div>
             </MDBModalBody>
-
             <MDBModalFooter>
               <MDBBtn color="success" onClick={toggleShow}>
                 Accept
