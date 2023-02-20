@@ -9,15 +9,21 @@ function AddJudges() {
         email: '',
         phone: '',
         role: '',
+        pass: '',
     });
 
     const [errors, serErrors] = useState({});
+    const [submitted, setSubmited] = useState(false);
+
 
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
     useEffect(() => {
         console.log(errors);
-        if (Object.keys(errors).length === 0) {
+
+
+        if (Object.keys(errors).length === 0 && submitted) {
+
             console.log(judges);
 
             axios.post('/user', judges)
@@ -29,16 +35,22 @@ function AddJudges() {
                 });
 
         }
-    }, [errors]);
+        else {
+            setSubmited(false);
+        }
+
+    }, [errors, submitted]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         serErrors(validate(judges));
+        setSubmited(true);
     }
 
     const handleInput = (e) => {
         const { id, value } = e.target;
         setJudges({ ...judges, [id]: value });
+
     }
 
 
@@ -70,6 +82,12 @@ function AddJudges() {
         else if (!regexPh.test(judges.phone)) {
             errorsObj.phone = "Enter valid phone number";
         }
+        if (!judges.pass) {
+            errorsObj.pass = 'Password is required';
+        }
+        else if (judges.pass.length < 8) {
+            errorsObj.pass = 'Minimum password length is 8';
+        }
 
         return errorsObj;
     }
@@ -83,19 +101,26 @@ function AddJudges() {
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Add new judge/penalist</h4>
 
                         <MDBRow className='align-items-center pt-0 '>
-                            <MDBCol md='4' >
+                            <MDBCol md='3' >
                                 <MDBInput id="name" value={judges.name} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Name' size='md' type='text' />
                                 <p style={myStyle}>{errors.name}</p>
                             </MDBCol>
 
-                            <MDBCol md='4'>
+                            <MDBCol md='3'>
                                 <MDBInput id="email" value={judges.email} onChange={(e) => handleInput(e)} wrapperClass='mb-2' label='Email' size='md' type='email' required className='col-md-4' />
                                 <p style={myStyle}>{errors.email}</p>
                             </MDBCol>
 
-                            <MDBCol md='4'>
+                            <MDBCol md='3'>
                                 <MDBInput id="phone" value={judges.phone} onChange={(e) => handleInput(e)} label='Phone number' type='tel' required className='col-md-4' />
                                 <p style={myStyle}>{errors.phone}</p>
+                            </MDBCol>
+
+                            {/* /////////  password  ////////////////////////// */}
+
+                            <MDBCol md='3' >
+                                <MDBInput id="pass" value={judges.pass} onChange={(e) => handleInput(e)} label='Password ' type='password' />
+                                <p style={myStyle}>{errors.pass}</p>
                             </MDBCol>
                         </MDBRow>
 

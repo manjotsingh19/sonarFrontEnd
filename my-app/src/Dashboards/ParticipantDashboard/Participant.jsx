@@ -4,7 +4,7 @@ import TeamDetails from "./TeamDetail";
 import Statement from "./Statement";
 import Description from "./Description";
 import Reviews from "./Reviews";
-import { countdown } from "./Countdown";
+// import { countdown } from "./Countdown";
 
 function Participant() {
   // Here data will be fetched from the backend(status)

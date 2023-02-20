@@ -14,10 +14,12 @@ function AddDomain() {
 
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
+    const [submitted, setSubmited] = useState(false);
 
     useEffect(() => {
         console.log(errors);
-        if (Object.keys(errors).length === 0) {
+        if (Object.keys(errors).length === 0 && submitted) {
+
             console.log(domains);
 
             axios.post('/domain', domains)
@@ -29,11 +31,15 @@ function AddDomain() {
                 });
 
         }
-    }, [errors]);
+        else{
+            setSubmited(false);
+        }
+    }, [errors,submitted]);
 
     const handleAdd = (e) => {
         e.preventDefault();
         serErrors(validate(domains));
+        setSubmited(true);
     }
 
     const handleInput = (e) => {

@@ -3,27 +3,31 @@ import 'react-datepicker/dist/react-datepicker.css';
 import AddJudges from './AddJudges';
 import CreateEvent from './CreateEvent';
 import AddDomain from './AddDomain';
+import { useState,useEffect } from 'react';
 import ShowUsers from './ShowUsers';
+import axios from 'axios';
 
 
 
 function Admin() {
+
+
     return (
         <>
             <MDBContainer fluid>
                 {/* //////////////////////add judges/////////////////// */}
-                <AddJudges/> 
+                <AddJudges />
 
                 {/* ///////////////////create event///////////////////////////// */}
-               
-                <CreateEvent/>
+
+                <CreateEvent />
 
                 {/* /////////////////////////////add domain ///////////////////*/}
 
-                <AddDomain/>
+                <AddDomain />
 
                 {/* ////////////////show alll */}
-                <ShowUsers/>
+                <ShowUsers />
             </MDBContainer>
         </>
     )
