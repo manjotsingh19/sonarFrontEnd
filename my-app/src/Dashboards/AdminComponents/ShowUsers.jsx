@@ -6,7 +6,7 @@ function ShowUsers() {
 
 
     useEffect(() => {   
-        axios.get('/')
+        axios.get('/getUsers')
         .then(response => {
             console.log(response.data);
         }, (error) => {
