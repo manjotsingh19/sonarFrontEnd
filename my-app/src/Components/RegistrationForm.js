@@ -2,6 +2,7 @@ import React from 'react';
 import { MDBTextArea, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -69,12 +70,14 @@ function RegistrationForm() {
     if (Object.keys(errors).length === 0 && isSubmit) {
       console.log(teamForm);
 
-      axios.post('/', teamForm)
+      axios.post('/registrationForm', teamForm)
         .then((response) => {
           console.log(response);
+          navigator("/logIn")
 
         }, (error) => {
           console.log(error);
+          alert("error is occured");
         });
 
     }
@@ -82,7 +85,7 @@ function RegistrationForm() {
 
   const validate = (teamForm) => {
     const errorsObj = {};
-    // const regex =  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/i;
+    // const regex =  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/i; 
     const regex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
     const regexPh = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
     if (!teamForm.team) {
