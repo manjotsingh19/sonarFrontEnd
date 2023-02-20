@@ -4,14 +4,11 @@ import axios from 'axios';
 
 function ShowUsers() {
 
-    const [employees, setEmployees] = useState([]);
 
     useEffect(() => {   
-        axios.get('/adminDashboard')
+        axios.get('/')
         .then(response => {
-            setEmployees(response.data);
-
-            console.log(employees);
+            console.log(response.data);
         }, (error) => {
             console.log(error);
           });

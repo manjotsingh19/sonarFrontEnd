@@ -13,12 +13,15 @@ function CreateEvent() {
         description: '',
     });
 
+    const [submitted, setSubmited] = useState(false);
+
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
 
     useEffect(() => {
         console.log(errors);
-        if (Object.keys(errors).length === 0) {
+        if (Object.keys(errors).length === 0 && submitted) 
+         {
             console.log(event);
 
             axios.post('/event', event)
@@ -30,12 +33,16 @@ function CreateEvent() {
                 });
 
         }
-    }, [errors]);
+        else{
+            setSubmited(false);
+        }
+    }, [errors,submitted]);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         serErrors(validate(event));
+        setSubmited(true);
     }
 
     const handleInput = (e) => {
