@@ -13,18 +13,19 @@ import Judge from "./Dashboards/JugdeComponents/Judge";
 function App() {
   return (
     <>
-    <Navbar/>
-    <BrowserRouter>
+      <Navbar />
+      <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Frontpage/>}/>
+          <Route path='/' element={<Frontpage />} />
           <Route path="/logIn" element={<LoginPage />} />
           <Route path="/registrationForm" element={<RegistrationForm />} />
           <Route path="/AdminDashboard" element={<Admin />} />
           <Route path="/participant" element={<Participant />} />
-        <Route path="/panelist" element={<Panelist />} />
-        <Route path="/judge" element={<Judge />} />
+          <Route path="/panelist" element={<Panelist />} />
+          <Route path="/judge" element={<Judge />} />
         </Routes>
-  </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
 
