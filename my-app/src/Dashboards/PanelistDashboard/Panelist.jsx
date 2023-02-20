@@ -162,7 +162,7 @@ function Panelist() {
   ];
   return (
     <div className="cards">
-      <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 mt-4">
+      <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
         Panelist Dashboard
       </h3>
       <MDBRow>
