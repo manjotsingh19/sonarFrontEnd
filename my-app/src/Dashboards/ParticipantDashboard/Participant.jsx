@@ -7,7 +7,7 @@ import Reviews from "./Reviews";
 import { countdown } from "./Countdown";
 
 function Participant() {
-  // Here I will fetch the data from the backend
+  // Here data will be fetched from the backend(status)
   const isReverted = true;
   const isRejected = false;
   const isAccepted = true;
