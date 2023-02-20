@@ -27,7 +27,12 @@ function LoginPage() {
     axios.post('/login', teamForm)
         .then((response) => {
           console.log(response);
-          alert("login successful")
+          alert("login successful");
+
+          // //////////////send response to dashboard
+            
+          
+            ///////////////////////////
         }, (error) => {
           console.log(error);
           alert("Username or password is incorrect");
