@@ -25,11 +25,6 @@ function Participant() {
           <td>Thornton</td>
           <td>@fat</td>
         </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
       </MDBTableBody>
     </MDBTable>
   );
