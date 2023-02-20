@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Admin from '../Dashboards/AdminComponents/Admin';
+
 
 function LoginPage() {
   const [isSubmit,setSubmit] = useState(false);
-  // const [errors, serErrors] = useState({});
+  const navigate = useNavigate();
+
 
   const[teamForm, setTeamForm] = useState({
     email:'',
@@ -20,7 +23,7 @@ function LoginPage() {
   const handleclick = (e) => {
     e.preventDefault();
     setSubmit(true);
-    // console.log(teamForm);
+    navigate('/AdminDashboard');
   }
 
 //   const validate = (teamForm)=>{
