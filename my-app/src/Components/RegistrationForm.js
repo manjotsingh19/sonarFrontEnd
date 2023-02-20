@@ -12,6 +12,7 @@ function RegistrationForm() {
   const [errors, serErrors] = useState({});
   const [selectedOption, setSelectedOption] = useState("");
   const [addBtn, setAddBtn] = useState(false);
+  const navigate = useNavigate();
   const [password, setPassword] = useState({
     confirmPassword: "",
   });
@@ -83,7 +84,7 @@ function RegistrationForm() {
       axios.post('/registrationForm', teamForm)
         .then((response) => {
           console.log(response);
-          navigator("/logIn")
+          navigate("/logIn")
 
         }, (error) => {
           console.log(error);

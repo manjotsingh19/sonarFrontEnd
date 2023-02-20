@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { Link, useNavigate } from 'react-router-dom';
 import Admin from '../Dashboards/AdminComponents/Admin';
+import axios from 'axios';
 
 
 function LoginPage() {
@@ -23,7 +24,14 @@ function LoginPage() {
   const handleclick = (e) => {
     e.preventDefault();
     setSubmit(true);
-    navigate('/AdminDashboard');
+    axios.post('/login', teamForm)
+        .then((response) => {
+          console.log(response);
+          alert("login successful")
+        }, (error) => {
+          console.log(error);
+          alert("Username or password is incorrect");
+        });
   }
 
 //   const validate = (teamForm)=>{
@@ -46,7 +54,7 @@ function LoginPage() {
       <MDBRow>
 
         <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image" />
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
         </MDBCol>
 
         <MDBCol col='4' md='6'>

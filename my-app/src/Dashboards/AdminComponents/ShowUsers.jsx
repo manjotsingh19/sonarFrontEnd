@@ -1,22 +1,22 @@
-import { validation, MDBListGroup, MDBListGroupItem, MDBTextArea, MDBValidationItem, inputGroup, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBDropdown, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBRadio, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import {  MDBCardBody, MDBCol, MDBRow, MDBCard} from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Form from "react-bootstrap/Form";
+import axios from 'axios';
 
 function ShowUsers() {
-    
-    const [isSubmit, setSubmit] = useState(false);
-    const [errors, serErrors] = useState({});
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    const handleclick = () => {
 
-    }
-    const handleInput = () => {
+    const [employees, setEmployees] = useState([]);
 
-    }
+    useEffect(() => {   
+        axios.get('/adminDashboard')
+        .then(response => {
+            setEmployees(response.data);
+
+            console.log(employees);
+        }, (error) => {
+            console.log(error);
+          });
+    }, []);
+
     const myStyle = {
         color: 'red'
     }
