@@ -12,6 +12,11 @@ function RegistrationForm() {
   const [errors, serErrors] = useState({});
   const [selectedOption, setSelectedOption] = useState("");
   const [addBtn, setAddBtn] = useState(false);
+  const [password, setPassword] = useState({
+    confirmPassword: "",
+  });
+
+
 
 
   const handleAddBtn = () => {
@@ -44,6 +49,7 @@ function RegistrationForm() {
     e4: '',
     ph4: '',
 
+    pass: '',
     domain: '',
     problemS: '',
     problemD: '',
@@ -51,6 +57,10 @@ function RegistrationForm() {
 
   });
 
+  const handlePass = (e) => {
+    const { id, value } = e.target;
+    setPassword({ ...password, [id]: value });
+  }
   const handleInput = (e) => {
     const { id, value } = e.target;
     setTeamForm({ ...teamForm, [id]: value });
@@ -89,7 +99,7 @@ function RegistrationForm() {
     const regex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
     const regexPh = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
     if (!teamForm.team) {
-      errorsObj.team = 'Team is required';
+      errorsObj.team = 'Team Name is required';
     }
     if (!teamForm.n1) {
       errorsObj.n1 = 'Participant name is required';
@@ -182,6 +192,18 @@ function RegistrationForm() {
         }
       }
     }
+    if (!teamForm.pass) {
+      errorsObj.pass = 'Password is required';
+    }
+    else if (teamForm.pass.length < 8) {
+      errorsObj.pass = 'Minimum password length is 8';
+    }
+    if (!password.confirmPassword) {
+      errorsObj.confirmPassword = 'Enter confirm password';
+    }
+    else if (teamForm.pass !== password.confirmPassword) {
+      errorsObj.confirmPassword = 'Confirm password is not matched';
+    }
     return errorsObj;
   }
 
@@ -207,7 +229,7 @@ function RegistrationForm() {
 
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Team Name</h6>
+                    <h6 className="mb-0">Team Name  <span style={{ color: "red" }}>*</span></h6>
                   </MDBCol>
                   <MDBCol md='6' >
                     <MDBInput id="team" value={teamForm.team} onChange={(e) => handleInput(e)} wrapperClass='mb-0' required className='col-md-4' label='Team Name' size='md' type='text' />
@@ -330,6 +352,24 @@ function RegistrationForm() {
                 )}
 
 
+                {/* /////////////////////////Password/////////////////////////////////// */}
+
+                <MDBRow className='align-items-center pt-0 '>
+                  <MDBCol md='3' className='ps-5'>
+                  <h6 className="mb-0">Password <span style={{ color: "red" }}>*</span></h6>
+                  </MDBCol>
+
+                  <MDBCol md='3' >
+                    <MDBInput id="pass" value={teamForm.pass} onChange={(e) => handleInput(e)} label='Team Password ' type='password' />
+                    <p style={myStyle}>{errors.pass}</p>
+                  </MDBCol>
+                  <MDBCol md='3'>
+                    <MDBInput id="confirmPassword" value={password.confirmPassword} onChange={(e) => handlePass(e)} label='Confirm Team Password' type='password' />
+                    <p style={myStyle}>{errors.confirmPassword}</p>
+                  </MDBCol>
+                </MDBRow>
+
+
 
                 {/* /////////////////////////////////////////////////////////////////////// */}
 
@@ -337,7 +377,7 @@ function RegistrationForm() {
                 <MDBRow className='align-items-center pt-2 pb-3'>
 
                   <MDBCol md='3' className='ps-5'>
-                    <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{border:"5px"}}>
+                    <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "5px" }}>
                       <option value="">Select Domain</option>
                       <option value="option1">Option 1</option>
                       <option value="option2">Option 2</option>
@@ -355,7 +395,7 @@ function RegistrationForm() {
                 <MDBRow className='align-items-center pt-2 pb-3'>
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Problem Statement</h6>
+                    <h6 className="mb-0">Problem Statement  <span style={{ color: "red" }}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='9' className='pe-5'>
@@ -369,7 +409,7 @@ function RegistrationForm() {
                 <MDBRow className='align-items-center pt-2 pb-3'>
 
                   <MDBCol md='3' className='ps-5'>
-                    <h6 className="mb-0">Problem Description</h6>
+                    <h6 className="mb-0">Problem Description  <span style={{ color: "red" }}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='9' className='pe-5'>
@@ -384,6 +424,8 @@ function RegistrationForm() {
                 <div className='col-12'>
                   <MDBBtn onClick={handleclick} >Submit Form</MDBBtn>
                 </div>
+
+                
 
               </MDBCardBody>
             </MDBCard>
