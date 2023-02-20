@@ -379,9 +379,9 @@ function RegistrationForm() {
                   <MDBCol md='3' className='ps-5'>
                     <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "5px" }}>
                       <option value="">Select Domain</option>
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
+                      <option value="1">Option 1</option>
+                      <option value="2">Option 2</option>
+                      <option value="3">Option 3</option>
                     </select>
                     <p style={myStyle}>{errors.domain}</p>
                   </MDBCol>
