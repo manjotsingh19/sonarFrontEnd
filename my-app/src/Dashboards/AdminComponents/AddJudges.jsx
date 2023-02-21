@@ -1,4 +1,4 @@
-import { MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import { MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,9 +7,9 @@ function AddJudges() {
     const [judges, setJudges] = useState({
         name: '',
         email: '',
-        phone: '',
-        role: '',
-        pass: '',
+        mobile: '',
+        role_id: '',
+        password: '',
     });
 
     const [errors, serErrors] = useState({});
@@ -29,6 +29,7 @@ function AddJudges() {
             axios.post('/user', judges)
                 .then((response) => {
                     console.log(response);
+                    alert("Judge added successfully");
 
                 }, (error) => {
                     console.log(error);
@@ -59,7 +60,8 @@ function AddJudges() {
     }
 
     const handleRole = (e) => {
-        setJudges({ ...judges, role: e.target.value });
+        const x = e.target.value;
+        setJudges({ ...judges,  role_id: parseInt(x)});
     }
 
     const validate = (judges) => {
@@ -76,17 +78,17 @@ function AddJudges() {
         else if (!regex.test(judges.email)) {
             errorsObj.email = "This is not a valid email";
         }
-        if (!judges.phone) {
-            errorsObj.phone = 'Number is required';
+        if (!judges.mobile) {
+            errorsObj.mobile = 'Number is required';
         }
-        else if (!regexPh.test(judges.phone)) {
-            errorsObj.phone = "Enter valid phone number";
+        else if (!regexPh.test(judges.mobile)) {
+            errorsObj.mobile = "Enter valid phone number";
         }
-        if (!judges.pass) {
-            errorsObj.pass = 'Password is required';
+        if (!judges.password) {
+            errorsObj.password = 'Password is required';
         }
-        else if (judges.pass.length < 8) {
-            errorsObj.pass = 'Minimum password length is 8';
+        else if (judges.password.length < 8) {
+            errorsObj.password = 'Minimum password length is 8';
         }
 
         return errorsObj;
@@ -112,23 +114,23 @@ function AddJudges() {
                             </MDBCol>
 
                             <MDBCol md='3'>
-                                <MDBInput id="phone" value={judges.phone} onChange={(e) => handleInput(e)} label='Phone number' type='tel' required className='col-md-4' />
-                                <p style={myStyle}>{errors.phone}</p>
+                                <MDBInput id="mobile" value={judges.mobile} onChange={(e) => handleInput(e)} label='Phone number' type='tel' required className='col-md-4' />
+                                <p style={myStyle}>{errors.mobile}</p>
                             </MDBCol>
 
                             {/* /////////  password  ////////////////////////// */}
 
                             <MDBCol md='3' >
-                                <MDBInput id="pass" value={judges.pass} onChange={(e) => handleInput(e)} label='Password ' type='password' />
-                                <p style={myStyle}>{errors.pass}</p>
+                                <MDBInput id="password" value={judges.password} onChange={(e) => handleInput(e)} label='Password ' type='password' />
+                                <p style={myStyle}>{errors.password}</p>
                             </MDBCol>
                         </MDBRow>
 
                         <MDBRow className=' pb-md-2'>
 
                             <div onChange={(e) => handleRole(e)}  >
-                                <input type="radio" value="penelist" name="role" /> Penalist
-                                <input type="radio" value="judge" name="role" style={{ marginLeft: "25px" }} /> Judge
+                                <input type="radio" value={2} name="role_id" /> Penalist
+                                <input type="radio" value={3} name="role_id" style={{ marginLeft: "25px" }} /> Judge
                             </div>
 
 

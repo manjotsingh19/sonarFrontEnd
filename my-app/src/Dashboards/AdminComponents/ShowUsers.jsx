@@ -11,29 +11,37 @@ function ShowUsers() {
             .then(response => {
                 console.log(response.data);
                 setUser(response.data);
+                console.log("this is user data"+user ) ;
+                
             }, (error) => {
                 console.log(error);
             });
     }, []);
 
 
-    const handleDelete = (id) => {
-        axios.post('/', id)
-        .then((response) => {
-            console.log(response);
+    // const handleDelete = (id) => {
 
-        }, (error) => {
-            console.log(error);
-        });
-    }
+    //     axios.post('/', id)
+    //     .then((response) => {
+    //         console.log(response);
+
+    //     }, (error) => {
+    //         console.log(error);
+    //     });
+
+    // }
+
 
 
     const tableRows = user.map((info) => {
+        
+        // console.log(info.role.id);
         return (
             <tr>
                 <td>{info.email}</td>
                 <td>{info.name}</td>
-                <td><MDBBtn onClick={handleDelete(info.id)} ></MDBBtn></td>
+                {/* <td>{info.role.id}</td> */}
+                {/* <td><MDBBtn onClick={handleDelete(info.id)} ></MDBBtn></td> */}
             </tr>
         );
     });
@@ -51,9 +59,10 @@ function ShowUsers() {
                                 <tr>
                                     <th>Email</th>
                                     <th>Name</th>
+                                    <th>RoleID</th>
                                 </tr>
                             </thead>
-                            {/* <tbody>{tableRows}</tbody> */}
+                            <tbody>{tableRows}</tbody>
                         </table>
 
 

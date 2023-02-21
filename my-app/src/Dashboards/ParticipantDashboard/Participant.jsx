@@ -25,11 +25,13 @@ function Participant() {
   return (
     <>
       <MDBContainer fluid>
-        {/* team details*/}
+   
         <TeamDetails {...data} />
         {/* problem statement*/}
+
         <Statement />
         {/* problem description*/}
+        
         <Description />
 
         <div>

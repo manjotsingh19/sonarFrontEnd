@@ -1,4 +1,4 @@
-import { MDBTextArea, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
+import { validation, MDBListGroup, MDBListGroupItem, MDBTextArea, MDBValidationItem, inputGroup, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBDropdown, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBRadio, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
@@ -7,7 +7,7 @@ import axios from 'axios';
 function CreateEvent() {
     const [errors, serErrors] = useState({});
     const [event, setEvent] = useState({
-        name: '',
+        eventName: '',
         startDate: '',
         endDate: '',
         description: '',
@@ -53,8 +53,8 @@ function CreateEvent() {
     const validate = (event) => {
         const errorsObj = {};
 
-        if (!event.name) {
-            errorsObj.name = 'Name is required';
+        if (!event.eventName) {
+            errorsObj.eventName = 'eventName is required';
         }
         if (!event.description) {
             errorsObj.description = 'Description is required';
@@ -82,8 +82,8 @@ function CreateEvent() {
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='4' >
-                                <MDBInput id="name" value={event.name} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Name' size='md' type='text' />
-                                <p style={myStyle}>{errors.name}</p>
+                                <MDBInput id="eventName" value={event.eventName} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='eventName' size='md' type='text' />
+                                <p style={myStyle}>{errors.eventName}</p>
                             </MDBCol>
 
 
