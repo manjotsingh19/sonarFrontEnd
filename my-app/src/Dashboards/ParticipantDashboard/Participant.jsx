@@ -12,7 +12,7 @@ function Participant() {
   const isAccepted = true;
 
 
-
+  
   // var userObj = JSON.parse(localStorage.getItem("data"));
 
   console.log();

@@ -127,11 +127,6 @@ function CreateEvent() {
                                 </MDBCol>
 
                             </MDBRow>
-
-
-
-
-
                         </MDBRow>
                         <div className='col-12 '>
                             <MDBBtn onClick={handleSubmit} >Create</MDBBtn>

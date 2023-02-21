@@ -17,8 +17,17 @@ function RegistrationForm() {
     confirmPassword: "",
   });
 
+  const [domain, setDomain] = useState([]);
 
-
+  useEffect(() => {
+    axios.get('/getDomain')
+      .then(response => {
+        console.log(response.data);
+        setDomain(response.data);
+      }, (error) => {
+        console.log(error);
+      });
+  }, [])
 
   const handleAddBtn = () => {
     setAddBtn(true);
@@ -81,6 +90,7 @@ function RegistrationForm() {
     if (Object.keys(errors).length === 0 && isSubmit) {
       console.log(teamForm);
 
+      console.log(teamForm);
       axios.post('/registrationForm', teamForm)
         .then((response) => {
           console.log(response);
@@ -358,7 +368,7 @@ function RegistrationForm() {
 
                 <MDBRow className='align-items-center pt-0 '>
                   <MDBCol md='3' className='ps-5'>
-                  <h6 className="mb-0">Password <span style={{ color: "red" }}>*</span></h6>
+                    <h6 className="mb-0">Password <span style={{ color: "red" }}>*</span></h6>
                   </MDBCol>
 
                   <MDBCol md='3' >
@@ -373,19 +383,30 @@ function RegistrationForm() {
 
 
 
-                {/* /////////////////////////////////////////////////////////////////////// */}
+                {/* ////////////////////////////////domains/////////////////////////////////////// */}
 
 
                 <MDBRow className='align-items-center pt-2 pb-3'>
-
                   <MDBCol md='3' className='ps-5'>
-                    <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "5px" }}>
+
+                    <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "1px solid black",borderRadius: "10px" }}>
+                      <option value="">Select Domain</option>
+
+                      {domain.map((value, index) => (
+                        <option value={value.domainId}>{value.domainName}</option>
+                      ))}
+                    </select>
+
+
+                    {/* <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "5px" }}>
                       <option value="">Select Domain</option>
                       <option value="1">Option 1</option>
                       <option value="2">Option 2</option>
                       <option value="3">Option 3</option>
                     </select>
-                    <p style={myStyle}>{errors.domain}</p>
+                    <p style={myStyle}>{errors.domain}</p> */}
+
+
                   </MDBCol>
                 </MDBRow>
 
@@ -427,7 +448,7 @@ function RegistrationForm() {
                   <MDBBtn onClick={handleclick} >Submit Form</MDBBtn>
                 </div>
 
-                
+
 
               </MDBCardBody>
             </MDBCard>
