@@ -74,7 +74,7 @@ function TeamDetails({ id, email, mobile, name, password }) {
     );
   }, []);
 
-  const data = [
+  const data1 = [
     {
       participantName: name,
     },
