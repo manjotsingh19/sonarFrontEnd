@@ -1,47 +1,52 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
+import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import "./Panelist.css";
 import PanelistModal from "./PanelistModal";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Card = ( {teamObj} ) => {
-  const { teamId, teamName, idea} = teamObj 
+
+const Card = ({ teamObj }) => {
+  const { teamId, teamName, idea } = teamObj
   return (
     <div className="teamCard">
-      <MDBRow>
-        <MDBCol md="6">
-          <h6 className="fw-bold">Team ID</h6>
-        </MDBCol>
-        <MDBCol md="6">
-          <h6 className="fw-bold">Team Name</h6>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol md="6">
-          <h4 className="fw-bold">{teamId}</h4>
-        </MDBCol>
-        <MDBCol md="6">
-          <h4 className="fw-bold">{teamName}</h4>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol md="12">
-          <h6 className="fw-bold">Problem Statement</h6>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol md="12">
-          <p className="fw-medium">{idea?.problemStatement}</p>
-        </MDBCol>
-      </MDBRow>
-      <PanelistModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description }} />
+      <MDBCard>
+        <MDBCardBody>
+          <MDBRow>
+            <MDBCol md="6">
+              <h6 className="fw-bold">Team ID</h6>
+            </MDBCol>
+            <MDBCol md="6">
+              <h6 className="fw-bold">Team Name</h6>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBCol md="6">
+              <h4 className="fw-bold">{teamId}</h4>
+            </MDBCol>
+            <MDBCol md="6">
+              <h4 className="fw-bold">{teamName}</h4>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBCol md="12">
+              <h6 className="fw-bold">Problem Statement</h6>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBCol md="12">
+              <p className="fw-medium">{idea?.problemStatement}</p>
+            </MDBCol>
+          </MDBRow>
+          <PanelistModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description }} />
+        </MDBCardBody>
+      </MDBCard>
     </div>
   );
 };
 function Panelist() {
 
-  const [team,setTeam]= useState([]);
+  const [team, setTeam] = useState([]);
 
   useEffect(() => {
     axios.get('/getTeam')

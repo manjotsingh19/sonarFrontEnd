@@ -389,23 +389,13 @@ function RegistrationForm() {
                 <MDBRow className='align-items-center pt-2 pb-3'>
                   <MDBCol md='3' className='ps-5'>
 
-                    <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "1px solid black",borderRadius: "10px" }}>
+                    <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "1px solid black", borderRadius: "10px" }}>
                       <option value="">Select Domain</option>
 
                       {domain.map((value, index) => (
                         <option value={value.domainId}>{value.domainName}</option>
                       ))}
                     </select>
-
-
-                    {/* <select md='3' id='domain' value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "5px" }}>
-                      <option value="">Select Domain</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
-                    </select>
-                    <p style={myStyle}>{errors.domain}</p> */}
-
 
                   </MDBCol>
                 </MDBRow>
@@ -464,21 +454,3 @@ function RegistrationForm() {
 }
 
 export default RegistrationForm;
-
-
-
-
-
-
-  // const mystyle = {
-  //   color: "white",
-  //   // backgroundColor: "whitesmoke",
-  //   backgroundColor: "rgb(59 130 246)",
-  //   borderRadius: "9999px",
-  //   padding: "10px",
-  //   fontFamily: "Arial",
-  //   textAlign: "center",
-  //   textDecoration: 'none',
-  //   padding: "15px 32px",
-  //   justifyContent: "center"
-  // };
