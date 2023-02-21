@@ -1,52 +1,68 @@
 import React, { useEffect, useState } from "react";
-import { MDBContainer } from "mdb-react-ui-kit";
+import { MDBContainer, MDBBtn } from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
 import Statement from "./Statement";
 import Description from "./Description";
 import Reviews from "./Reviews";
+import FileUpload from "./Submission";
 
 function Participant() {
   // Here data will be fetched from the backend(status)
-  const isReverted = true;
-  const isRejected = false;
-  const isAccepted = true;
+  const status = "2"; // 0 rejected 1 accepted 2 waiting
 
-
-  
   // var userObj = JSON.parse(localStorage.getItem("data"));
 
   console.log();
-  const [data, setData] = useState()
+  const [data, setData] = useState();
 
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("data")));
-  } , [localStorage.getItem("data")]);
+  }, [localStorage.getItem("data")]);
 
-  return (
-    <>
-      <MDBContainer fluid>
-   
-        <TeamDetails {...data} />
-        {/* problem statement*/}
+  switch (status) {
+    case "1":
+      return (
+        <MDBContainer fluid>
+          {/* team details*/}
+          <TeamDetails {...data} />
+          <MDBBtn color="success">Accepted</MDBBtn>
+          <div>
+            <FileUpload />
+          </div>
+        </MDBContainer>
+      );
 
-        <Statement />
-        {/* problem description*/}
-        <Description />
+    case "0":
+      return (
+        <MDBContainer fluid>
+          {/* team details*/}
+          <TeamDetails {...data} />
+          <MDBBtn color="danger">Rejected</MDBBtn>
+          <div>You are not eligible to move further in this hackathon</div>
+        </MDBContainer>
+      );
 
-        <div>
-          <h3>Acceptance</h3>
-          {isAccepted
-            ? "\nYour idea is accepted: START CODING..."
-            : "\nYour idea is not accepted"}
-          ,<h3>Rejection</h3>
-          {isRejected
-            ? "\nYour idea is rejected"
-            : "\nYour idea is not rejected"}
-          ,<h3>Revertion</h3>
-          {isReverted ? <Reviews /> : "\nYour idea is accepted: Start coding"}
-        </div>
-      </MDBContainer>
-    </>
-  );
+    case "2":
+      return (
+        <MDBContainer fluid>
+          {/* team details*/}
+          <TeamDetails {...data} />
+          <MDBBtn color="warning">Under Review</MDBBtn>
+          <div>
+            <Reviews />
+            {/* edit details */}
+          </div>
+        </MDBContainer>
+      );
+    default:
+      return (
+        <MDBContainer fluid>
+          {/* team details*/}
+          <TeamDetails {...data} />
+          <MDBBtn color="warning">Under Review</MDBBtn>
+          <div></div>
+        </MDBContainer>
+      );
+  }
 }
 export default Participant;
