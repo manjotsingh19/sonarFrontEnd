@@ -77,9 +77,11 @@ function Panelist() {
       </h3>
       <MDBRow>
         {team.map((value, index) => (
-          <MDBCol md="4" key={index}>
+
+          <MDBCol style={{marginBottom:"25px"}} md="4" key={index}>
             <Card teamObj={value} />
           </MDBCol>
+
         ))}
       </MDBRow>
     </div>
