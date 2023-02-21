@@ -3,6 +3,7 @@ import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } f
 import { Link, useNavigate } from 'react-router-dom';
 import Admin from '../Dashboards/AdminComponents/Admin';
 import axios from 'axios';
+import Participant from '../Dashboards/ParticipantDashboard/Participant';
 
 
 function LoginPage() {
@@ -21,16 +22,28 @@ function LoginPage() {
     setTeamForm({ ...teamForm, [id]: value });
   }
 
+
   const handleclick = (e) => {
     e.preventDefault();
     setSubmit(true);
     axios.post('/login', teamForm)
         .then((response) => {
-          console.log(response);
-          alert("login successful");
 
           // //////////////send response to dashboard
-            
+
+          localStorage.setItem("data",JSON.stringify(response.data));
+          if(response.data.role.id === 4){
+            navigate("/participant");
+          }
+          else if(response.data.role.id === 3){
+            navigate("/judge");
+          }
+          else if(response.data.role.id === 2){
+            navigate("/panelist");
+          }
+          else if(response.data.role.id === 1){
+            navigate("/Admin");
+          }
           
             ///////////////////////////
         }, (error) => {
@@ -39,17 +52,6 @@ function LoginPage() {
         });
   }
 
-//   const validate = (teamForm)=>{
-//     const errorsObj = {};
-//     const regex =   /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-//     if(!teamForm.email){
-//       errorsObj.email = 'Participent email is required';
-//     }
-//     else if(!regex.test(teamForm.email)){
-//       errorsObj.email = "this is not a valid email";
-//     }
-//     return errorsObj;
-// }
 
 
 
@@ -73,16 +75,6 @@ function LoginPage() {
           <div className='col-12'>
                   <MDBBtn onClick={handleclick} type='submit' className='bg-primary shadow-1-strong'> LogIn </MDBBtn>
           </div>
-
-
-
-          {/* <div className='text-center text-md-start mt-4 pt-2'>
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full">
-            LogIn
-          </button>
-
-            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <Link to="/registrationForm" >Register</Link></p>
-          </div> */}
 
         </MDBCol>
 

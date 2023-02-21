@@ -1,5 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Card1 = ({ participantName }) => {
   return (
@@ -53,21 +56,31 @@ const Card2 = ({ teamName, statement, description }) => {
     </>
   );
 };
-function TeamDetails() {
-  const data1 = [
+
+function TeamDetails({ id, email, mobile, name, password }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const url = "/participants/" + id;
+    console.log(url);
+
+    axios.get(url).then(
+      (response) => {
+        console.log(response.data);
+      },
+      (error) => {
+        console.log("this is error in team detail", error);
+      }
+    );
+  }, []);
+
+  const data = [
     {
-      participantName: "error404",
-    },
-    {
-      participantName: "team-1",
-    },
-    {
-      participantName: "team-2",
-    },
-    {
-      participantName: "team-3",
+      participantName: name,
     },
   ];
+  console.log(name);
+
   const data2 = {
     teamName: "error404",
     statement:
