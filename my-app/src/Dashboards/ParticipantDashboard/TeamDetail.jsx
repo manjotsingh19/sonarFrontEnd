@@ -60,8 +60,9 @@ const Card2 = ({ teamName, statement, description }) => {
 function TeamDetails({ id, email, mobile, name, password }) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const url = "/participants/" + id;
+
+  useEffect(() => {   
+    const url = "/participants/"+id;
     console.log(url);
 
     axios.get(url).then(

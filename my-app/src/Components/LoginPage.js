@@ -32,16 +32,16 @@ function LoginPage() {
           // //////////////send response to dashboard
 
           localStorage.setItem("data",JSON.stringify(response.data));
-          if(response.data.role.id === 4){
+          if(response.data.role_id === 4){
             navigate("/participant");
           }
-          else if(response.data.role.id === 3){
+          else if(response.data.role_id === 3){
             navigate("/judge");
           }
-          else if(response.data.role.id === 2){
+          else if(response.data.role_id === 2){
             navigate("/panelist");
           }
-          else if(response.data.role.id === 1){
+          else if(response.data.role_id === 1){
             navigate("/Admin");
           }
           

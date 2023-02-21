@@ -8,8 +8,9 @@ import axios from 'axios';
 function AddDomain() {
     const [errors, serErrors] = useState({});
     const [domains, setDomains] = useState({
-        domain: '',
+        domainName: '',
     })
+    const [domainData,setDomainData] = useState([]);
 
 
 
@@ -17,15 +18,12 @@ function AddDomain() {
     const [submitted, setSubmited] = useState(false);
 
     useEffect(() => {
-        console.log(errors);
         if (Object.keys(errors).length === 0 && submitted) {
-
             console.log(domains);
-
             axios.post('/domain', domains)
                 .then((response) => {
-                    console.log(response);
-
+                    // console.log(response);
+                    setDomainData([...domainData, domains.domainName]);
                 }, (error) => {
                     console.log(error);
                 });
@@ -35,6 +33,32 @@ function AddDomain() {
             setSubmited(false);
         }
     }, [errors,submitted]);
+
+
+    ///////////////////////////////////show domain data///////////////////////////////////////
+   
+
+    useEffect(() => {
+        axios.get('/getDomain')
+            .then(response => {
+                // console.log("this  is responsedata" + response.data);
+                setDomainData(response.data);
+                // console.log("this is domain data"+domainData ) ;
+                
+            }, (error) => {
+                console.log(error);
+            });
+    }, [domainData]);
+
+    
+    const dropdownData = domainData.map((info) => {
+        return (
+            <MDBListGroupItem>{info.domainName}</MDBListGroupItem>   
+        )
+    });
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -49,11 +73,9 @@ function AddDomain() {
 
     const validate = (domains) => {
         const errorsObj = {};
-
-        if (!domains.domain) {
-            errorsObj.domain = 'Write a domain name';
+        if (!domains.domainName) {
+            errorsObj.domainName = 'Write a domain name';
         }
-
         return errorsObj;
     }
 
@@ -71,19 +93,14 @@ function AddDomain() {
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='4' >
-                                <MDBInput id="domain" value={domains.domain} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Domain' size='md' type='text' />
-                                <p style={myStyle}>{errors.domain}</p>
+                                <MDBInput id="domainName" value={domains.domainName} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Domain' size='md' type='text' />
+                                <p style={myStyle}>{errors.domainName}</p>
                             </MDBCol>
 
                             {/* sbow doamin list */}
                             <MDBCol md='4' >
                                 <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll", maxHeight: "100px", minWidth: '22rem' }}>
-                                    <MDBListGroupItem>Cras justo odio <button style={{ color: "red" }}>remove</button></MDBListGroupItem>
-                                    <MDBListGroupItem>Porta ac consectetur ac</MDBListGroupItem>
-                                    <MDBListGroupItem>Vestibulum at eros</MDBListGroupItem>
-                                    <MDBListGroupItem>Cras justo odio <button style={{ color: "red" }}>remove</button></MDBListGroupItem>
-                                    <MDBListGroupItem>Porta ac consectetur ac</MDBListGroupItem>
-                                    <MDBListGroupItem>Vestibulum at eros</MDBListGroupItem>
+                                    {dropdownData}
                                 </MDBListGroup>
                             </MDBCol>
                         </MDBRow>
