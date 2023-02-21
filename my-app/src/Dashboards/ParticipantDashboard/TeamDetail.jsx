@@ -19,33 +19,20 @@ const Card = ({ participantName, statement, description }) => {
   );
 };
 
-
-
-
-
-
 function TeamDetails({id, email, mobile, name , password}) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-      axios.post('/registrationForm', id)
-        .then((response) => {
-          console.log(response);
-          navigate("/logIn")
-
-        }, (error) => {
-          console.log(error);
-          alert("error is occured");
-        });
-
-    }, []);
 
   useEffect(() => {   
-    axios.get('/participant')
+    const url = "/participants/"+id;
+    console.log(url);
+    
+    axios.get(url)
     .then(response => {
         console.log(response.data);
     }, (error) => {
-        console.log(error);
+        console.log("this is error in team detail", error);
+
       });
 }, []);
 

@@ -17,9 +17,17 @@ function ShowUsers() {
     }, []);
 
 
-    const handleDelete = () => {
+    const handleDelete = (id) => {
+        axios.post('/', id)
+        .then((response) => {
+            console.log(response);
 
+        }, (error) => {
+            console.log(error);
+        });
     }
+
+
     const tableRows = user.map((info) => {
         return (
             <tr>

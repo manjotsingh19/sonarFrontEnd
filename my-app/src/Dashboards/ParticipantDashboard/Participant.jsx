@@ -13,13 +13,15 @@ function Participant() {
 
 
 
-  var userObj = JSON.parse(localStorage.getItem("data"));
+  // var userObj = JSON.parse(localStorage.getItem("data"));
 
-  console.log(userObj);
-  const [data, setData] = useState(userObj)
+  console.log();
+  const [data, setData] = useState()
+
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("data")));
-  } , [localStorage.getItem("data")])
+  } , [localStorage.getItem("data")]);
+
   return (
     <>
       <MDBContainer fluid>

@@ -32,7 +32,19 @@ function LoginPage() {
           // //////////////send response to dashboard
 
           localStorage.setItem("data",JSON.stringify(response.data));
-          navigate("/participant");
+          if(response.data.role.id === 4){
+            navigate("/participant");
+          }
+          else if(response.data.role.id === 3){
+            navigate("/judge");
+          }
+          else if(response.data.role.id === 2){
+            navigate("/panelist");
+          }
+          else if(response.data.role.id === 1){
+            navigate("/Admin");
+          }
+          
             ///////////////////////////
         }, (error) => {
           console.log(error);
