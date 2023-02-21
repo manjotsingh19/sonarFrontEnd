@@ -9,6 +9,10 @@ import {
   MDBModalBody,
   MDBModalFooter,
 } from "mdb-react-ui-kit";
+import Marking from "./Marking";
+import VideoPlayer from "./VideoPlayer";
+// import Ppt from "./Ppt";
+import Present from "./Present";
 
 export default function JudgeModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
@@ -28,7 +32,7 @@ export default function JudgeModal({ item }) {
         <MDBBtn onClick={toggleShow}>Review</MDBBtn>
       </div>
       <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
-        <MDBModalDialog centered>
+        <MDBModalDialog centered size="xl">
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>
@@ -50,16 +54,26 @@ export default function JudgeModal({ item }) {
                 <p>{description}</p>
               </div>
             </MDBModalBody>
+            <div
+              className="Video"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <VideoPlayer />
+            </div>
+            {
+              /* <Ppt /> */
+              // <Present />
+            }
+            <>
+              <Marking />
+            </>
 
             <MDBModalFooter>
               <MDBBtn color="success" onClick={toggleShow}>
-                Accept
-              </MDBBtn>
-              <MDBBtn color="danger" onClick={toggleShow}>
-                Reject
-              </MDBBtn>
-              <MDBBtn color="warning" onClick={toggleShow}>
-                Revert
+                Save
               </MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>

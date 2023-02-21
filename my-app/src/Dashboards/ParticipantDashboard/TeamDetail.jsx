@@ -10,7 +10,7 @@ const Card1 = ({ participantName }) => {
       <div className="ideaCard">
         <MDBRow>
           <MDBCol md="6">
-            <h5 className="fw-bold">Participant Name</h5>
+            <h5 className="fw-bold ">Participant Name</h5>
           </MDBCol>
           <MDBCol md="6">
             <h5 className="">{participantName}</h5>
