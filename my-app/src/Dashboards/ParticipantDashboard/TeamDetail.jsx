@@ -1,5 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
+import axios from "axios";
+import { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ participantName, statement, description }) => {
   return (
@@ -15,38 +18,48 @@ const Card = ({ participantName, statement, description }) => {
     </div>
   );
 };
-function TeamDetails() {
+
+
+
+
+
+
+function TeamDetails({id, email, mobile, name , password}) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+      axios.post('/registrationForm', id)
+        .then((response) => {
+          console.log(response);
+          navigate("/logIn")
+
+        }, (error) => {
+          console.log(error);
+          alert("error is occured");
+        });
+
+    }, []);
+
+  useEffect(() => {   
+    axios.get('/participant')
+    .then(response => {
+        console.log(response.data);
+    }, (error) => {
+        console.log(error);
+      });
+}, []);
+
+
   const data = [
     {
-      participantName: "error404",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
-
-    {
-      participantName: "team-1",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
-    {
-      participantName: "team-2",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
-    {
-      participantName: "team-3",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
+      participantName: name
+     }
   ];
+  console.log(name);
+
+
+
+
   return (
     <div className="cards">
       <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">

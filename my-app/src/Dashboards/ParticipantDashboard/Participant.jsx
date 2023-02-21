@@ -1,23 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MDBContainer } from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
 import Statement from "./Statement";
 import Description from "./Description";
 import Reviews from "./Reviews";
-// import { countdown } from "./Countdown";
 
 function Participant() {
   // Here data will be fetched from the backend(status)
   const isReverted = true;
   const isRejected = false;
   const isAccepted = true;
-  // countdown("2023-03-01T00:00:00");
 
+
+
+  var userObj = JSON.parse(localStorage.getItem("data"));
+
+  console.log(userObj);
+  const [data, setData] = useState(userObj)
+  useEffect(() => {
+    setData(JSON.parse(localStorage.getItem("data")));
+  } , [localStorage.getItem("data")])
   return (
     <>
       <MDBContainer fluid>
         {/* team details*/}
-        <TeamDetails />
+        <TeamDetails {...data} />
         {/* problem statement*/}
         <Statement />
         {/* problem description*/}
