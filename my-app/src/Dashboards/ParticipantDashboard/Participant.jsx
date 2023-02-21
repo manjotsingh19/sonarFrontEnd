@@ -19,10 +19,9 @@ function Participant() {
         {/* team details*/}
         <TeamDetails />
         {/* problem statement*/}
-        <Statement />
+        {/* <Statement /> */}
         {/* problem description*/}
-        <Description />
-
+        {/* <Description />  */}
         <div>
           <h3>Acceptance</h3>
           {isAccepted
