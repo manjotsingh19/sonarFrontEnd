@@ -84,6 +84,7 @@ function RegistrationForm() {
       axios.post('/registrationForm', teamForm)
         .then((response) => {
           console.log(response);
+          alert("Registration Successful");
           navigate("/logIn")
 
         }, (error) => {

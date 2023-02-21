@@ -31,7 +31,6 @@ function Participant() {
 
         <Statement />
         {/* problem description*/}
-        
         <Description />
 
         <div>
