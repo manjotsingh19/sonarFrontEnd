@@ -8,13 +8,14 @@ function Participant() {
   // Here data will be fetched from the backend(status)
   const status = "1"; // 0 rejected 1 accepted 2 waiting
 
-  var data = JSON.parse(localStorage.getItem("data"));
+  // var data = JSON.parse(localStorage.getItem("data"));
 
   switch (status) {
     case "1":
       return (
         <MDBContainer fluid>
-          <TeamDetails userObj={data} />
+          {/* <TeamDetails userObj={data} /> */}
+          <TeamDetails />
           <MDBBtn color="success">Accepted</MDBBtn>
           <div>
             <FileUpload />
@@ -25,7 +26,8 @@ function Participant() {
     case "0":
       return (
         <MDBContainer fluid>
-          <TeamDetails userObj={data} />
+          {/* <TeamDetails userObj={data} /> */}
+          <TeamDetails />
           <MDBBtn color="danger">Rejected</MDBBtn>
           <div>You are not eligible to move further in this hackathon</div>
         </MDBContainer>
@@ -34,8 +36,8 @@ function Participant() {
     case "2":
       return (
         <MDBContainer fluid>
-          {/* team details*/}
-          <TeamDetails userObj={data} />
+          <TeamDetails />
+          {/* <TeamDetails userObj={data} /> */}
           <MDBBtn color="warning">Under Review</MDBBtn>
           <div>
             <Reviews />
@@ -47,7 +49,8 @@ function Participant() {
       return (
         <MDBContainer fluid>
           {/* team details*/}
-          <TeamDetails {...data} />
+          {/* <TeamDetails {...data} /> */}
+          <TeamDetails />
           <MDBBtn color="warning">Under Review</MDBBtn>
           <div></div>
         </MDBContainer>
