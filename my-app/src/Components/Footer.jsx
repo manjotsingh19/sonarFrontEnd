@@ -1,13 +1,19 @@
 import React from "react";
 import {
-  FaDribbbleSquare,
-  FaFacebookSquare,
-  FaGithubSquare,
+  FaDribbble,
+  FaFacebookF,
+  FaGithub,
   FaInstagram,
-  FaTwitterSquare,
+  FaLinkedinIn,
+  FaTwitter,
+  FaYoutube,
 } from "react-icons/fa";
 
 const Footer = () => {
+  const styles = {
+    background: "linear-gradient(135deg, #ffb4b4 0%, #b987ff 100%)",
+    // background: 'linear-gradient(to right, #ffcc00, #ff6666)',
+  };
   return (
     <div className="max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-black-300">
       <div>
@@ -18,11 +24,33 @@ const Footer = () => {
           accusantium.
         </p>
         <div className="flex justify-between md:w-[75%] my-6">
-          <FaFacebookSquare size={30} />
-          <FaInstagram size={30} />
-          <FaTwitterSquare size={30} />
-          <FaGithubSquare size={30} />
-          <FaDribbbleSquare size={30} />
+          <div>
+            <a href={"https://www.facebook.com/IncedoInc"}>
+              <FaFacebookF size={30} />
+            </a>
+          </div>
+          <div>
+            <a href={"https://twitter.com/IncedoInc"}>
+              <FaTwitter size={30} />
+            </a>
+          </div>
+          <div>
+            <a href={"https://www.linkedin.com/company/incedo-inc/"}>
+              <FaLinkedinIn size={30} />
+            </a>
+          </div>
+          <div>
+            <a
+              href={"https://www.youtube.com/channel/UC6LjAUc6LyvLSwrEOMJaH_Q"}
+            >
+              <FaYoutube size={30} />
+            </a>
+          </div>
+          <div>
+            <a href={""}>
+              <FaInstagram size={30} />
+            </a>
+          </div>
         </div>
       </div>
       <div className="lg:col-span-2 flex justify-between mt-6">
@@ -62,6 +90,10 @@ const Footer = () => {
             <li className="py-2 text-sm">Terms</li>
           </ul>
         </div>
+      </div>
+      <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element">
+        {" "}
+        © Copyright 2023 Incedo Inc.
       </div>
     </div>
   );
