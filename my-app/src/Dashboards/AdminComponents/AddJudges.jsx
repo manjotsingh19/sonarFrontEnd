@@ -119,7 +119,7 @@ function AddJudges() {
                             </MDBCol>
 
                             <MDBCol md='3'>
-                                <MDBInput id="mobile" value={judges.mobile} onChange={(e) => handleInput(e)} label='Phone number' type='tel' required className='col-md-4' />
+                                <MDBInput id="mobile" type="phone" value={judges.mobile} onChange={(e) => handleInput(e)} label='Phone number'  required className='col-md-4' />
                                 <p style={myStyle}>{errors.mobile}</p>
                             </MDBCol>
 
