@@ -1,30 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { MDBContainer, MDBBtn } from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
-import Statement from "./Statement";
-import Description from "./Description";
 import Reviews from "./Reviews";
 import FileUpload from "./Submission";
 
 function Participant() {
   // Here data will be fetched from the backend(status)
-  const status = "2"; // 0 rejected 1 accepted 2 waiting
 
-  // var userObj = JSON.parse(localStorage.getItem("data"));
+  const status = "1"; // 0 rejected 1 accepted 2 waiting
 
-  console.log();
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    setData(JSON.parse(localStorage.getItem("data")));
-  }, [localStorage.getItem("data")]);
+  var data = JSON.parse(localStorage.getItem("data"));
 
   switch (status) {
     case "1":
       return (
         <MDBContainer fluid>
-          {/* team details*/}
-          <TeamDetails {...data} />
+          <TeamDetails userObj={data} />
           <MDBBtn color="success">Accepted</MDBBtn>
           <div>
             <FileUpload />
@@ -35,8 +26,7 @@ function Participant() {
     case "0":
       return (
         <MDBContainer fluid>
-          {/* team details*/}
-          <TeamDetails {...data} />
+          <TeamDetails userObj={data} />
           <MDBBtn color="danger">Rejected</MDBBtn>
           <div>You are not eligible to move further in this hackathon</div>
         </MDBContainer>
@@ -46,7 +36,7 @@ function Participant() {
       return (
         <MDBContainer fluid>
           {/* team details*/}
-          <TeamDetails {...data} />
+          <TeamDetails userObj={data} />
           <MDBBtn color="warning">Under Review</MDBBtn>
           <div>
             <Reviews />
