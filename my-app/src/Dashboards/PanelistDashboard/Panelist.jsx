@@ -40,7 +40,7 @@ const Card = ({ teamObj }) => {
               <p className="fw-medium">{idea?.problemStatement}</p>
             </MDBCol>
           </MDBRow>
-          <PanelistModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description ,teamObj}} />
+          <PanelistModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj }} />
           {/* <PanelistModal userObj = {teamObj}/> */}
         </MDBCardBody>
       </MDBCard>
@@ -62,20 +62,25 @@ function Panelist() {
       });
   }, []);
 
-  return (
-    <div className="cards">
-      <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
-        Panelist Dashboard
-      </h3>
-      <MDBRow>
-        {team.map((value, index) => (
-          <MDBCol style={{marginBottom:"25px"}} md="4"  key={index}>
-            <Card teamObj={value} />
-          </MDBCol>
+  const filtered=team.filter((value,index)=>{
+    return value.status==="pending"
+  })
 
-        ))}
-      </MDBRow>
-    </div>
+  return (
+    <>
+      <div className="cards">
+        <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
+          Panelist Dashboard
+        </h3>
+        <MDBRow>
+          {filtered.map((value, index) => (
+            <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
+              <Card teamObj={value} />
+            </MDBCol>
+          ))}
+        </MDBRow>
+      </div>
+    </>
   );
 }
 export default Panelist;
