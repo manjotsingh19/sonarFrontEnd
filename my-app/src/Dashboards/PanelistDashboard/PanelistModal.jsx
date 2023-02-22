@@ -29,14 +29,12 @@ export default function PanelistModal({ item }) {
     teamObj.status = e.target.value;
 
     setBasicModal(!basicModal);
-    // setObj(teamObj);
-
-
+    // setObj(teamObj)
     axios.post("/statusChange", teamObj)
         .then((response) => {
-          console.log(teamObj);
-          console.log(response);
-          alert("Participent accepted");
+          // console.log(teamObj);
+          // console.log(response);
+          alert(teamObj.status);
         }, (error) => {
           console.log(error);
           alert("error is occured");
