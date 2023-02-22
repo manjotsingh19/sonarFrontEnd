@@ -9,8 +9,12 @@ import OurTeam from "./OurTeam";
 import "./OurTeam.css";
 
 function Frontpage() {
+  const styles = {
+    background: "linear-gradient(135deg, #ffb4b4 0%, #b987ff 100%)",
+    // background: 'linear-gradient(to right, #ffcc00, #ff6666)',
+  };
   return (
-    <div>
+    <div style={styles}>
       {/* <Navbar /> */}
       <Hero />
       <UpcomingEvent />
