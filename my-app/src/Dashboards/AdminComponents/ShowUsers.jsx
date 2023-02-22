@@ -9,20 +9,19 @@ function ShowUsers() {
     useEffect(() => {
         axios.get('/getUsers')
             .then(response => {
-                console.log(response.data);
                 setUser(response.data);
-                console.log("this is user data" + user);
+                // console.log("this is user data" + user);
 
             }, (error) => {
                 console.log(error);
             });
-    }, []);
+    }, [user]);
 
 
     /////////////////////////////////////delete entry from data base////////////////////////////////////////
     const handleDelete = (id) => {
 
-        axios.post('/', id)
+        axios.delete(`/deleteUser/${id}`)
         .then((response) => {
             console.log(response);
 
@@ -38,7 +37,7 @@ function ShowUsers() {
                 <tr>
                     <td>{info.email}</td>
                     <td>{info.name}</td>
-                    <td><MDBBtn onClick={handleDelete(info.role_id)} className='me-1' color='danger' >Delete</MDBBtn></td>
+                    <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td>
                 </tr>
             );
         }
@@ -49,7 +48,7 @@ function ShowUsers() {
                 <tr>
                     <td>{info.email}</td>
                     <td>{info.name}</td>
-                    <td><MDBBtn onClick={handleDelete(info.id)}className='me-1' color='danger' >Delete</MDBBtn></td>
+                    <td><MDBBtn onClick={(e)=>handleDelete(info.id)}className='me-1' color='danger' >Delete</MDBBtn></td>
                 </tr>
             );
         }
@@ -61,7 +60,7 @@ function ShowUsers() {
                 <tr>
                     <td>{info.email}</td>
                     <td>{info.name}</td>
-                    <td><MDBBtn onClick={handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td>
+                    <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td>
                 </tr>
             );
         }
