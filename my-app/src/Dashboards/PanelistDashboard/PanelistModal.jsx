@@ -16,13 +16,12 @@ export default function PanelistModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
   const {  teamName, description, statement,teamObj} = item;
 
-  // const[obj,setObj] = useState(teamObj);
 
   const toggleShow = (e) => {
     setBasicModal(!basicModal)
   };
 
-  // console.log(obj);
+
   
 
   const handleSubmit = (e) => {

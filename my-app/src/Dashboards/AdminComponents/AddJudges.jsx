@@ -29,7 +29,12 @@ function AddJudges() {
             axios.post('/user', judges)
                 .then((response) => {
                     console.log(response);
-                    alert("Judge added successfully");
+                    if(judges.role_id === 2){
+                        alert("Panelist added successfully");
+                    }
+                    else if(judges.role_id === 3){
+                        alert("Judge added successfully");
+                    }
 
                 }, (error) => {
                     console.log(error);
@@ -129,7 +134,7 @@ function AddJudges() {
                         <MDBRow className=' pb-md-2'>
 
                             <div onChange={(e) => handleRole(e)}  >
-                                <input type="radio" value={2} name="role_id" /> Penalist
+                                <input type="radio" value={2} name="role_id" /> Panelist
                                 <input type="radio" value={3} name="role_id" style={{ marginLeft: "25px" }} /> Judge
                             </div>
 
