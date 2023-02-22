@@ -4,7 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Card1 = ({ participantName }) => {
+const Card1 = ({ teamObj }) => {
+
+  const { name } = teamObj
   return (
     <>
       <div className="ideaCard">
@@ -13,14 +15,15 @@ const Card1 = ({ participantName }) => {
             <h5 className="fw-bold ">Participant Name</h5>
           </MDBCol>
           <MDBCol md="6">
-            <h5 className="">{participantName}</h5>
+            <h5 className="">{name}</h5>
           </MDBCol>
         </MDBRow>
       </div>
     </>
   );
 };
-const Card2 = ({ teamName, statement, description }) => {
+const Card2 = ({ teamObj }) => {
+  const { team } = teamObj
   return (
     <>
       <div className="ideaCard">
@@ -29,7 +32,7 @@ const Card2 = ({ teamName, statement, description }) => {
             <h5 className="fw-bold">Team Name</h5>
           </MDBCol>
           <MDBCol md="12">
-            <h6 className="">{teamName}</h6>
+            <h6 className="">{team.teamName}</h6>
           </MDBCol>
         </MDBRow>
       </div>
@@ -39,7 +42,7 @@ const Card2 = ({ teamName, statement, description }) => {
             <h5 className="fw-bold">Problem Statement</h5>
           </MDBCol>
           <MDBCol md="12">
-            <h6 className="">{statement}</h6>
+            <h6 className="">{team.idea.problemStatement}</h6>
           </MDBCol>
         </MDBRow>
       </div>
@@ -49,7 +52,7 @@ const Card2 = ({ teamName, statement, description }) => {
             <h5 className="fw-bold">Problem Description</h5>
           </MDBCol>
           <MDBCol md="12">
-            <h6 className="">{description}</h6>
+            <h6 className="">{team.idea.description}</h6>
           </MDBCol>
         </MDBRow>
       </div>
@@ -57,17 +60,21 @@ const Card2 = ({ teamName, statement, description }) => {
   );
 };
 
-function TeamDetails({ id, email, mobile, name, password }) {
+function TeamDetails({ userObj }) {
+
+  const { id, email } = userObj;
+  const [teamData, setTeamData] = useState({});
+  const [flag,setFlag] = useState(false);
+  
+
   const navigate = useNavigate();
 
-
-  useEffect(() => {   
-    const url = "/participants/"+id;
-    console.log(url);
-
-    axios.get(url).then(
+  useEffect(() => {
+    axios.get(`/particpantsDetails/${email}`).then(
       (response) => {
-        console.log(response.data);
+        console.log("this is theam deatail dashboard" + response.data);
+        setTeamData(response.data);
+        setFlag(true)
       },
       (error) => {
         console.log("this is error in team detail", error);
@@ -75,20 +82,6 @@ function TeamDetails({ id, email, mobile, name, password }) {
     );
   }, []);
 
-  const data1 = [
-    {
-      participantName: name,
-    },
-  ];
-  console.log(name);
-
-  const data2 = {
-    teamName: "error404",
-    statement:
-      "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-    description:
-      "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-  };
 
   return (
     <div className="cards">
@@ -96,14 +89,24 @@ function TeamDetails({ id, email, mobile, name, password }) {
         Team Details
       </h3>
       <MDBRow>
-        {data1.map((value, index) => (
+        {/* {teamData.map((value, index) => (
           <MDBCol md="3" key={index}>
-            <Card1 {...value} />
+            <Card1 teamObj={value} />
+            <Card2  teamObj={value} />
           </MDBCol>
-        ))}
-        <MDBCol md="12">
-          <Card2 {...data2} />
-        </MDBCol>
+        ))}  */}
+
+        {flag && (
+          <>
+            <MDBCol md="3">
+              <Card1 teamObj={teamData} />
+
+            </MDBCol>
+            <MDBCol md="6">
+              <Card2 teamObj={teamData} />
+            </MDBCol>
+          </>
+        )}
       </MDBRow>
     </div>
   );
