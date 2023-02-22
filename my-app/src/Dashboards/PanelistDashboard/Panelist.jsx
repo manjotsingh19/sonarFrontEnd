@@ -7,6 +7,8 @@ import axios from "axios";
 
 
 const Card = ({ teamObj }) => {
+  // console.log(teamObj);
+
   const { teamId, teamName, idea } = teamObj
   return (
     <div className="teamCard">
@@ -38,7 +40,8 @@ const Card = ({ teamObj }) => {
               <p className="fw-medium">{idea?.problemStatement}</p>
             </MDBCol>
           </MDBRow>
-          <PanelistModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description }} />
+          <PanelistModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description ,teamObj}} />
+          {/* <PanelistModal userObj = {teamObj}/> */}
         </MDBCardBody>
       </MDBCard>
     </div>
@@ -51,7 +54,7 @@ function Panelist() {
   useEffect(() => {
     axios.get('/getTeam')
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setTeam(response.data);
         // console.log("this is team table" + team);
       }, (error) => {

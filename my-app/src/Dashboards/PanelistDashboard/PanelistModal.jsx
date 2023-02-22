@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 import {
   MDBBtn,
   MDBModal,
@@ -12,9 +14,35 @@ import {
 
 export default function PanelistModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
+  const {  teamName, description, statement,teamObj} = item;
 
-  const toggleShow = () => setBasicModal(!basicModal);
-  const { teamid, teamname, description, statement } = item;
+  // const[obj,setObj] = useState(teamObj);
+
+  const toggleShow = (e) => {
+    setBasicModal(!basicModal)
+  };
+
+  // console.log(obj);
+  
+
+  const handleSubmit = (e) => {
+    teamObj.status = e.target.value;
+
+    setBasicModal(!basicModal);
+    // setObj(teamObj);
+
+
+    axios.post("/statusChange", teamObj)
+        .then((response) => {
+          console.log(teamObj);
+          console.log(response);
+          alert("Participent accepted");
+        }, (error) => {
+          console.log(error);
+          alert("error is occured");
+        });
+  };
+
   return (
     <>
       <div
@@ -32,7 +60,7 @@ export default function PanelistModal({ item }) {
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>
-                <h4>Team: {teamname}</h4>
+                <h4>Team: {teamName}</h4>
               </MDBModalTitle>
               <MDBBtn
                 className="btn-close"
@@ -51,13 +79,13 @@ export default function PanelistModal({ item }) {
               </div>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn color="success" onClick={toggleShow}>
+              <MDBBtn color="success" value={"accepted"} onClick={(e)=>handleSubmit(e)}>
                 Accept
               </MDBBtn>
-              <MDBBtn color="danger" onClick={toggleShow}>
+              <MDBBtn color="danger" value={"rejected"} onClick={(e)=>handleSubmit(e)}>
                 Reject
               </MDBBtn>
-              <MDBBtn color="warning" onClick={toggleShow}>
+              <MDBBtn color="warning" value={"reverted"} onClick={(e)=>handleSubmit(e)}>
                 Revert
               </MDBBtn>
             </MDBModalFooter>
