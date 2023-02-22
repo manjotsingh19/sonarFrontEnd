@@ -16,7 +16,7 @@ export default function PanelistModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
   const {  teamName, description, statement,teamObj} = item;
 
-  const[obj,setObj] = useState(teamObj);
+  // const[obj,setObj] = useState(teamObj);
 
   const toggleShow = (e) => {
     setBasicModal(!basicModal)
@@ -29,12 +29,12 @@ export default function PanelistModal({ item }) {
     teamObj.status = e.target.value;
 
     setBasicModal(!basicModal);
-    setObj(teamObj);
+    // setObj(teamObj);
 
-    console.log(obj);
 
-    axios.post("/statusChange", obj)
+    axios.post("/statusChange", teamObj)
         .then((response) => {
+          console.log(teamObj);
           console.log(response);
           alert("Participent accepted");
         }, (error) => {
