@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import {
   MDBBtn,
@@ -15,17 +16,31 @@ export default function PanelistModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
   const {  teamName, description, statement,teamObj} = item;
 
-  // console.log(teamObj);
-  const[obj,setObj] = useState({});
+  const[obj,setObj] = useState(teamObj);
 
   const toggleShow = (e) => {
     setBasicModal(!basicModal)
   };
+
+  // console.log(obj);
+  
+
   const handleSubmit = (e) => {
     teamObj.status = e.target.value;
-    console.log(teamObj);
+
+    setBasicModal(!basicModal);
     setObj(teamObj);
-    setBasicModal(!basicModal)
+
+    console.log(obj);
+
+    axios.post("/statusChange", obj)
+        .then((response) => {
+          console.log(response);
+          alert("Participent accepted");
+        }, (error) => {
+          console.log(error);
+          alert("error is occured");
+        });
   };
 
   return (
