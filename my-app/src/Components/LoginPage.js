@@ -32,6 +32,8 @@ function LoginPage() {
           // //////////////send response to dashboard
 
           localStorage.setItem("data",JSON.stringify(response.data));
+          console.log(response.data);
+          
           if(response.data.role_id === 4){
             navigate("/participant");
           }

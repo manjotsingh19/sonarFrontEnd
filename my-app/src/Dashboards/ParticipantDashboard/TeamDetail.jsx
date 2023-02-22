@@ -72,7 +72,7 @@ function TeamDetails({ userObj }) {
   useEffect(() => {
     axios.get(`/particpantsDetails/${email}`).then(
       (response) => {
-        console.log("this is theam deatail dashboard" + response.data);
+        // console.log( response.data);
         setTeamData(response.data);
         setFlag(true)
       },

@@ -32,7 +32,7 @@ const Card = ({ teamid, teamname, statement, description }) => {
           <p className="fw-medium">{statement}</p>
         </MDBCol>
       </MDBRow>
-      <JudgeModal item={{ teamid, teamname, statement, description }} />
+      {/* <JudgeModal item={{ teamid, teamname, statement, description }} /> */}
     </div>
   );
 };

@@ -51,7 +51,7 @@ function Panelist() {
   useEffect(() => {
     axios.get('/getTeam')
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         setTeam(response.data);
         // console.log("this is team table" + team);
       }, (error) => {

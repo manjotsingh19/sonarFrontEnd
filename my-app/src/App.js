@@ -8,7 +8,7 @@ import Admin from './Dashboards/AdminComponents/Admin';
 import Navbar from './Components/Navbar';
 import Participant from "./Dashboards/ParticipantDashboard/Participant";
 import Panelist from "./Dashboards/PanelistDashboard/Panelist";
-import Judge from "./Dashboards/JugdeComponents/Judge";
+// import Judge from "./Dashboards/JugdeComponents/Judge";
 
 function App() {
   return (
@@ -21,8 +21,9 @@ function App() {
           <Route path="/registrationForm" element={<RegistrationForm />} />
           <Route path="/AdminDashboard" element={<Admin />} />
           <Route path="/participant" element={<Participant />} />
+          {/* <Route path="/participant/:id" element={<Participant />} /> */}
           <Route path="/panelist" element={<Panelist />} />
-          <Route path="/judge" element={<Judge />} />
+          {/* <Route path="/judge" element={<Judge />} /> */}
         </Routes>
       </BrowserRouter>
     </>

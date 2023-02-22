@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import {
-  MDBBtn,
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalHeader,
-  MDBModalTitle,
-  MDBModalBody,
-  MDBModalFooter,
-} from "mdb-react-ui-kit";
+import {MDBBtn,MDBModal,MDBModalDialog,MDBModalContent,MDBModalHeader,MDBModalTitle,MDBModalBody,MDBModalFooter,} from "mdb-react-ui-kit";
 import Marking from "./Marking";
 import VideoPlayer from "./VideoPlayer";
 // import Ppt from "./Ppt";
-import Present from "./Present";
+// import Present from "./Present";
 
 export default function JudgeModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
