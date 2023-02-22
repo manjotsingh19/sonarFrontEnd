@@ -6,7 +6,6 @@ import FileUpload from "./Submission";
 
 function Participant() {
   // Here data will be fetched from the backend(status)
-
   const status = "1"; // 0 rejected 1 accepted 2 waiting
 
   var data = JSON.parse(localStorage.getItem("data"));
