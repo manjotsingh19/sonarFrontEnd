@@ -63,6 +63,20 @@ export default function JudgeModal({ item }) {
             >
               <VideoPlayer />
             </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <a
+                href="https://1drv.ms/v/s!An5fe6AqNBBhh0f53t7U5g2KZi_j?e=Jm4Svr"
+                target="_blank"
+              >
+                <button>Go to Video</button>
+              </a>
+            </div>
             {
               /* <Ppt /> */
               // <Present />
