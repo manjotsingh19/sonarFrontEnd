@@ -32,7 +32,7 @@ const Card2 = ({ teamObj }) => {
             <h5 className="fw-bold">Team Name</h5>
           </MDBCol>
           <MDBCol md="12">
-            <h6 className="">{team.teamName}</h6>
+            <h6 className="">{team?.teamName}</h6>
           </MDBCol>
         </MDBRow>
       </div>
@@ -42,7 +42,7 @@ const Card2 = ({ teamObj }) => {
             <h5 className="fw-bold">Problem Statement</h5>
           </MDBCol>
           <MDBCol md="12">
-            <h6 className="">{team.idea.problemStatement}</h6>
+            <h6 className="">{team?.idea?.problemStatement}</h6>
           </MDBCol>
         </MDBRow>
       </div>
@@ -52,7 +52,7 @@ const Card2 = ({ teamObj }) => {
             <h5 className="fw-bold">Problem Description</h5>
           </MDBCol>
           <MDBCol md="12">
-            <h6 className="">{team.idea.description}</h6>
+            <h6 className="">{team?.idea?.description}</h6>
           </MDBCol>
         </MDBRow>
       </div>
@@ -62,7 +62,7 @@ const Card2 = ({ teamObj }) => {
 
 function TeamDetails({ userObj }) {
 
-  const { id, email } = userObj;
+
   const [teamData, setTeamData] = useState({});
   const [flag,setFlag] = useState(false);
   
@@ -70,7 +70,7 @@ function TeamDetails({ userObj }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`/particpantsDetails/${email}`).then(
+    axios.get(`/particpantsDetails/${userObj?.email}`).then(
       (response) => {
         // console.log( response.data);
         setTeamData(response.data);

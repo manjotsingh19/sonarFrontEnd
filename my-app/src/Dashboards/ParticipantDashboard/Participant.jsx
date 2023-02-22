@@ -1,81 +1,95 @@
-import React, { useEffect, useState ,createContext, useContext} from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import { MDBContainer, MDBBtn } from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
 import Reviews from "./Reviews";
-import FileUpload from "./Submission";
+import FileUpload from "./FileUpload";
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 
 
 function Participant() {
-  // Here data will be fetched from the backend(status)
 
-  // const [status, setStatus] = useState('');
-  // const [flag, setFlag] = useState(false);
-const status = "1";
 
- // 0 rejected 1 accepted 2 waiting
+  const [data, setData] = useState(JSON.parse(localStorage.getItem("data")))
+  const [fetchedData, setFetchedData] = useState({});
+  const [status, setStatus] = useState("");
+  console.log(data);
 
-  var data = JSON.parse(localStorage.getItem("data"));
+  useEffect(() => {
+    setData(JSON.parse(localStorage.getItem("data")));
 
-  // const {email} = data;
+  }, [localStorage.getItem("data")])
 
-  // useEffect(() => {
-  //   axios.get(`/particpantsDetails/${email}`).then(
-  //     (response) => {
-  //       console.log( response.data);
-  //       setStatus(response.data.team.status);
-  //       setFlag(true);
-        
-  //     },
-  //     (error) => {
-  //       console.log("this is error in team detail", error);
-  //     }
-  //   );
-  // }, []);
+  useEffect(() => {
+    console.log(status)
+    setStatus(fetchedData?.team?.status);
+  }, [fetchedData])
 
-  
- 
+
+  useEffect(() => {
+    Object.keys(data).length > 0 &&
+      axios.get(`/particpantsDetails/${data?.email}`).then(
+        (response) => {
+          console.log(response.data);
+
+          setFetchedData(response?.data)
+        },
+        (error) => {
+          console.log("this is error in team detail", error);
+        }
+      );
+  }, []);
+
+
+
   switch (status) {
-    case "1":
-      return (
-        <MDBContainer fluid>
-          <TeamDetails userObj={data} />
-          <MDBBtn color="success">Accepted</MDBBtn>
-          <div>
-            <FileUpload />
-          </div>
-        </MDBContainer>
-      );
-
-    case "0":
-      return (
-        <MDBContainer fluid>
-          <TeamDetails userObj={data} />
-          <MDBBtn color="danger">Rejected</MDBBtn>
-          <div>You are not eligible to move further in this hackathon</div>
-        </MDBContainer>
-      );
-
-    case "2":
+    case "accepted":
       return (
         <MDBContainer fluid>
           {/* team details*/}
-          <TeamDetails userObj={data} />
-          <MDBBtn color="warning">Under Review</MDBBtn>
-          <div>
-            <Reviews />
-            {/* edit details */}
-          </div>
+          {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
+            <MDBBtn color="success">Accepted</MDBBtn>
+            <div>
+              <FileUpload />
+              {/* Upload details */}
+            </div></>)}
+
+        </MDBContainer>
+      );
+       
+    case "rejected":
+      return (
+        <MDBContainer fluid>
+          {/* team details*/}
+          {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
+            <MDBBtn color="danger">Rejected</MDBBtn>
+            <div>
+              {"Your Idea is not accepted, Better luck next time"}
+            </div></>)}
+
+        </MDBContainer>)
+
+    case "reverted":
+      return (
+        <MDBContainer fluid>
+          {/* team details*/}
+          {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
+            <MDBBtn color="warning">Reverted</MDBBtn>
+            <div>
+              <Reviews />
+              {/* edit details */}
+            </div></>)}
+
         </MDBContainer>
       );
     default:
       return (
-        <MDBContainer fluid>
-          {/* team details*/}
-          <TeamDetails {...data} />
-          <MDBBtn color="warning">Under Review</MDBBtn>
-          <div></div>
+      <MDBContainer fluid>
+        {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
+            <MDBBtn color="info">Pending</MDBBtn>
+            <div>
+              {/* Still Waiting for panelist */}
+            </div></>)}
         </MDBContainer>
       );
   }
