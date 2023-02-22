@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import p1 from "./images/1.jpeg";
 import p2 from "./images/2.jpeg";
 import p3 from "./images/3.png";
@@ -42,17 +43,17 @@ const Card = ({
         <div class="team-icon">
           <div>
             <a href={atwitter} class="twitter">
-              <i class="fa fa-twitter"></i>
+              <FaTwitter />
             </a>
           </div>
           <div>
             <a href={agithub} class="github">
-              <i class="fa fa-github"></i>
+              <FaGithub />
             </a>
           </div>
           <div>
             <a href={alinkedin} class="linkedin">
-              <i class="fa fa-linkedin"></i>
+              <FaLinkedin />
             </a>
           </div>
         </div>

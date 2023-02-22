@@ -15,6 +15,7 @@ function Participant() {
   const [status, setStatus] = useState("");
   console.log(data);
 
+<<<<<<< HEAD
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("data")));
 
@@ -39,10 +40,14 @@ function Participant() {
         }
       );
   }, []);
+=======
+  // var data = JSON.parse(localStorage.getItem("data"));
+>>>>>>> 9b87de20790ee5cb86fd585de85bcec051b029a6
 
 
 
   switch (status) {
+<<<<<<< HEAD
     case "accepted":
       return (
         <MDBContainer fluid>
@@ -80,16 +85,59 @@ function Participant() {
               {/* edit details */}
             </div></>)}
 
+=======
+    case "1":
+      return (
+        <MDBContainer fluid>
+          {/* <TeamDetails userObj={data} /> */}
+          <TeamDetails />
+          <MDBBtn color="success">Accepted</MDBBtn>
+          <div>
+            <FileUpload />
+          </div>
+        </MDBContainer>
+      );
+
+    case "0":
+      return (
+        <MDBContainer fluid>
+          {/* <TeamDetails userObj={data} /> */}
+          <TeamDetails />
+          <MDBBtn color="danger">Rejected</MDBBtn>
+          <div>You are not eligible to move further in this hackathon</div>
+        </MDBContainer>
+      );
+
+    case "2":
+      return (
+        <MDBContainer fluid>
+          <TeamDetails />
+          {/* <TeamDetails userObj={data} /> */}
+          <MDBBtn color="warning">Under Review</MDBBtn>
+          <div>
+            <Reviews />
+            {/* edit details */}
+          </div>
+>>>>>>> 9b87de20790ee5cb86fd585de85bcec051b029a6
         </MDBContainer>
       );
     default:
       return (
+<<<<<<< HEAD
       <MDBContainer fluid>
         {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
             <MDBBtn color="info">Pending</MDBBtn>
             <div>
               {/* Still Waiting for panelist */}
             </div></>)}
+=======
+        <MDBContainer fluid>
+          {/* team details*/}
+          {/* <TeamDetails {...data} /> */}
+          <TeamDetails />
+          <MDBBtn color="warning">Under Review</MDBBtn>
+          <div></div>
+>>>>>>> 9b87de20790ee5cb86fd585de85bcec051b029a6
         </MDBContainer>
       );
   }
