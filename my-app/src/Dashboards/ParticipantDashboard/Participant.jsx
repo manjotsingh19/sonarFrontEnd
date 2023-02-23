@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { MDBContainer, MDBBtn } from "mdb-react-ui-kit";
+import { MDBContainer, MDBBtn ,MDBCol,MDBRow} from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
 import Reviews from "./Reviews";
 import FileUpload from "./FileUpload";
@@ -31,7 +31,7 @@ function Participant() {
     Object.keys(data).length > 0 &&
       axios.get(`/particpantsDetails/${data?.email}`).then(
         (response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setFetchedData(response?.data)
         },
         (error) => {
@@ -56,7 +56,7 @@ function Participant() {
 
         </MDBContainer>
       );
-       
+
     case "rejected":
       return (
         <MDBContainer fluid>
@@ -76,15 +76,29 @@ function Participant() {
           {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
             <MDBBtn color="warning">Reverted</MDBBtn>
             <div>
-           
-            {Object.keys(fetchedData).length > 0 && (
-              <>
-               {console.log(fetchedData?.team)}
-               <Reviews userObj={fetchedData?.team}/>
-              </>
-             
-            )}
-              
+
+              {Object.keys(fetchedData).length > 0 && (
+                <>
+
+                  {/* {console.log(fetchedData.team)} */}
+                  {/* <Reviews userObj={fetchedData?.team}/> */}
+                  {/* ////////////////////////// */}
+                  <div className="ideaCard">
+                    <MDBRow>
+                      <MDBCol md="4">
+                        <h4 className="fw-bold">Reviews from the Panelist</h4>
+                      </MDBCol>
+                      <MDBCol md="12">
+                        {/* {console.log(fetchedData?.team)} */}
+                        <h6 className="">{fetchedData?.team?.newComment}</h6>
+                      </MDBCol>
+                    </MDBRow>
+                  </div>
+                  {/* //////////////////////////// */}
+                </>
+
+              )}
+
               {/* edit details */}
             </div></>)}
 
@@ -92,8 +106,8 @@ function Participant() {
       );
     default:
       return (
-      <MDBContainer fluid>
-        {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
+        <MDBContainer fluid>
+          {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
             <MDBBtn color="info">Pending</MDBBtn>
             <div>
               {/* Still Waiting for panelist */}

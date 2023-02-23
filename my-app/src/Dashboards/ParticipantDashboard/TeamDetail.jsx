@@ -3,6 +3,7 @@ import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const Card1 = ({ teamObj }) => {
   const { name } = teamObj
   return (
@@ -80,7 +81,7 @@ axios.get(`/particpantsDetails/${userObj?.email}`).then(
   return (
     <div className="cards">
       <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
-        Team Details
+        Participant Details
       </h3>
       <MDBRow>
         {/* {teamData.map((value, index) => (
@@ -91,7 +92,7 @@ axios.get(`/particpantsDetails/${userObj?.email}`).then(
  ))}  */}
         {flag && (
           <>
-            <MDBCol md="3">
+            <MDBCol md="6">
               <Card1 teamObj={teamData} />
             </MDBCol>
             <MDBCol md="6">

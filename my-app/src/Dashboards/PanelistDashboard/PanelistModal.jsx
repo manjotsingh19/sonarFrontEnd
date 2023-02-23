@@ -44,7 +44,7 @@ export default function PanelistModal({ item }) {
   const handleCommentSubmit = () => {
     // Do something with the comment text, such as sending it to a server
     console.log(commentText);
-    teamObj.idea.newComment = commentText;
+    teamObj.newComment = commentText;
     teamObj.status = "reverted";
     console.log(teamObj);
 
