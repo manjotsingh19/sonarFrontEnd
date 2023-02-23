@@ -13,7 +13,8 @@ function Participant() {
   const [data, setData] = useState(JSON.parse(localStorage.getItem("data")))
   const [fetchedData, setFetchedData] = useState({});
   const [status, setStatus] = useState("");
-  console.log(data);
+  // console.log(data);
+
 
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("data")));
@@ -21,7 +22,7 @@ function Participant() {
   }, [localStorage.getItem("data")])
 
   useEffect(() => {
-    console.log(status)
+    // console.log(status)
     setStatus(fetchedData?.team?.status);
   }, [fetchedData])
 
@@ -31,7 +32,6 @@ function Participant() {
       axios.get(`/particpantsDetails/${data?.email}`).then(
         (response) => {
           console.log(response.data);
-
           setFetchedData(response?.data)
         },
         (error) => {
@@ -76,7 +76,15 @@ function Participant() {
           {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
             <MDBBtn color="warning">Reverted</MDBBtn>
             <div>
-              <Reviews />
+           
+            {Object.keys(fetchedData).length > 0 && (
+              <>
+               {console.log(fetchedData?.team)}
+               <Reviews userObj={fetchedData?.team}/>
+              </>
+             
+            )}
+              
               {/* edit details */}
             </div></>)}
 

@@ -14,7 +14,7 @@ import {
 
 export default function PanelistModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
-  const {  teamName, description, statement,teamObj} = item;
+  const { teamName, description, statement, teamObj } = item;
 
 
   const toggleShow = (e) => {
@@ -22,22 +22,69 @@ export default function PanelistModal({ item }) {
   };
 
 
-  
+
+  /////////////////////////////////////////comment boxx///////////////////////////////////////////////////////
+
+  const [showCommentBox, setShowCommentBox] = useState(false);
+  const [commentText, setCommentText] = useState('');
+
+
+  const handleButtonClick = () => {
+    setShowCommentBox(true);
+  };
+
+  const handleCommentChange = (event) => {
+    setCommentText(event.target.value);
+  };
+
+  const refreshPage=()=>{
+    window.location.reload(false);
+  }
+
+  const handleCommentSubmit = () => {
+    // Do something with the comment text, such as sending it to a server
+    console.log(commentText);
+    teamObj.idea.newComment = commentText;
+    teamObj.status = "reverted";
+    console.log(teamObj);
+
+    setBasicModal(!basicModal);
+    
+    axios.post("/statusChange", teamObj)
+      .then((response) => {
+        // console.log(teamObj);
+        // console.log(response);
+        alert(teamObj.status);
+      }, (error) => {
+        console.log(error);
+        alert("error is occured");
+      });
+    setCommentText('');
+    setShowCommentBox(false);
+    // refreshPage();
+  };
+
+  //////////////////////////////////////////////////////////////
+
+
 
   const handleSubmit = (e) => {
+    
     teamObj.status = e.target.value;
+    console.log(teamObj);
 
     setBasicModal(!basicModal);
     // setObj(teamObj)
     axios.post("/statusChange", teamObj)
-        .then((response) => {
-          // console.log(teamObj);
-          // console.log(response);
-          alert(teamObj.status);
-        }, (error) => {
-          console.log(error);
-          alert("error is occured");
-        });
+      .then((response) => {
+        // console.log(teamObj);
+        // console.log(response);
+        alert(teamObj.status);
+      }, (error) => {
+        console.log(error);
+        alert("error is occured");
+      });
+      // refreshPage();
   };
 
   return (
@@ -76,15 +123,21 @@ export default function PanelistModal({ item }) {
               </div>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn color="success" value={"accepted"} onClick={(e)=>handleSubmit(e)}>
+              <MDBBtn color="success" value={"accepted"} onClick={(e) => handleSubmit(e)}>
                 Accept
               </MDBBtn>
-              <MDBBtn color="danger" value={"rejected"} onClick={(e)=>handleSubmit(e)}>
+              <MDBBtn color="danger" value={"rejected"} onClick={(e) => handleSubmit(e)}>
                 Reject
               </MDBBtn>
-              <MDBBtn color="warning" value={"reverted"} onClick={(e)=>handleSubmit(e)}>
+              <MDBBtn color="warning" value={"reverted"}onClick={(e)=>handleButtonClick(e)}>
                 Revert
               </MDBBtn>
+              {showCommentBox && (
+                <div>
+                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write comment"} style={{border:"1px solid black"}} />
+                  <button onClick={handleCommentSubmit}>Submit</button>
+                </div>
+              )}
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
