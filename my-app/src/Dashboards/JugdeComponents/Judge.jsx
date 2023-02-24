@@ -1,10 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { MDBRow, MDBCol, MDBContainer , MDBCard, MDBCardBody } from "mdb-react-ui-kit";
+import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import JudgeModal from "./JudgeModal";
 // import "./.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 
 
 const Card = ({ teamObj }) => {
@@ -43,11 +43,18 @@ const Card = ({ teamObj }) => {
 };
 function Judge() {
   const [team, setTeam] = useState([]);
+  const [judgeData, setJudgeData] = useState(JSON.parse(localStorage.getItem("data")))
+
+  useEffect(() => {
+    setJudgeData(JSON.parse(localStorage.getItem("data")));
+    console.log(judgeData);
+  }, [localStorage.getItem("data")])
+
 
   useEffect(() => {
     axios.get('/getTeam')
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setTeam(response.data);
         // console.log( team);
       }, (error) => {
@@ -55,9 +62,23 @@ function Judge() {
       });
   }, []);
 
-  const filtered=team.filter((value,index)=>{
-    return value.status==="accepted"
+  //////////////////////////////////////
+
+
+  //   var str = "ball, apple, mouse,";
+  // var hasApple = str.indexOf('apple') != -1;
+  // console.log(hasApple);
+
+  const filtered = team.filter((value, index) => {
+    if (judgeData.role_id == "3" && value.status === "accepted" && (value.judgeList == null || value.judgeList.indexOf((judgeData?.id).toString()) == -1)) {
+      // value.judgeList = value.judgeList +data?.id+",";
+      // console.log(value);
+      return true;
+    }
+    else return false;
   })
+
+  ////////////////////////////////////
 
   return (
     <>
@@ -67,12 +88,15 @@ function Judge() {
         </h3>
         <MDBRow>
           {filtered.map((value, index) => (
-            <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
-              <Card teamObj={value} />
-            </MDBCol>
+            <>
+              <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
+
+                <Card teamObj={value} />
+              </MDBCol>
+            </>
           ))}
         </MDBRow>
       </div>
-    </>  );
+    </>);
 }
 export default Judge;

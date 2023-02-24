@@ -3,6 +3,7 @@ import { MDBBtn, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBM
 import Marking from "./Marking";
 import VideoPlayer from "./VideoPlayer";
 import axios from "axios";
+import Timer from "./Timer";
 
 
 export default function JudgeModal({ item }) {
@@ -14,23 +15,33 @@ export default function JudgeModal({ item }) {
   const [total, setTotal] = useState(0);
 
 
+  const [judgeData, setJudgeData] = useState(JSON.parse(localStorage.getItem("data")))
+
+
+  useEffect(() => {
+    setJudgeData(JSON.parse(localStorage.getItem("data")));
+  }, [localStorage.getItem("data")])
+
+  const refreshPage=()=>{
+    window.location.reload(false);
+  }
+
   const toggleShow = () => setBasicModal(!basicModal);
+  
 
   const handleSubmit = (e) => {
-    // console.log(e.target.value);
-    
-    item.teamObj.marks = parseInt(e.target.value);
-    // console.log(teamObj);
+    teamObj.marks = parseInt(e.target.value);
+    teamObj.judgeList = item.teamObj.judgeList +judgeData?.id+",";
+    console.log(teamObj);
 
     axios.post("/marksChange", teamObj)
     .then((response) => {
-      console.log(response);
-      console.log(teamObj);
       alert("marks added successfully");
     }, (error) => {
       console.log(error);
       alert("error is occured");
     });
+    refreshPage();
   }
 
 
@@ -47,6 +58,7 @@ export default function JudgeModal({ item }) {
 
   return (
     <>
+    
       <div
         className=""
         style={{
@@ -71,6 +83,7 @@ export default function JudgeModal({ item }) {
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
+              <Timer></Timer>
               <div className="">
                 <h4>Problem Statement</h4>
                 <p>{statement}</p>
