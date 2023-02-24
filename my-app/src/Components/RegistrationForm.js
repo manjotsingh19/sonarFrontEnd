@@ -13,6 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 function RegistrationForm() {
   const [isSubmit, setSubmit] = useState(false);
@@ -29,7 +30,7 @@ function RegistrationForm() {
   useEffect(() => {
     axios.get("/getDomain").then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setDomain(response.data);
       },
       (error) => {
@@ -89,20 +90,27 @@ function RegistrationForm() {
 
   //////////////////connect to server/////////////////////////////////////
   useEffect(() => {
-    console.log(errors);
+    
+    // console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
-      console.log(teamForm);
-
-      console.log(teamForm);
       axios.post("/registrationForm", teamForm).then(
         (response) => {
-          console.log(response);
-          alert("Registration Successful");
+          // console.log(response);
+          Swal.fire(
+            'Great',
+            'Registration Successful!',
+            'success'
+          )
           navigate("/logIn");
         },
         (error) => {
           console.log(error);
-          alert("error is occured");
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            // footer: '<a href="">Why do I have this issue?</a>'
+          })
         }
       );
     }

@@ -9,23 +9,24 @@ import Navbar from "./Components/Navbar";
 import Participant from "./Dashboards/ParticipantDashboard/Participant";
 import Panelist from "./Dashboards/PanelistDashboard/Panelist";
 import Judge from "./Dashboards/JugdeComponents/Judge";
-
+import ChangePassword from './Components/ChangePassword';
+import Protected from './Components/Protected'
 
 
 function App() {
   return (
     <>
-      <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Frontpage />} />
           <Route path="/logIn" element={<LoginPage />} />
           <Route path="/registrationForm" element={<RegistrationForm />} />
-          <Route path="/AdminDashboard" element={<Admin />} />
-          <Route path="/participant" element={<Participant />} />
-          <Route path="/participant/:id" element={<Participant />} />
-          <Route path="/panelist" element={<Panelist />} />
-          <Route path="/judge" element={<Judge />} />
+          <Route path="/AdminDashboard" element={<Protected Component={Admin} />} />
+          <Route path="/participant" element={<Protected Component={Participant} />} />
+          <Route path="/participant/:id" element={<Protected Component={Participant} />} />
+          <Route path="/panelist" element={<Protected Component={Panelist} />} />
+          <Route path="/judge" element={<Protected Component={Judge} />} />
+          <Route path="/ChangePassword" element={<ChangePassword />} />
         </Routes>
       </BrowserRouter>
     </>

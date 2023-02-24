@@ -1,6 +1,7 @@
 import { MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 function AddJudges() {
@@ -19,25 +20,41 @@ function AddJudges() {
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
     useEffect(() => {
-        console.log(errors);
-
+        // console.log(errors);
+       
 
         if (Object.keys(errors).length === 0 && submitted) {
 
-            console.log(judges);
+            // console.log(judges);
 
             axios.post('/user', judges)
                 .then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     if(judges.role_id === 2){
-                        alert("Panelist added successfully");
+                        Swal.fire(
+                            'Great',
+                            'Panelist added successfully!',
+                            'success'
+                          )
+                        // alert("Panelist added successfully");
                     }
                     else if(judges.role_id === 3){
-                        alert("Judge added successfully");
+                        Swal.fire(
+                            'Great',
+                            'Judge added successfully!',
+                            'success'
+                          )
+                        // alert("Judge added successfully");
                     }
 
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        // footer: '<a href="">Why do I have this issue?</a>'
+                      })
                 });
 
         }

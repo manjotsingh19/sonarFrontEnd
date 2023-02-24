@@ -1,10 +1,11 @@
-import "react-datepicker/dist/react-datepicker.css";
+//  import "react-datepicker/dist/react-datepicker.css";
 import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import JudgeModal from "./JudgeModal";
 // import "./.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../../Components/Navbar";
 
 
 const Card = ({ teamObj }) => {
@@ -83,6 +84,7 @@ function Judge() {
   return (
     <>
       <div className="cards">
+        <Navbar/>
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
           Judge Dashboard
         </h3>

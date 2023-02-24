@@ -19,7 +19,7 @@ const Hero = () => {
             Register
           </button>
         </Link>
-        <Link to="/logIn" style={{ color: "white" }}><MDBBtn  >LogIn</MDBBtn></Link>
+        {/* <Link to="/logIn" style={{ color: "white" }}><MDBBtn  >LogIn</MDBBtn></Link> */}
       </div>
     </div>
   );

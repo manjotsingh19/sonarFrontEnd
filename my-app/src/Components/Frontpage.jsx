@@ -10,12 +10,13 @@ import "./OurTeam.css";
 
 function Frontpage() {
   const styles = {
-    background: "linear-gradient(135deg, #ffb4b4 0%, #b987ff 100%)",
+    // background: "linear-gradient(135deg, #ffb4b4 0%, #b987ff 100%)",
     // background: 'linear-gradient(to right, #ffcc00, #ff6666)',
+    background: "white",
   };
   return (
     <div style={styles}>
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
       <UpcomingEvent />
       <Cards />

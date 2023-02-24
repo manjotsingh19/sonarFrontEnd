@@ -2,7 +2,7 @@ import { validation, MDBListGroup, MDBListGroupItem, MDBTextArea, MDBValidationI
 import { useState, useEffect } from 'react';
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 function CreateEvent() {
     const [errors, serErrors] = useState({});
@@ -19,17 +19,28 @@ function CreateEvent() {
     /////////////////////////////Connect to server/////////////////////////////////////////////
 
     useEffect(() => {
-        console.log(errors);
+        // console.log(errors);
         if (Object.keys(errors).length === 0 && submitted) 
          {
-            console.log(event);
+            // console.log(event);
 
             axios.post('/event', event)
                 .then((response) => {
-                    console.log(response);
+                    // console.log(response);
+                    Swal.fire(
+                        'Great',
+                        'Event added successfully!',
+                        'success'
+                      )
 
                 }, (error) => {
                     console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        // footer: '<a href="">Why do I have this issue?</a>'
+                      })
                 });
 
         }

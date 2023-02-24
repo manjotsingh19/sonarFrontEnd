@@ -19,7 +19,7 @@ function AddDomain() {
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitted) {
-            console.log(domains);
+            // console.log(domains);
             axios.post('/domain', domains)
                 .then((response) => {
                     // console.log(response);

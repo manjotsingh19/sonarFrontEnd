@@ -1,11 +1,11 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { MDBContainer, MDBBtn ,MDBCol,MDBRow} from "mdb-react-ui-kit";
+import { MDBContainer, MDBBtn, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
 import Reviews from "./Reviews";
 import FileUpload from "./FileUpload";
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
-
+import Navbar from "../../Components/Navbar";
 
 function Participant() {
 
@@ -45,20 +45,25 @@ function Participant() {
   switch (status) {
     case "accepted":
       return (
-        <MDBContainer fluid>
-          {/* team details*/}
-          {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-            <MDBBtn color="success">Accepted</MDBBtn>
-            <div>
-              <FileUpload />
-              {/* Upload details */}
-            </div></>)}
+        <>
+          <Navbar />
+          <MDBContainer fluid>
+            {/* team details*/}
+            {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
+              <MDBBtn color="success">Accepted</MDBBtn>
+              <div>
+                <FileUpload />
+                {/* Upload details */}
+              </div></>)}
 
-        </MDBContainer>
+          </MDBContainer>
+        </>
       );
 
     case "rejected":
       return (
+         <>
+          <Navbar />
         <MDBContainer fluid>
           {/* team details*/}
           {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
@@ -67,10 +72,14 @@ function Participant() {
               {"Your Idea is not accepted, Better luck next time"}
             </div></>)}
 
-        </MDBContainer>)
+        </MDBContainer>
+        </>
+        )
 
     case "reverted":
       return (
+        <>
+        <Navbar />
         <MDBContainer fluid>
           {/* team details*/}
           {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
@@ -102,10 +111,12 @@ function Participant() {
               {/* edit details */}
             </div></>)}
 
-        </MDBContainer>
+        </MDBContainer></>
       );
     default:
       return (
+        <>
+        <Navbar />
         <MDBContainer fluid>
           {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
             <MDBBtn color="info">Pending</MDBBtn>
@@ -113,6 +124,7 @@ function Participant() {
               {/* Still Waiting for panelist */}
             </div></>)}
         </MDBContainer>
+     </>
       );
   }
 }

@@ -54,17 +54,17 @@ function ShowUsers() {
         }
     });
     // console.log(info);
-    const participentRows = user.map((info) => {
-        if (info.role_id === 4) {
-            return (
-                <tr>
-                    <td>{info.email}</td>
-                    <td>{info.name}</td>
-                    <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td>
-                </tr>
-            );
-        }
-    });
+    // const participentRows = user.map((info) => {
+    //     if (info.role_id === 4) {
+    //         return (
+    //             <tr>
+    //                 <td>{info.email}</td>
+    //                 <td>{info.name}</td>
+    //                 <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td>
+    //             </tr>
+    //         );
+    //     }
+    // });
 
     const myStyle = {
         color: 'red'
@@ -110,7 +110,7 @@ function ShowUsers() {
                     </MDBCardBody>
                 </MDBCard>
             </MDBRow>
-
+{/* 
             <MDBRow className='justify-content-center align-items-center m-5'>
                 <MDBCard>
                     <MDBCardBody className='px-8'>
@@ -127,7 +127,8 @@ function ShowUsers() {
                         </table>
                     </MDBCardBody>
                 </MDBCard>
-            </MDBRow></>
+            </MDBRow> */}
+            </>
     )
 }
 

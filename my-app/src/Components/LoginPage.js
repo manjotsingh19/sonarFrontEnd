@@ -25,6 +25,8 @@ function LoginPage() {
 
   const handleclick = (e) => {
     e.preventDefault();
+    window.login = true;
+    window.status = 'Logout';
     setSubmit(true);
     axios.post('/login', teamForm)
         .then((response) => {
@@ -44,7 +46,7 @@ function LoginPage() {
             navigate("/panelist");
           }
           else if(response.data.role_id === 1){
-            navigate("/Admin");
+            navigate("/AdminDashboard");
           }
           
             ///////////////////////////
@@ -90,32 +92,3 @@ function LoginPage() {
 export default LoginPage;
 
 
-
-
-// const mystyle = {
-//   color: "white",
-//   backgroundColor: "whitesmoke",
-//   padding: "10px",
-//   fontFamily: "Arial",
-//   textAlign: "center",
-//   textdecoration: "none",
-
-// };
-
-
-
-// const btnStyle = {
-//   lineHeight: "1.6",
-//   fontStyle: "normal",
-//   fontSize: "20px",
-//   textAlign: 'center',
-//   color: "white",
-//   backgroundColor: "#34495E",
-//   textDecoration: "none",
-//   fontWeight: "bold",
-//   fontFamily: "Arial, sans-serif",
-//   border: "solid 0 #e3edf4",
-//   borderBottom: "2px solid #AEB6BF",
-//   borderRadius: "4px",
-//   padding:" 16px 40px",
-// }

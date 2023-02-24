@@ -1,9 +1,10 @@
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import "./Panelist.css";
 import PanelistModal from "./PanelistModal";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "../../Components/Navbar";
 
 
 const Card = ({ teamObj }) => {
@@ -68,6 +69,7 @@ function Panelist() {
 
   return (
     <>
+    <Navbar />
       <div className="cards">
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
           Panelist Dashboard
