@@ -41,21 +41,9 @@ const Card = ({
         <p>{description}</p>
 
         <div class="team-icon">
-          <div>
-            <a href={atwitter} class="twitter">
-              <FaTwitter />
-            </a>
-          </div>
-          <div>
-            <a href={agithub} class="github">
-              <FaGithub />
-            </a>
-          </div>
-          <div>
-            <a href={alinkedin} class="linkedin">
-              <FaLinkedin />
-            </a>
-          </div>
+          <div><a href={atwitter} class="twitter"><FaTwitter /></a></div>
+          <div><a href={agithub} class="github"><FaGithub /></a></div>
+          <div><a href={alinkedin} class="linkedin"><FaLinkedin /></a></div>
         </div>
       </div>
     </div>
@@ -143,11 +131,11 @@ function OurTeam() {
   let message =
     "People from different tech stacks came together and collaborated in order to come up with this Hack-a-Thon portal";
   return (
-    <section class="section-white">
+    <section class="section-background">
       <div class="container">
         <div class="col-md-12 text-center">
-          <h1 class="section-title">Our Team</h1>
-          <p class="section-subtitle">{message}</p>
+          <h1 class="section-title">MEET OUR TEAM</h1>
+          <h3 class="section-subtitle">{message}</h3>
         </div>
 
         <div class="row">

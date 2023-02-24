@@ -1,9 +1,14 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
+import { MDBRow, MDBCol, MDBContainer , MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import JudgeModal from "./JudgeModal";
 // import "./.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Card = ({ teamid, teamname, statement, description }) => {
+
+
+const Card = ({ teamObj }) => {
+  const { teamId, teamName, idea } = teamObj
   return (
     <div className="ideaCard">
       <MDBRow>
@@ -16,10 +21,10 @@ const Card = ({ teamid, teamname, statement, description }) => {
       </MDBRow>
       <MDBRow>
         <MDBCol md="6">
-          <h4 className="fw-bold">{teamid}</h4>
+          <h4 className="fw-bold">{teamId}</h4>
         </MDBCol>
         <MDBCol md="6">
-          <h4 className="fw-bold">{teamname}</h4>
+          <h4 className="fw-bold">{teamName}</h4>
         </MDBCol>
       </MDBRow>
       <MDBRow>
@@ -29,61 +34,45 @@ const Card = ({ teamid, teamname, statement, description }) => {
       </MDBRow>
       <MDBRow>
         <MDBCol md="12">
-          <p className="fw-medium">{statement}</p>
+          <p className="fw-medium">{idea?.problemStatement}</p>
         </MDBCol>
       </MDBRow>
-      <JudgeModal item={{ teamid, teamname, statement, description }} />
+      <JudgeModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj }} />
     </div>
   );
 };
 function Judge() {
-  const data = [
-    {
-      teamid: "1",
-      teamname: "error404",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
-    {
-      teamid: "2",
-      teamname: "team-2",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
-    {
-      teamid: "3",
-      teamname: "team-3",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
-    {
-      teamid: "4",
-      teamname: "team-4",
-      statement:
-        "Distinctio pariatur deserunt eos maiores! Quos, quia? Quos atque laudantium dolor impedit, libero rem quia possimus aut, voluptatem numquam hic, nostrum nulla officia enim?",
-      description:
-        "description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis doloribus ea dicta a quas? Vel deserunt nostrum quibusdam blanditiis fugit neque eum, consequuntur nulla necessitatibus veritatis quam soluta dolor maxime impedit commodi sint voluptatum aliquam libero aperiam quos id temporibus repellat voluptas corporis? Maxime numquam molestiae dolor est, maiores officiis sit culpa odio perferendis totam provident nihil a sequi repellendus corporis accusantium eum, iusto fuga? Error explicabo nostrum quod ipsam, aspernatur repellendus in quasi, labore est maiores quisquam cum molestiae?",
-    },
-  ];
+  const [team, setTeam] = useState([]);
+
+  useEffect(() => {
+    axios.get('/getTeam')
+      .then(response => {
+        console.log(response.data);
+        setTeam(response.data);
+        // console.log( team);
+      }, (error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const filtered=team.filter((value,index)=>{
+    return value.status==="accepted"
+  })
+
   return (
-    <div className="cards">
-      <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
-        Judge Dashboard
-      </h3>
-      <MDBRow>
-        {data.map((value, index) => (
-          <MDBCol md="6" key={index}>
-            <Card {...value} />
-          </MDBCol>
-        ))}
-      </MDBRow>
-    </div>
-  );
+    <>
+      <div className="cards">
+        <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
+          Judge Dashboard
+        </h3>
+        <MDBRow>
+          {filtered.map((value, index) => (
+            <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
+              <Card teamObj={value} />
+            </MDBCol>
+          ))}
+        </MDBRow>
+      </div>
+    </>  );
 }
 export default Judge;

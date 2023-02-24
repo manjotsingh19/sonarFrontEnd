@@ -61,7 +61,7 @@ export default function PanelistModal({ item }) {
       });
     setCommentText('');
     setShowCommentBox(false);
-    // refreshPage();
+    refreshPage();
   };
 
   //////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ export default function PanelistModal({ item }) {
         console.log(error);
         alert("error is occured");
       });
-      // refreshPage();
+      refreshPage();
   };
 
   return (

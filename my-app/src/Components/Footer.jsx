@@ -15,13 +15,12 @@ const Footer = () => {
     // background: 'linear-gradient(to right, #ffcc00, #ff6666)',
   };
   return (
+    <div style={styles}>
     <div className="max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-black-300">
       <div>
         <h1 className="w-full text-3xl font-bold text-[#ee4714]">Hackcedo</h1>
         <p className="py-4">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit
-          ullam iste repellat consequatur libero reiciendis, blanditiis
-          accusantium.
+          SAMPLE TEXT
         </p>
         <div className="flex justify-between md:w-[75%] my-6">
           <div>
@@ -95,6 +94,7 @@ const Footer = () => {
         {" "}
         © Copyright 2023 Incedo Inc.
       </div>
+    </div>
     </div>
   );
 };

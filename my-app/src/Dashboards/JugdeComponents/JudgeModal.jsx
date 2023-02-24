@@ -1,15 +1,50 @@
-import React, { useState } from "react";
-import {MDBBtn,MDBModal,MDBModalDialog,MDBModalContent,MDBModalHeader,MDBModalTitle,MDBModalBody,MDBModalFooter,} from "mdb-react-ui-kit";
+import React, { useState ,useEffect} from "react";
+import { MDBBtn, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBModalFooter, MDBRange } from "mdb-react-ui-kit";
 import Marking from "./Marking";
 import VideoPlayer from "./VideoPlayer";
-// import Ppt from "./Ppt";
-// import Present from "./Present";
+import axios from "axios";
+
 
 export default function JudgeModal({ item }) {
+  const { teamName, description, statement, teamObj } = item;
   const [basicModal, setBasicModal] = useState(false);
+  const [ui, setUi] = useState(0);
+  const [ppt, setPpt] = useState(0);
+  const [workflow, setWorkflow] = useState(0);
+  const [total, setTotal] = useState(0);
+
 
   const toggleShow = () => setBasicModal(!basicModal);
-  const { teamid, teamname, description, statement } = item;
+
+  const handleSubmit = (e) => {
+    // console.log(e.target.value);
+    
+    item.teamObj.marks = parseInt(e.target.value);
+    // console.log(teamObj);
+
+    axios.post("/marksChange", teamObj)
+    .then((response) => {
+      console.log(response);
+      console.log(teamObj);
+      alert("marks added successfully");
+    }, (error) => {
+      console.log(error);
+      alert("error is occured");
+    });
+  }
+
+
+
+  useEffect(() => {
+    let data = parseInt(ui) + parseInt(ppt) + parseInt(workflow);
+    setTotal(data);
+
+  }, [ui, ppt, workflow]);
+
+
+
+
+
   return (
     <>
       <div
@@ -27,7 +62,7 @@ export default function JudgeModal({ item }) {
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>
-                <h4>Team: {teamname}</h4>
+                <h4>Team: {teamName}</h4>
               </MDBModalTitle>
               <MDBBtn
                 className="btn-close"
@@ -45,41 +80,64 @@ export default function JudgeModal({ item }) {
                 <p>{description}</p>
               </div>
             </MDBModalBody>
-            <div
-              className="Video"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
+
+
+            {/* <div className="Video" style={{display: "flex", justifyContent: "center"}}>
               <VideoPlayer />
             </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <a
-                href="https://1drv.ms/v/s!An5fe6AqNBBhh0f53t7U5g2KZi_j?e=Jm4Svr"
-                target="_blank"
-              >
+            <div style={{display: "flex", justifyContent: "center", flexDirection: "column",}}>
+
+              <a href="https://1drv.ms/v/s!An5fe6AqNBBhh0f53t7U5g2KZi_j?e=Jm4Svr" target="_blank">
                 <button>Go to Video</button>
               </a>
-            </div>
+            </div>  */}
             {
               /* <Ppt /> */
               // <Present />
             }
             <>
-              <Marking />
-            </>
+              {/* <Marking />  /////////////////////marking////////////////////////*/}
+              <div
+                style={{
+                  padding: "10px",
+                }}
+              >
+                <MDBRange defaultValue={ui} onChange={(e) => { setUi(e.target.value); }}min="0" max="10"
+                  step="1"
+                  id="customRange3"
+                  label={`User Interface - ${ui}`}
+                />
+                <MDBRange
+                  defaultValue={ppt}
+                  onChange={(e) => {
+                    setPpt(e.target.value);
+                  }}
+                  min="0"
+                  max="10"
+                  step="1"
+                  id="customRange3"
+                  label={`Presentation - ${ppt}`}
+                />
+                <MDBRange
+                  defaultValue={workflow}
+                  onChange={(e) => {
+                    setWorkflow(e.target.value);
+                  }}
+                  min="0"
+                  max="10"
+                  step="1"
+                  id="customRange3"
+                  label={`Workflow - ${workflow}`}
+                />
+                Total - {total}
+              </div>
 
+              {/* /////////////////////////////////////////////////////////////////////////// */}
+
+
+            </>
             <MDBModalFooter>
-              <MDBBtn color="success" onClick={toggleShow}>
-                Save
-              </MDBBtn>
+              <MDBBtn color="success" value={total} onClick={(e) => handleSubmit(e)}>Save</MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
