@@ -60,9 +60,9 @@ function Participant() {
     console.log(file);
 
     // formData.append("ideaId", ideaId);
-
    
   }
+  
   const handleFileSubmit = (e) => {
     console.log(file);
     axios.post("/upload", formData)

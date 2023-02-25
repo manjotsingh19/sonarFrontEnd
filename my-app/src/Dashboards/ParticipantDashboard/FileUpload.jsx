@@ -15,8 +15,6 @@ export default function FileUpload({userData}) {
   const handleSubmit= () => {
       console.log(data);
       console.log(userData);
-
-
   };
   return (
     <div className="ml-5 pb-2">
