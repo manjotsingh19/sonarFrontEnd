@@ -26,13 +26,11 @@ function CreateEvent() {
 
             axios.post('/event', event)
                 .then((response) => {
-                    // console.log(response);
                     Swal.fire(
                         'Great',
                         'Event added successfully!',
                         'success'
                       )
-
                 }, (error) => {
                     console.log(error);
                     Swal.fire({

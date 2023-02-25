@@ -15,7 +15,9 @@ function LoginPage() {
     email:'',
     password: '',
   });
-
+  const italicText = {
+    color: "#999"
+  };
 
   const handleInput = (e) => {
     const { id, value } = e.target;
@@ -79,12 +81,8 @@ function LoginPage() {
           <div className='col-12'>
                   <MDBBtn onClick={handleclick} type='submit' className='bg-primary shadow-1-strong'> LogIn </MDBBtn>
           </div>
-
         </MDBCol>
-
       </MDBRow>
-
-
     </MDBContainer>
   );
 }

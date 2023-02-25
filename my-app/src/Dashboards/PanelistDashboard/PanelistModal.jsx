@@ -22,7 +22,6 @@ export default function PanelistModal({ item }) {
   };
 
 
-
   /////////////////////////////////////////comment boxx///////////////////////////////////////////////////////
 
   const [showCommentBox, setShowCommentBox] = useState(false);
@@ -42,18 +41,14 @@ export default function PanelistModal({ item }) {
   }
 
   const handleCommentSubmit = () => {
-    // Do something with the comment text, such as sending it to a server
-    console.log(commentText);
     teamObj.newComment = commentText;
     teamObj.status = "reverted";
-    console.log(teamObj);
+    // console.log(teamObj);
 
     setBasicModal(!basicModal);
     
     axios.post("/statusChange", teamObj)
       .then((response) => {
-        // console.log(teamObj);
-        // console.log(response);
         alert(teamObj.status);
       }, (error) => {
         console.log(error);
@@ -64,14 +59,15 @@ export default function PanelistModal({ item }) {
     refreshPage();
   };
 
+  
+  
   //////////////////////////////////////////////////////////////
 
 
 
   const handleSubmit = (e) => {
-    
     teamObj.status = e.target.value;
-    console.log(teamObj);
+    // console.log(teamObj);
 
     setBasicModal(!basicModal);
     // setObj(teamObj)

@@ -53,9 +53,10 @@ function Panelist() {
   const [team, setTeam] = useState([]);
 
   useEffect(() => {
+    
     axios.get('/getTeam')
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         setTeam(response.data);
         // console.log("this is team table" + team);
       }, (error) => {
@@ -63,6 +64,7 @@ function Panelist() {
       });
   }, []);
 
+  
   const filtered=team.filter((value,index)=>{
     return value.status==="pending"
   })
