@@ -6,6 +6,7 @@ import FileUpload from "./FileUpload";
 import axios from "axios";
 import Navbar from "../../Components/Navbar";
 import Swal from 'sweetalert2';
+import FileUploader from "./FileUploader";
 
 
 function Participant() {
@@ -50,29 +51,29 @@ function Participant() {
   //   uploadFile:'',
   // });
 
+  ////////////////////////////////handle file submit//////////////////////////////////////////////////////
+  // const [name, setName] = useState("");
+  // const [selectedFile, setSelectedFile] = useState("");
 
-  const formData = new FormData();
 
-  const [file, setfile] = useState();
-  
-  const handleFile = (e) => {
-    formData.append("file", file);
-    console.log(file);
+  // const submitForm = () => {
+  //   const formData = new FormData();
+  //   formData.append("name", name);
+  //   formData.append("file", selectedFile);
 
-    // formData.append("ideaId", ideaId);
-   
-  }
-  
-  const handleFileSubmit = (e) => {
-    console.log(file);
-    axios.post("/upload", formData)
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
+  //   console.log(formData);
+
+  //   // axios
+  //   //   .post("UPLOAD_URL", formData)
+  //   //   .then((res) => {
+  //   //     alert("File Upload success");
+  //   //   })
+  //   //   .catch((err) => alert("File Upload Error"));
+
+  // };
+
+
+  /////////////////////////////////////////////////////////////////////////////////////
 
 
   const handleInput = (e) => {
@@ -83,7 +84,7 @@ function Participant() {
   const handleSubmit = () => {
 
     fetchedData.team.gitHubLink = git.gitHubLink;
-    console.log(git);
+    // console.log(git);
     axios.post('/changeGithub', fetchedData.team)
       .then((response) => {
         Swal.fire(
@@ -112,15 +113,31 @@ function Participant() {
             {/* team details*/}
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
               <MDBBtn color="success">Accepted</MDBBtn>
-              <div>
-                {/* <FileUpload  userData={fetchedData?.team}/> */}
-                <div className="ml-5 pb-2">
-                  <MDBFile label="Upload the presentation file" id="file" name="file"   value={file} onChange={(e) => handleFile(e)} />
-                  <MDBBtn onClick={handleFileSubmit}>Submit file</MDBBtn>
 
+{/* ////////////////////////////file upload form////////// */}
+              {/* <form>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+
+                <input
+                  type="file"
+                  value={selectedFile}
+                  onChange={(e) => setSelectedFile(e.target.files[0])}
+                />
+                <button onClick={submitForm}>Submit</button>
+              </form> */}
+
+{/* ////////////////////////////////////////////////////////////// */}
+              <div>
+
+                <div className="ml-5 pb-2">
+                  {/* <MDBFile label="Upload the presentation file" id="file" name="file"   value={file} onChange={(e) => handleFile(e)} />
+                  <MDBBtn onClick={handleFileSubmit}>Submit file</MDBBtn> */}
                   <MDBInput label="Github repository link" id="gitHubLink" value={git.gitHubLink} onChange={(e) => handleInput(e)} type="url" />
                   <MDBBtn onClick={handleSubmit}>Submit Github repository</MDBBtn>
-
                 </div>
               </div></>)}
 
