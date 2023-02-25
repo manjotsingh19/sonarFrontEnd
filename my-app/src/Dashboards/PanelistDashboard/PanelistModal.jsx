@@ -130,7 +130,7 @@ export default function PanelistModal({ item }) {
               </MDBBtn>
               {showCommentBox && (
                 <div>
-                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write comment"} style={{border:"1px solid black"}} />
+                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write comment"} rows="10"    cols="20" style={{border:"1px solid black"}} />
                   <button onClick={handleCommentSubmit}>Submit</button>
                 </div>
               )}
