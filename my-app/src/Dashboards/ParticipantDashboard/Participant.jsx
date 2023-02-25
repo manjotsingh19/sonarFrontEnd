@@ -6,7 +6,6 @@ import FileUpload from "./FileUpload";
 import axios from "axios";
 import Navbar from "../../Components/Navbar";
 import Swal from 'sweetalert2';
-import FileUploader from "./FileUploader";
 
 
 function Participant() {
