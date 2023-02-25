@@ -13,7 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 function RegistrationForm() {
   const [isSubmit, setSubmit] = useState(false);
@@ -90,27 +90,22 @@ function RegistrationForm() {
 
   //////////////////connect to server/////////////////////////////////////
   useEffect(() => {
-    
     // console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
       axios.post("/registrationForm", teamForm).then(
         (response) => {
           // console.log(response);
-          Swal.fire(
-            'Great',
-            'Registration Successful!',
-            'success'
-          )
+          Swal.fire("Great", "Registration Successful!", "success");
           navigate("/logIn");
         },
         (error) => {
           console.log(error);
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
             // footer: '<a href="">Why do I have this issue?</a>'
-          })
+          });
         }
       );
     }
@@ -249,6 +244,9 @@ const regexPh = /^\d{10}$/i;
   const myStyle = {
     color: "red",
   };
+  const italicText = {
+    color: "#ccc",
+  };
 
   return (
     <>
@@ -275,7 +273,7 @@ const regexPh = /^\d{10}$/i;
                       wrapperClass="mb-0"
                       required
                       className="col-md-4"
-                      label="Team Name"
+                      label=<span style={italicText}>Team Name</span>
                       size="md"
                       type="text"
                     />
@@ -298,7 +296,7 @@ const regexPh = /^\d{10}$/i;
                       wrapperClass="mb-2"
                       required
                       className="col-md-4"
-                      label="Name"
+                      label=<span style={italicText}>Name</span>
                       size="md"
                       type="text"
                     />
@@ -311,7 +309,7 @@ const regexPh = /^\d{10}$/i;
                       value={teamForm.e1}
                       onChange={(e) => handleInput(e)}
                       wrapperClass="mb-2"
-                      label="Email"
+                      label=<span style={italicText}>Email</span>
                       size="md"
                       type="email"
                       required
@@ -325,7 +323,7 @@ const regexPh = /^\d{10}$/i;
                       id="ph1"
                       value={teamForm.ph1}
                       onChange={(e) => handleInput(e)}
-                      label="Phone number"
+                      label=<span style={italicText}>Phone Number</span>
                       type="phone"
                       required
                       className="col-md-4"
@@ -349,7 +347,7 @@ const regexPh = /^\d{10}$/i;
                       wrapperClass="mb-2"
                       required
                       className="col-md-4"
-                      label="Name"
+                      label=<span style={italicText}>Name</span>
                       size="md"
                       type="text"
                     />
@@ -362,7 +360,7 @@ const regexPh = /^\d{10}$/i;
                       value={teamForm.e2}
                       onChange={(e) => handleInput(e)}
                       wrapperClass="mb-2"
-                      label="Email"
+                      label=<span style={italicText}>Email</span>
                       size="md"
                       type="email"
                       required
@@ -376,7 +374,7 @@ const regexPh = /^\d{10}$/i;
                       id="ph2"
                       value={teamForm.ph2}
                       onChange={(e) => handleInput(e)}
-                      label="Phone number"
+                      label=<span style={italicText}>Phone Number</span>
                       type="phone"
                       required
                       className="col-md-4"
@@ -400,7 +398,7 @@ const regexPh = /^\d{10}$/i;
                       wrapperClass="mb-2"
                       required
                       className="col-md-4"
-                      label="Name"
+                      label=<span style={italicText}>Name</span>
                       size="md"
                       type="text"
                     />
@@ -413,7 +411,7 @@ const regexPh = /^\d{10}$/i;
                       value={teamForm.e3}
                       onChange={(e) => handleInput(e)}
                       wrapperClass="mb-2"
-                      label="Email"
+                      label=<span style={italicText}>Email</span>
                       size="md"
                       type="email"
                       required
@@ -427,7 +425,7 @@ const regexPh = /^\d{10}$/i;
                       id="ph3"
                       value={teamForm.ph3}
                       onChange={(e) => handleInput(e)}
-                      label="Phone number"
+                      label=<span style={italicText}>Phone Number</span>
                       type="phone"
                       required
                       className="col-md-4"
@@ -456,7 +454,7 @@ const regexPh = /^\d{10}$/i;
                         value={teamForm.n4}
                         onChange={(e) => handleInput(e)}
                         wrapperClass="mb-2"
-                        label="Name"
+                        label=<span style={italicText}>Name</span>
                         size="md"
                         type="text"
                       />
@@ -468,7 +466,7 @@ const regexPh = /^\d{10}$/i;
                         value={teamForm.e4}
                         onChange={(e) => handleInput(e)}
                         wrapperClass="mb-2"
-                        label="Email"
+                        label=<span style={italicText}>Email</span>
                         size="md"
                         type="email"
                       />
@@ -480,7 +478,7 @@ const regexPh = /^\d{10}$/i;
                         id="ph4"
                         value={teamForm.ph4}
                         onChange={(e) => handleInput(e)}
-                        label="Phone number"
+                        label=<span style={italicText}>Phone Number</span>
                         type="phone"
                       />
                       <p style={myStyle}>{errors.ph4}</p>
@@ -502,7 +500,7 @@ const regexPh = /^\d{10}$/i;
                       id="pass"
                       value={teamForm.pass}
                       onChange={(e) => handleInput(e)}
-                      label="Team Password "
+                      label=<span style={italicText}>Team Password</span>
                       type="password"
                     />
                     <p style={myStyle}>{errors.pass}</p>
@@ -512,7 +510,9 @@ const regexPh = /^\d{10}$/i;
                       id="confirmPassword"
                       value={password.confirmPassword}
                       onChange={(e) => handlePass(e)}
-                      label="Confirm Team Password"
+                      label=<span style={italicText}>
+                        Confirm Team Password
+                      </span>
                       type="password"
                     />
                     <p style={myStyle}>{errors.confirmPassword}</p>
@@ -556,7 +556,9 @@ const regexPh = /^\d{10}$/i;
                       id="problemS"
                       value={teamForm.problemS}
                       onChange={(e) => handleInput(e)}
-                      label=""
+                      label=<span style={italicText}>
+                        Enter problem statement
+                      </span>
                       rows={0}
                       style={{ resize: "none" }}
                       required
@@ -579,7 +581,9 @@ const regexPh = /^\d{10}$/i;
                       id="problemD"
                       value={teamForm.problemD}
                       onChange={(e) => handleInput(e)}
-                      label=""
+                      label=<span style={italicText}>
+                        Enter problem description and proposed solution
+                      </span>
                       rows={3}
                       style={{ resize: "none" }}
                       required
