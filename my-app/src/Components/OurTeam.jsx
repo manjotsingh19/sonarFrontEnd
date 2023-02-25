@@ -37,13 +37,26 @@ const Card = ({
         <div class="team-info">
           <p>{designation}</p>
         </div>
-
-        <p>{description}</p>
+        <div class="tagline">
+          <p>{description}</p>
+        </div>
 
         <div class="team-icon">
-          <div><a href={atwitter} class="twitter"><FaTwitter /></a></div>
-          <div><a href={agithub} class="github"><FaGithub /></a></div>
-          <div><a href={alinkedin} class="linkedin"><FaLinkedin /></a></div>
+          <div>
+            <a href={atwitter} class="twitter">
+              <FaTwitter />
+            </a>
+          </div>
+          <div>
+            <a href={agithub} class="github">
+              <FaGithub />
+            </a>
+          </div>
+          <div>
+            <a href={alinkedin} class="linkedin">
+              <FaLinkedin />
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -55,77 +68,77 @@ function OurTeam() {
     {
       name: "Mahak Jain",
       image: p1,
-      description: "Quality Assurance Engineer",
+      designation: "Quality Assurance Engineer",
       alinkedin: "https://www.linkedin.com/in/mahak-jain-7a4488120/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      designation:
+      description:
         "Responsible for the testing and automation of the application",
     },
     {
       name: "Manjot Singh",
       image: p2,
-      description: "Quality Assurance Engineer",
+      designation: "Quality Assurance Engineer",
       alinkedin: "https://www.linkedin.com/in/manjot-singh-5297171b4/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      designation:
+      description:
         "Responsible for the testing and automation of the application",
     },
     {
       name: "Mritunjay Verma",
       image: p3,
-      description: "Software Developer Engineer",
-      alinkedin: "https://www.linkedin.com/in/mahak-jain-7a4488120/",
+      designation: "Software Developer Engineer",
+      alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      designation: "Responsible for the backend development of the application",
+      description: "Responsible for the backend development of the application",
     },
     {
       name: "Nikunj Gupta",
       image: p4,
-      description: "Software Developer Engineer",
-      alinkedin: "https://www.linkedin.com/in/mahak-jain-7a4488120/",
+      designation: "Software Developer Engineer",
+      alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      designation: "Responsible for the backend development of the application",
+      description: "Responsible for the backend development of the application",
     },
     {
       name: "Nimish Chourasia",
       image: p5,
-      description: "Software Developer Engineer",
-      alinkedin: "https://www.linkedin.com/in/mahak-jain-7a4488120/",
+      designation: "Software Developer Engineer",
+      alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      designation: "Responsible for the backend development of the application",
+      description: "Responsible for the backend development of the application",
     },
     {
       name: "Prashant sahu",
       image: p6,
-      description: "Software Developer Engineer",
-      alinkedin: "https://www.linkedin.com/in/mahak-jain-7a4488120/",
+      designation: "Software Developer Engineer",
+      alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      designation:
+      description:
         "Responsible for the frontend development of the application",
     },
     {
       name: "Vaibhav Agarwal",
       image: p7,
-      description: "Software Developer Engineer",
+      designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/in/va29/",
       atwitter: "https://twitter.com/va2905",
       agithub: "https://github.com/va-incedo",
-      designation: "Responsible for the backend development of the application",
+      description: "Responsible for the backend development of the application",
     },
     {
       name: "Yashi Gupta",
       image: p8,
-      description: "Software Developer Engineer",
+      designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/in/yashi-gupta-6b2bb3228/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      designation: "Responsible for the backend development of the application",
+      description: "Responsible for the backend development of the application",
     },
   ];
   let message =
