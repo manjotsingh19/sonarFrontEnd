@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Swal from "sweetalert2";
 
 
 
@@ -66,7 +67,11 @@ function ChangePassword() {
 
         }, (error) => {
           console.log(error);
-          alert("error is occured");
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Incorrect Username or Password',
+          });
         });
 
     }

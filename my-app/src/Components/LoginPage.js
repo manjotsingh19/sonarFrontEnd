@@ -12,6 +12,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Admin from "../Dashboards/AdminComponents/Admin";
 import axios from "axios";
 import Participant from "../Dashboards/ParticipantDashboard/Participant";
+import Swal from "sweetalert2";
+import Navbar from "./Navbar";
 
 function LoginPage() {
   const [isSubmit, setSubmit] = useState(false);
@@ -56,62 +58,69 @@ function LoginPage() {
       },
       (error) => {
         console.log(error);
-        alert("Username or password is incorrect");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Wrong username or password!',
+        });
       }
     );
   };
 
   return (
-    <MDBContainer fluid className="p-3 my-5 h-custom">
-      <MDBRow>
-        <MDBCol col="10" md="6">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-            className="img-fluid"
-            alt="Sample image"
-          />
-        </MDBCol>
+    <>
+      <Navbar />
+      <MDBContainer fluid className="p-3 my-5 h-custom">
+        <MDBRow>
+          <MDBCol col="10" md="6">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              className="img-fluid"
+              alt="Sample image"
+            />
+          </MDBCol>
 
-        <MDBCol col="4" md="6">
-          <MDBInput
-            id="email"
-            value={teamForm.email}
-            onChange={(e) => handleInput(e)}
-            wrapperClass="mb-4"
-            label=<span style={italicText}>Email Address</span>
-            type="email"
-            size="lg"
-          />
-          <MDBInput
-            id="password"
-            value={teamForm.password}
-            onChange={(e) => handleInput(e)}
-            wrapperClass="mb-4"
-            label=<span style={italicText}>Password</span>
-            type="password"
-            size="lg"
-          />
+          <MDBCol col="4" md="6">
+            <MDBInput
+              id="email"
+              value={teamForm.email}
+              onChange={(e) => handleInput(e)}
+              wrapperClass="mb-4"
+              label=<span style={italicText}>Email Address</span>
+              type="email"
+              size="lg"
+            />
+            <MDBInput
+              id="password"
+              value={teamForm.password}
+              onChange={(e) => handleInput(e)}
+              wrapperClass="mb-4"
+              label=<span style={italicText}>Password</span>
+              type="password"
+              size="lg"
+            />
 
-          <p className="small fw-bold mt-2 pt-1 mb-2">
-            Don't have an account?{" "}
-            <Link to="/registrationForm" style={{ color: "blue" }}>
-              Register{" "}
-            </Link>
-          </p>
+            <p className="small fw-bold mt-2 pt-1 mb-2">
+              Don't have an account?{" "}
+              <Link to="/registrationForm" style={{ color: "blue" }}>
+                Register{" "}
+              </Link>
+            </p>
 
-          <div className="col-12">
-            <MDBBtn
-              onClick={handleclick}
-              type="submit"
-              className="bg-primary shadow-1-strong"
-            >
-              {" "}
-              LogIn{" "}
-            </MDBBtn>
-          </div>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+            <div className="col-12">
+              <MDBBtn
+                onClick={handleclick}
+                type="submit"
+                className="bg-primary shadow-1-strong"
+              >
+                {" "}
+                LogIn{" "}
+              </MDBBtn>
+            </div>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </>
   );
 }
 

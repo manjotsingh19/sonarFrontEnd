@@ -10,6 +10,7 @@ import {
   MDBModalTitle,
   MDBModalBody,MDBModalFooter,
 } from "mdb-react-ui-kit";
+import Timer from "../JugdeComponents/Timer";
 
 export default function PanelistModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
@@ -53,7 +54,11 @@ export default function PanelistModal({ item }) {
         
       }, (error) => {
         console.log(error);
-        alert("error is occured");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'An error has occured',
+        });
       });
     setCommentText('');
     setShowCommentBox(false);
@@ -78,7 +83,11 @@ export default function PanelistModal({ item }) {
         // alert(teamObj.status);
       }, (error) => {
         console.log(error);
-        alert("error is occured");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'An error has occured',
+        });
       });
   };
 
@@ -108,6 +117,7 @@ export default function PanelistModal({ item }) {
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
+              <Timer />
               <div className="">
                 <h4>Problem Statement</h4>
                 <p>{statement}</p>
