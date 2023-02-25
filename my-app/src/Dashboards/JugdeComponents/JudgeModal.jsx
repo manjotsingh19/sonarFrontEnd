@@ -28,11 +28,12 @@ export default function JudgeModal({ item }) {
 
   const toggleShow = () => setBasicModal(!basicModal);
   
+console.log(teamObj);
 
   const handleSubmit = (e) => {
     teamObj.marks = parseInt(e.target.value);
     teamObj.judgeList = item.teamObj.judgeList +judgeData?.id+",";
-    console.log(teamObj);
+    // console.log(teamObj);
 
     axios.post("/marksChange", teamObj)
     .then((response) => {
@@ -91,6 +92,10 @@ export default function JudgeModal({ item }) {
               <div className="">
                 <h4>Problem Description</h4>
                 <p>{description}</p>
+              </div>
+
+              <div className="">
+              <a href={teamObj.gitHubLink} target="_blank">Github link </a>
               </div>
             </MDBModalBody>
 

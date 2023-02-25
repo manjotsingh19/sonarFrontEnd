@@ -120,50 +120,69 @@ function RegistrationForm() {
     const errorsObj = {};
     // const regex =  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/i;
     const regex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-    const regexPh = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+    // const regexPh = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+const regexPh = /^\d{10}$/i;
     if (!teamForm.team) {
       errorsObj.team = "Team Name is required";
     }
-    if (!teamForm.n1) {
+    else if (!teamForm.n1) {
       errorsObj.n1 = "Participant name is required";
     }
-    if (!teamForm.e1) {
+    else if (!teamForm.e1) {
       errorsObj.e1 = "Participant email is required";
     } else if (!regex.test(teamForm.e1)) {
       errorsObj.e1 = "this is not a valid email";
     }
-    if (!teamForm.ph1) {
+    else if (!teamForm.ph1) {
       errorsObj.ph1 = "Participant number is required";
     } else if (!regexPh.test(teamForm.ph1)) {
       errorsObj.ph1 = "This is not a valid phone number";
     }
-    if (!teamForm.n2) {
+    else if (!teamForm.n2) {
       errorsObj.n2 = "Participant name is required";
     }
-    if (!teamForm.e2) {
+    else if (!teamForm.e2) {
       errorsObj.e2 = "Participant email is required";
     } else if (!regex.test(teamForm.e2)) {
       errorsObj.e2 = "This is not a valid email";
     }
-    if (!teamForm.ph2) {
+    else if (!teamForm.ph2) {
       errorsObj.ph2 = "Participant number is required";
     } else if (!regexPh.test(teamForm.ph2)) {
       errorsObj.ph2 = "This is not a valid phone number";
     }
-    if (!teamForm.n3) {
+    else if (!teamForm.n3) {
       errorsObj.n3 = "Participant name is required";
     }
-    if (!teamForm.e3) {
+    else if (!teamForm.e3) {
       errorsObj.e3 = "Participant email is required";
     } else if (!regex.test(teamForm.e3)) {
       errorsObj.e3 = "This is not a valid email";
     }
-    if (!teamForm.ph3) {
+    else if (!teamForm.ph3) {
       errorsObj.ph3 = "Participant number is required";
     } else if (!regexPh.test(teamForm.ph3)) {
       errorsObj.ph3 = "This is not a valid phone number";
     }
-
+    else if (!teamForm.pass) {
+      errorsObj.pass = "Password is required";
+    } else if (teamForm.pass.length < 8) {
+      errorsObj.pass = "Minimum password length is 8";
+    }
+    else if (!password.confirmPassword) {
+      errorsObj.confirmPassword = "Enter confirm password";
+    } else if (teamForm.pass !== password.confirmPassword) {
+      errorsObj.confirmPassword = "Confirm password is not matched";
+    }
+    else if (!teamForm.domain) {
+      errorsObj.domain = "Domain not specified";
+    }
+    else if (!teamForm.problemS) {
+      errorsObj.problemS = "Problem statement is required";
+    }
+    else if (!teamForm.problemD) {
+      errorsObj.problemD = "Problem description is required";
+    }
     if (teamForm.ph4) {
       if (!regexPh.test(teamForm.ph4)) {
         errorsObj.ph4 = "This is not a valid phone number";
@@ -174,15 +193,8 @@ function RegistrationForm() {
         errorsObj.e4 = "This is not a valid email";
       }
     }
-    if (!teamForm.domain) {
-      errorsObj.domain = "Domain not specified";
-    }
-    if (!teamForm.problemS) {
-      errorsObj.problemS = "Problem statement is required";
-    }
-    if (!teamForm.problemD) {
-      errorsObj.problemD = "Problem description is required";
-    }
+   
+    
     if (teamForm.ph1 !== "" && teamForm.ph2 !== "" && teamForm.ph3 !== "") {
       if (
         teamForm.ph1 === teamForm.ph2 ||
@@ -230,16 +242,7 @@ function RegistrationForm() {
         }
       }
     }
-    if (!teamForm.pass) {
-      errorsObj.pass = "Password is required";
-    } else if (teamForm.pass.length < 8) {
-      errorsObj.pass = "Minimum password length is 8";
-    }
-    if (!password.confirmPassword) {
-      errorsObj.confirmPassword = "Enter confirm password";
-    } else if (teamForm.pass !== password.confirmPassword) {
-      errorsObj.confirmPassword = "Confirm password is not matched";
-    }
+   
     return errorsObj;
   };
 
