@@ -20,41 +20,29 @@ function AddJudges() {
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
     useEffect(() => {
-        // console.log(errors);
-       
-
         if (Object.keys(errors).length === 0 && submitted) {
-
-            // console.log(judges);
-
             axios.post('/user', judges)
                 .then((response) => {
                     // console.log(response);
-                    if(judges.role_id === 2){
+                    if (judges.role_id === 2) {
                         Swal.fire(
                             'Great',
                             'Panelist added successfully!',
                             'success'
-                          )
-                        // alert("Panelist added successfully");
+                        )
+                        setJudges({...judges,name: '',email: '',mobile: '',role_id: '',password: ''});
                     }
-                    else if(judges.role_id === 3){
+                    else if (judges.role_id === 3) {
                         Swal.fire(
                             'Great',
                             'Judge added successfully!',
                             'success'
-                          )
-                        // alert("Judge added successfully");
+                        )
                     }
 
                 }, (error) => {
-                    // console.log(error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        // footer: '<a href="">Why do I have this issue?</a>'
-                      })
+                    Swal.fire({icon: 'error',title: 'Oops...',text: 'Something went wrong!',
+                    })
                 });
 
         }
@@ -62,7 +50,7 @@ function AddJudges() {
             setSubmited(false);
         }
 
-    }, [errors, submitted]);
+    }, [judges,errors, submitted]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -83,7 +71,7 @@ function AddJudges() {
 
     const handleRole = (e) => {
         const x = e.target.value;
-        setJudges({ ...judges,  role_id: parseInt(x)});
+        setJudges({ ...judges, role_id: parseInt(x) });
     }
 
     const validate = (judges) => {
@@ -136,7 +124,7 @@ function AddJudges() {
                             </MDBCol>
 
                             <MDBCol md='3'>
-                                <MDBInput id="mobile" type="phone" value={judges.mobile} onChange={(e) => handleInput(e)} label='Phone number'  required className='col-md-4' />
+                                <MDBInput id="mobile" type="phone" value={judges.mobile} onChange={(e) => handleInput(e)} label='Phone number' required className='col-md-4' />
                                 <p style={myStyle}>{errors.mobile}</p>
                             </MDBCol>
 

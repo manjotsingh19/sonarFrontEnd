@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 import {
   MDBBtn,
   MDBModal,
@@ -49,7 +49,9 @@ export default function PanelistModal({ item }) {
     
     axios.post("/statusChange", teamObj)
       .then((response) => {
-        alert(teamObj.status);
+        // alert(teamObj.status);
+        Swal.fire(`Participant${teamObj.status}`);
+        
       }, (error) => {
         console.log(error);
         alert("error is occured");
@@ -74,8 +76,8 @@ export default function PanelistModal({ item }) {
     axios.post("/statusChange", teamObj)
       .then((response) => {
         // console.log(teamObj);
-        // console.log(response);
-        alert(teamObj.status);
+        Swal.fire(`Participant${teamObj.status}`);
+        // alert(teamObj.status);
       }, (error) => {
         console.log(error);
         alert("error is occured");
@@ -130,8 +132,9 @@ export default function PanelistModal({ item }) {
               </MDBBtn>
               {showCommentBox && (
                 <div>
-                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write comment"} rows="10"    cols="20" style={{border:"1px solid black"}} />
-                  <button onClick={handleCommentSubmit}>Submit</button>
+                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write Suggestions"} rows="5"    cols="40" style={{border:"1px solid black" , margin:"5px", marginTop:"10px"}} />
+                  {/* <button onClick={handleCommentSubmit}>Submit</button> */}
+                  <MDBBtn color="info" onClick={handleCommentSubmit} style={{marginBottom:"12px"}}>Submit</MDBBtn>
                 </div>
               )}
             </MDBModalFooter>

@@ -4,6 +4,7 @@ import Marking from "./Marking";
 import VideoPlayer from "./VideoPlayer";
 import axios from "axios";
 import Timer from "./Timer";
+import Swal from "sweetalert2";
 
 
 export default function JudgeModal({ item }) {
@@ -37,10 +38,12 @@ console.log(teamObj);
 
     axios.post("/marksChange", teamObj)
     .then((response) => {
-      alert("marks added successfully");
+      // alert("marks added successfully");
+      Swal.fire("Great", "Response Added Successfully!");
+
     }, (error) => {
       console.log(error);
-      alert("error is occured");
+      Swal.fire({icon: "error", title: "Oops...", text: "Something went wrong!"});
     });
     refreshPage();
   }
@@ -95,7 +98,7 @@ console.log(teamObj);
               </div>
 
               <div className="">
-              <a href={teamObj.gitHubLink} target="_blank">Github link </a>
+              <a href={teamObj.gitHubLink} target="_blank">Github link is not given : Github Link </a>
               </div>
             </MDBModalBody>
 

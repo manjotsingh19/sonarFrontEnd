@@ -2,14 +2,7 @@ import React, { useRef } from "react";
 import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 import Slider from "react-slick";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import p1 from "./images/1.jpeg";
-import p2 from "./images/2.jpeg";
-import p3 from "./images/3.png";
-import p4 from "./images/4.png";
-import p5 from "./images/5.jpeg";
-import p6 from "./images/6.jpeg";
-import p7 from "./images/7.jpeg";
-import p8 from "./images/8.jpeg";
+
 
 const Card = ({
   name,
@@ -30,7 +23,6 @@ const Card = ({
             alignItems: "center",
           }}
         >
-          <img src={image} class="team-img" alt="pic" />
         </div>
 
         <h3>{name}</h3>
@@ -87,7 +79,6 @@ export default function App() {
   const data = [
     {
       name: "Mahak Jain",
-      image: p1,
       designation: "Quality Assurance Engineer",
       alinkedin: "https://www.linkedin.com/in/mahak-jain-7a4488120/",
       atwitter: "https://twitter.com/",
@@ -97,7 +88,6 @@ export default function App() {
     },
     {
       name: "Manjot Singh",
-      image: p2,
       designation: "Quality Assurance Engineer",
       alinkedin: "https://www.linkedin.com/in/manjot-singh-5297171b4/",
       atwitter: "https://twitter.com/",
@@ -107,7 +97,6 @@ export default function App() {
     },
     {
       name: "Mritunjay Verma",
-      image: p3,
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
@@ -116,7 +105,6 @@ export default function App() {
     },
     {
       name: "Nikunj Gupta",
-      image: p4,
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
@@ -125,7 +113,6 @@ export default function App() {
     },
     {
       name: "Nimish Chourasia",
-      image: p5,
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
@@ -134,7 +121,6 @@ export default function App() {
     },
     {
       name: "Prashant sahu",
-      image: p6,
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
@@ -144,7 +130,6 @@ export default function App() {
     },
     {
       name: "Vaibhav Agarwal",
-      image: p7,
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/in/va29/",
       atwitter: "https://twitter.com/va2905",
@@ -153,7 +138,6 @@ export default function App() {
     },
     {
       name: "Yashi Gupta",
-      image: p8,
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/in/yashi-gupta-6b2bb3228/",
       atwitter: "https://twitter.com/",

@@ -167,14 +167,11 @@ function Participant() {
           <MDBContainer fluid>
             {/* team details*/}
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-              <MDBBtn color="warning">Reverted</MDBBtn>
+               <MDBBtn color="warning">Reverted</MDBBtn>
               <div>
 
                 {Object.keys(fetchedData).length > 0 && (
                   <>
-
-                    {/* {console.log(fetchedData.team)} */}
-                    {/* <Reviews userObj={fetchedData?.team}/> */}
                     {/* ////////////////////////// */}
                     <div className="ideaCard">
                       <MDBRow>
@@ -182,7 +179,6 @@ function Participant() {
                           <h4 className="fw-bold">Reviews from the Panelist</h4>
                         </MDBCol>
                         <MDBCol md="12">
-                          {/* {console.log(fetchedData?.team)} */}
                           <h6 className="">{fetchedData?.team?.newComment}</h6>
                         </MDBCol>
                       </MDBRow>

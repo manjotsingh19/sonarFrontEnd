@@ -581,7 +581,7 @@ const regexPh = /^\d{10}$/i;
                       id="problemD"
                       value={teamForm.problemD}
                       onChange={(e) => handleInput(e)}
-                      label=<span style={italicText}>
+                      label= <span style={italicText}>
                         Enter problem description and proposed solution
                       </span>
                       rows={3}

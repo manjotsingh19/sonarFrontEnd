@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../../Components/Navbar";
-
+import Swal from "sweetalert2";
 
 const Card = ({ teamObj }) => {
   const { teamId, teamName, idea } = teamObj
