@@ -8,8 +8,7 @@ import {
   MDBModalContent,
   MDBModalHeader,
   MDBModalTitle,
-  MDBModalBody,
-  MDBModalFooter,
+  MDBModalBody,MDBModalFooter,
 } from "mdb-react-ui-kit";
 
 export default function PanelistModal({ item }) {
@@ -50,7 +49,7 @@ export default function PanelistModal({ item }) {
     axios.post("/statusChange", teamObj)
       .then((response) => {
         // alert(teamObj.status);
-        Swal.fire(`Participant${teamObj.status}`);
+        Swal.fire(`Participant ${teamObj.status}`);
         
       }, (error) => {
         console.log(error);
@@ -58,7 +57,7 @@ export default function PanelistModal({ item }) {
       });
     setCommentText('');
     setShowCommentBox(false);
-    refreshPage();
+    // refreshPage();
   };
 
   
@@ -75,14 +74,12 @@ export default function PanelistModal({ item }) {
     // setObj(teamObj)
     axios.post("/statusChange", teamObj)
       .then((response) => {
-        // console.log(teamObj);
-        Swal.fire(`Participant${teamObj.status}`);
+        Swal.fire(`Participant ${teamObj.status}`);
         // alert(teamObj.status);
       }, (error) => {
         console.log(error);
         alert("error is occured");
       });
-      refreshPage();
   };
 
   return (

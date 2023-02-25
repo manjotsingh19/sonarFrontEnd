@@ -35,7 +35,8 @@ console.log(teamObj);
     teamObj.marks = parseInt(e.target.value);
     teamObj.judgeList = item.teamObj.judgeList +judgeData?.id+",";
     // console.log(teamObj);
-
+    setBasicModal(!basicModal);
+    
     axios.post("/marksChange", teamObj)
     .then((response) => {
       // alert("marks added successfully");
@@ -45,7 +46,7 @@ console.log(teamObj);
       console.log(error);
       Swal.fire({icon: "error", title: "Oops...", text: "Something went wrong!"});
     });
-    refreshPage();
+    // refreshPage();
   }
 
 

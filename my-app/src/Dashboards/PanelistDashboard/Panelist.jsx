@@ -62,7 +62,7 @@ function Panelist() {
       }, (error) => {
         console.log(error);
       });
-  }, []);
+  }, [team]);
 
   
   const filtered=team.filter((value,index)=>{

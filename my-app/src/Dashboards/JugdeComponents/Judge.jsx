@@ -61,7 +61,7 @@ function Judge() {
       }, (error) => {
         console.log(error);
       });
-  }, []);
+  }, [team]);
 
   //////////////////////////////////////
 

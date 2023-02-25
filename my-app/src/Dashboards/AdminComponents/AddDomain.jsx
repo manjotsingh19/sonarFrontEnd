@@ -89,7 +89,7 @@ function AddDomain() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
 
-                        <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Add/Remove Domain</h4>
+                        <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Add Domain</h4>
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='4' >
@@ -99,7 +99,7 @@ function AddDomain() {
 
                             {/* sbow doamin list */}
                             <MDBCol md='4' >
-                                <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll", maxHeight: "100px", minWidth: '22rem' }}>
+                                <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll", maxHeight: "200px", minWidth: '22rem' }}>
                                     {dropdownData}
                                 </MDBListGroup>
                             </MDBCol>
