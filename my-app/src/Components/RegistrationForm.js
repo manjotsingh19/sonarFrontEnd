@@ -13,7 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 function RegistrationForm() {
   const [isSubmit, setSubmit] = useState(false);
@@ -90,27 +90,22 @@ function RegistrationForm() {
 
   //////////////////connect to server/////////////////////////////////////
   useEffect(() => {
-    
     // console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
       axios.post("/registrationForm", teamForm).then(
         (response) => {
           // console.log(response);
-          Swal.fire(
-            'Great',
-            'Registration Successful!',
-            'success'
-          )
+          Swal.fire("Great", "Registration Successful!", "success");
           navigate("/logIn");
         },
         (error) => {
           console.log(error);
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
             // footer: '<a href="">Why do I have this issue?</a>'
-          })
+          });
         }
       );
     }
@@ -246,6 +241,9 @@ function RegistrationForm() {
   const myStyle = {
     color: "red",
   };
+  const italicText = {
+    color: "#ccc",
+  };
 
   return (
     <>
@@ -272,7 +270,7 @@ function RegistrationForm() {
                       wrapperClass="mb-0"
                       required
                       className="col-md-4"
-                      label="Team Name"
+                      label=<span style={italicText}>Team Name</span>
                       size="md"
                       type="text"
                     />
@@ -295,7 +293,7 @@ function RegistrationForm() {
                       wrapperClass="mb-2"
                       required
                       className="col-md-4"
-                      label="Name"
+                      label=<span style={italicText}>Name</span>
                       size="md"
                       type="text"
                     />
@@ -308,7 +306,7 @@ function RegistrationForm() {
                       value={teamForm.e1}
                       onChange={(e) => handleInput(e)}
                       wrapperClass="mb-2"
-                      label="Email"
+                      label=<span style={italicText}>Email</span>
                       size="md"
                       type="email"
                       required
@@ -322,7 +320,7 @@ function RegistrationForm() {
                       id="ph1"
                       value={teamForm.ph1}
                       onChange={(e) => handleInput(e)}
-                      label="Phone number"
+                      label=<span style={italicText}>Phone Number</span>
                       type="phone"
                       required
                       className="col-md-4"
@@ -346,7 +344,7 @@ function RegistrationForm() {
                       wrapperClass="mb-2"
                       required
                       className="col-md-4"
-                      label="Name"
+                      label=<span style={italicText}>Name</span>
                       size="md"
                       type="text"
                     />
@@ -359,7 +357,7 @@ function RegistrationForm() {
                       value={teamForm.e2}
                       onChange={(e) => handleInput(e)}
                       wrapperClass="mb-2"
-                      label="Email"
+                      label=<span style={italicText}>Email</span>
                       size="md"
                       type="email"
                       required
@@ -373,7 +371,7 @@ function RegistrationForm() {
                       id="ph2"
                       value={teamForm.ph2}
                       onChange={(e) => handleInput(e)}
-                      label="Phone number"
+                      label=<span style={italicText}>Phone Number</span>
                       type="phone"
                       required
                       className="col-md-4"
@@ -397,7 +395,7 @@ function RegistrationForm() {
                       wrapperClass="mb-2"
                       required
                       className="col-md-4"
-                      label="Name"
+                      label=<span style={italicText}>Name</span>
                       size="md"
                       type="text"
                     />
@@ -410,7 +408,7 @@ function RegistrationForm() {
                       value={teamForm.e3}
                       onChange={(e) => handleInput(e)}
                       wrapperClass="mb-2"
-                      label="Email"
+                      label=<span style={italicText}>Email</span>
                       size="md"
                       type="email"
                       required
@@ -424,7 +422,7 @@ function RegistrationForm() {
                       id="ph3"
                       value={teamForm.ph3}
                       onChange={(e) => handleInput(e)}
-                      label="Phone number"
+                      label=<span style={italicText}>Phone Number</span>
                       type="phone"
                       required
                       className="col-md-4"
@@ -453,7 +451,7 @@ function RegistrationForm() {
                         value={teamForm.n4}
                         onChange={(e) => handleInput(e)}
                         wrapperClass="mb-2"
-                        label="Name"
+                        label=<span style={italicText}>Name</span>
                         size="md"
                         type="text"
                       />
@@ -465,7 +463,7 @@ function RegistrationForm() {
                         value={teamForm.e4}
                         onChange={(e) => handleInput(e)}
                         wrapperClass="mb-2"
-                        label="Email"
+                        label=<span style={italicText}>Email</span>
                         size="md"
                         type="email"
                       />
@@ -477,7 +475,7 @@ function RegistrationForm() {
                         id="ph4"
                         value={teamForm.ph4}
                         onChange={(e) => handleInput(e)}
-                        label="Phone number"
+                        label=<span style={italicText}>Phone Number</span>
                         type="phone"
                       />
                       <p style={myStyle}>{errors.ph4}</p>
@@ -499,7 +497,7 @@ function RegistrationForm() {
                       id="pass"
                       value={teamForm.pass}
                       onChange={(e) => handleInput(e)}
-                      label="Team Password "
+                      label=<span style={italicText}>Team Password</span>
                       type="password"
                     />
                     <p style={myStyle}>{errors.pass}</p>
@@ -509,7 +507,9 @@ function RegistrationForm() {
                       id="confirmPassword"
                       value={password.confirmPassword}
                       onChange={(e) => handlePass(e)}
-                      label="Confirm Team Password"
+                      label=<span style={italicText}>
+                        Confirm Team Password
+                      </span>
                       type="password"
                     />
                     <p style={myStyle}>{errors.confirmPassword}</p>
@@ -553,7 +553,9 @@ function RegistrationForm() {
                       id="problemS"
                       value={teamForm.problemS}
                       onChange={(e) => handleInput(e)}
-                      label=""
+                      label=<span style={italicText}>
+                        Enter problem statement
+                      </span>
                       rows={0}
                       style={{ resize: "none" }}
                       required
@@ -576,7 +578,9 @@ function RegistrationForm() {
                       id="problemD"
                       value={teamForm.problemD}
                       onChange={(e) => handleInput(e)}
-                      label=""
+                      label=<span style={italicText}>
+                        Enter problem description and proposed solution
+                      </span>
                       rows={3}
                       style={{ resize: "none" }}
                       required
