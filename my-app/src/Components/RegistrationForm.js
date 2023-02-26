@@ -169,7 +169,7 @@ const regexPh = /^\d{10}$/i;
     } else if (teamForm.pass !== password.confirmPassword) {
       errorsObj.confirmPassword = "Confirm password is not matched";
     }
-    else if (!teamForm.domain) {
+    if (!teamForm.domain) {
       errorsObj.domain = "Domain not specified";
     }
     else if (!teamForm.problemS) {

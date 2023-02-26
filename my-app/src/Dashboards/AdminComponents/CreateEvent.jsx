@@ -31,6 +31,7 @@ function CreateEvent() {
                         'Event added successfully!',
                         'success'
                       )
+                      setEvent({...event,eventName: '',startDate: '',endDate: '',description: ''});
                 }, (error) => {
                     console.log(error);
                     Swal.fire({
