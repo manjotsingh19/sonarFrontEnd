@@ -14,29 +14,29 @@ const Card1 = ({ teamObj }) => {
       <div className="ideaCard">
         <MDBRow>
           <>
-          <MDBCol md="6">
-            <h5 className="fw-bold ">Participant Name</h5>
-          </MDBCol>
-          <MDBCol md="6">
-            <h5 className="">{name}</h5>
-          </MDBCol>
+            <MDBCol md="6">
+              <h5 className="fw-bold ">Participant Name</h5>
+            </MDBCol>
+            <MDBCol md="6">
+              <h5 className="">{name}</h5>
+            </MDBCol>
           </>
         </MDBRow>
-        
+
       </div>
       <div className="ideaCard">
-         <MDBRow>
+        <MDBRow>
           <>
-          <MDBCol md="6">
-            <h5 className="fw-bold">Team Name</h5>
-          </MDBCol>
-          <MDBCol md="6">
-            <h6 className="">{team?.teamName}</h6>
-          </MDBCol>
+            <MDBCol md="6">
+              <h5 className="fw-bold">Team Name</h5>
+            </MDBCol>
+            <MDBCol md="6">
+              <h6 className="">{team?.teamName}</h6>
+            </MDBCol>
           </>
-         </MDBRow>
+        </MDBRow>
       </div>
-      
+
     </>
   );
 };
@@ -52,7 +52,7 @@ const Card2 = ({ teamObj }) => {
           <MDBCol md="12">
             <h6 className="">{team?.idea?.problemStatement}</h6>
           </MDBCol>
-          
+
         </MDBRow>
       </div>
       <div className="ideaCard">
@@ -88,13 +88,13 @@ function TeamDetails({ userObj }) {
     e.preventDefault();
     teamData.team.idea.problemStatement = update?.updatedStatement;
     teamData.team.idea.description = update?.updatedDescription;
+    teamData.team.status = "pending";
     console.log(teamData);
 
-    axios.post("/registrationForm", teamData).then(
+    axios.post("/updatedIdea", teamData.team.idea).then(
       (response) => {
         // console.log(response);
         Swal.fire("Great", "Idea sends succesfully!", "success");
-        navigate("/logIn");
       },
       (error) => {
         console.log(error);
@@ -102,7 +102,6 @@ function TeamDetails({ userObj }) {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          // footer: '<a href="">Why do I have this issue?</a>'
         });
       }
     );
@@ -123,7 +122,9 @@ function TeamDetails({ userObj }) {
         console.log("this is error in team detail", error);
       }
     );
-  }, []);
+  }, [teamData]);
+
+
   return (
     <div className="cards">
       <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
@@ -133,8 +134,6 @@ function TeamDetails({ userObj }) {
       {flag && (
         <>
           <MDBRow>
-            {/* {console.log("this is team data")}
-            {console.log(teamData.team.idea)} */}
             <MDBCol lg="6">
               <Card1 teamObj={teamData} />
             </MDBCol>
@@ -146,16 +145,18 @@ function TeamDetails({ userObj }) {
       )}
       {flag && teamData.team.status == "reverted" && (
         <>
-        <MDBRow>
-          <MDBCol>
-          <MDBTextArea label='Upadate your problem satement' id='updatedStatement' value={update.updatedStatement} onChange={(e) => handleInput(e)} rows={4} />
-          </MDBCol>
-          &nbsp;
-          <MDBCol>
-          <MDBTextArea label='Upadate your problem description' id='updatedDescription' value={update.updatedDescription} onChange={(e) => handleInput(e)} rows={4} />
-          </MDBCol>
-          </MDBRow>
-          <MDBBtn onClick={handleSubmit}>Submit</MDBBtn>
+          <div >
+            <MDBRow>
+              <MDBCol>
+                <MDBTextArea style={{ resize: "none" }} label='Upadate your problem satement' id='updatedStatement' value={update.updatedStatement} onChange={(e) => handleInput(e)} rows={3} />
+              </MDBCol>
+              &nbsp;
+              <MDBCol>
+                <MDBTextArea style={{ resize: "none" }} label='Upadate your problem description' id='updatedDescription' value={update.updatedDescription} onChange={(e) => handleInput(e)} rows={3} />
+              </MDBCol>
+            </MDBRow>
+            <MDBBtn style={{margin:"5px 5px"}} onClick={handleSubmit}>Submit</MDBBtn>
+          </div>
         </>
       )}
     </div>

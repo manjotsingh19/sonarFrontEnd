@@ -77,8 +77,8 @@ function AddJudges() {
     const validate = (judges) => {
         const errorsObj = {};
         const regex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-        const regexPh = /^[0-9]{10}$/;
-
+        // const regexPh = /^[0-9]{10}$/;
+        const regexPh = /^\d{10}$/i;
         if (!judges.name) {
             errorsObj.name = 'Name is required';
         }

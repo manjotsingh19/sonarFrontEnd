@@ -9,7 +9,7 @@ import axios from "axios";
 const Card = ({description,endDate,eventId,eventName,startDate,}) => {
 
   return (
-    <div class="" style={{overflow: "hidden", margin: "0 10px" }}>
+    <div class="" style={{overflow: "hidden", margin: "-20px 10px" }}>
       <div class="team-item" style ={{border: "0px solid black" , 
 //       // background: "rgb(238,174,202)",
 // background: "linear-gradient(225deg, rgba(238,174,202,1) 0%, rgba(159,203,255,1) 100%)" , 

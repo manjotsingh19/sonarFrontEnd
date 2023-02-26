@@ -11,7 +11,10 @@ import {
 
 const Footer = () => {
   const styles = {
-    background: "linear-gradient(135deg, #ffb4b4 0%, #b987ff 100%)",
+//     background: "rgb(255,57,57)",
+// background: "linear-gradient(283deg, rgba(255,57,57,0.8746804630055147) 20%, rgba(255,132,0,1) 100%)",
+    background: "rgb(255,170,79)",
+background: "linear-gradient(283deg, rgba(255,170,79,1) 0%, rgba(185,201,255,1) 100%)",
     // background: 'linear-gradient(to right, #ffcc00, #ff6666)',
   };
   return (
@@ -52,7 +55,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="lg:col-span-2 flex justify-between mt-6">
+      {/* <div className="lg:col-span-2 flex justify-between mt-6">
         <div>
           <h6 className="font-medium text-gray-400">Solutions</h6>
           <ul>
@@ -89,8 +92,11 @@ const Footer = () => {
             <li className="py-2 text-sm">Terms</li>
           </ul>
         </div>
-      </div>
-      <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element">
+      </div> */}
+      <div /*class="elementor-column elementor-col-50 elementor-inner-column elementor-element"*/ style={{
+        display:"flex",
+        justifyContent:"right",
+      }}>
         {" "}
         © Copyright 2023 Incedo Inc.
       </div>
