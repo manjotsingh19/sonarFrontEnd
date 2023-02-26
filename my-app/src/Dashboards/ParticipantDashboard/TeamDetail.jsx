@@ -146,8 +146,15 @@ function TeamDetails({ userObj }) {
       )}
       {flag && teamData.team.status == "reverted" && (
         <>
+        <MDBRow>
+          <MDBCol>
           <MDBTextArea label='Upadate your problem satement' id='updatedStatement' value={update.updatedStatement} onChange={(e) => handleInput(e)} rows={4} />
+          </MDBCol>
+          &nbsp;
+          <MDBCol>
           <MDBTextArea label='Upadate your problem description' id='updatedDescription' value={update.updatedDescription} onChange={(e) => handleInput(e)} rows={4} />
+          </MDBCol>
+          </MDBRow>
           <MDBBtn onClick={handleSubmit}>Submit</MDBBtn>
         </>
       )}
