@@ -5,6 +5,7 @@ import axios from 'axios';
 function ShowUsers() {
 
     const [user, setUser] = useState([]);
+    const [team,setTeam] = useState([]);
 
     useEffect(() => {
         axios.get('/getUsers')
@@ -16,6 +17,17 @@ function ShowUsers() {
                 console.log(error);
             });
     }, [user]);
+
+    useEffect(() => {
+        axios.get('/getTeam')
+            .then(response => {
+                setTeam(response.data);
+                console.log(team);
+
+            }, (error) => {
+                console.log(error);
+            });
+    }, []);
 
 
     /////////////////////////////////////delete entry from data base////////////////////////////////////////
@@ -54,17 +66,16 @@ function ShowUsers() {
         }
     });
     // console.log(info);
-    // const participentRows = user.map((info) => {
-    //     if (info.role_id === 4) {
-    //         return (
-    //             <tr>
-    //                 <td>{info.email}</td>
-    //                 <td>{info.name}</td>
-    //                 <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td>
-    //             </tr>
-    //         );
-    //     }
-    // });
+    const participentRows = team.map((team) => {
+            return (
+                <tr>
+                    <td>{team.teamId}</td>
+                    <td>{team.teamName}</td>
+                    <td>{team.status}</td>
+                    {/* <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td> */}
+                </tr>
+            );
+    });
 
     const myStyle = {
         color: 'red'
@@ -110,24 +121,24 @@ function ShowUsers() {
                     </MDBCardBody>
                 </MDBCard>
             </MDBRow>
-{/* 
+
             <MDBRow className='justify-content-center align-items-center m-5'>
                 <MDBCard>
                     <MDBCardBody className='px-8'>
-                        <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Participent table</h4>
+                        <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Team table</h4>
                         <table className="table table-stripped">
                             <thead>
                                 <tr>
-                                    <th>Email</th>
+                                    <th>Id</th>
                                     <th>Name</th>
-                                    <th>Delete</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>{participentRows}</tbody>
                         </table>
                     </MDBCardBody>
                 </MDBCard>
-            </MDBRow> */}
+            </MDBRow>
             </>
     )
 }

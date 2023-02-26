@@ -1,6 +1,6 @@
 import React from "react";
 import Hero from "./Hero";
-import UpcomingEvent from "./UpcomingEvent";
+// import UpcomingEvent from "./UpcomingEvent";
 import Footer from "./Footer";
 import Cards from "./Cards";
 import Navbar from "./Navbar";
@@ -20,7 +20,7 @@ function Frontpage() {
       <Navbar />
       <Hero />
       <UpcomingEvents />
-      <UpcomingEvent />
+      {/* <UpcomingEvent /> */}
       <Cards />
       <OurTeam />
       <Footer />
