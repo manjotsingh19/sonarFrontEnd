@@ -50,7 +50,7 @@ function AddJudges() {
             setSubmited(false);
         }
 
-    }, [judges,errors, submitted]);
+    }, [errors, submitted]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
