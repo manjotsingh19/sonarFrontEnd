@@ -13,6 +13,7 @@ import Admin from "../Dashboards/AdminComponents/Admin";
 import axios from "axios";
 import Participant from "../Dashboards/ParticipantDashboard/Participant";
 import Swal from "sweetalert2";
+import Navbar from "./Navbar";
 
 function LoginPage() {
   const [isSubmit, setSubmit] = useState(false);
