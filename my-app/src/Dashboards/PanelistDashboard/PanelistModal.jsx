@@ -11,6 +11,7 @@ import {
   MDBModalBody,MDBModalFooter,
 } from "mdb-react-ui-kit";
 import Timer from "../JugdeComponents/Timer";
+import Clock from "../JugdeComponents/Clock";
 
 export default function PanelistModal({ item }) {
   const [basicModal, setBasicModal] = useState(false);
@@ -118,6 +119,7 @@ export default function PanelistModal({ item }) {
             </MDBModalHeader>
             <MDBModalBody>
               <Timer />
+              <Clock />
               <div className="">
                 <h4>Problem Statement</h4>
                 <p>{statement}</p>
