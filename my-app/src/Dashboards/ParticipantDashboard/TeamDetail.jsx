@@ -155,7 +155,7 @@ function TeamDetails({ userObj }) {
                 <MDBTextArea style={{ resize: "none" }} label='Upadate your problem description' id='updatedDescription' value={update.updatedDescription} onChange={(e) => handleInput(e)} rows={3} />
               </MDBCol>
             </MDBRow>
-            <MDBBtn onClick={handleSubmit}>Submit</MDBBtn>
+            <MDBBtn style={{margin:"5px 5px"}} onClick={handleSubmit}>Submit</MDBBtn>
           </div>
         </>
       )}
