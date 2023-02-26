@@ -5,6 +5,7 @@ import PanelistModal from "./PanelistModal";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../../Components/Navbar";
+import Timer from "../JugdeComponents/Timer";
 
 
 const Card = ({ teamObj }) => {
@@ -52,7 +53,7 @@ function Panelist() {
 
   const [team, setTeam] = useState([]);
   useEffect(() => {
-    
+
     axios.get('/getTeam')
       .then(response => {
         // console.log(response.data);
@@ -63,14 +64,14 @@ function Panelist() {
       });
   }, [team]);
 
-  
-  const filtered=team.filter((value,index)=>{
-    return value.status==="pending"
+
+  const filtered = team.filter((value, index) => {
+    return value.status === "pending"
   })
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="cards">
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
           Panelist Dashboard
