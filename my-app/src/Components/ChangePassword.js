@@ -63,6 +63,9 @@ function ChangePassword() {
       axios.post('http://localhost:3000/ChangePassword', teamForm)
         .then((response) => {
           console.log(response);
+          Swal.fire("Great", 
+          "Password Updated Successfully!", 
+          "success");
           navigate("/logIn")
 
         }, (error) => {
