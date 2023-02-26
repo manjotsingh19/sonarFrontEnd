@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Admin from "../Dashboards/AdminComponents/Admin";
 import axios from "axios";
 import Participant from "../Dashboards/ParticipantDashboard/Participant";
+import Swal from "sweetalert2";
 
 function LoginPage() {
   const [isSubmit, setSubmit] = useState(false);
@@ -56,7 +57,13 @@ function LoginPage() {
       },
       (error) => {
         console.log(error);
-        alert("Username or password is incorrect");
+        // alert("Username or password is incorrect");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Username or password is incorrect!",
+          // footer: '<a href="">Why do I have this issue?</a>'
+        });
       }
     );
   };

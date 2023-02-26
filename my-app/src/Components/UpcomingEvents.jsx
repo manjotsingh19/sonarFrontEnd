@@ -59,14 +59,16 @@ const Card = ({
 export default function App() {
   const slider = useRef(null);
 
+  
+
   const settings = {
     centerMode: true,
-    // draggable: true,
+    draggable: true,
     centerPadding: "20px",
     pauseOnHover: true,
     infinite: true,
-    // swipeToSlide: true,
-    slidesToShow: 3,
+    swipeToSlide: true,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 1000,

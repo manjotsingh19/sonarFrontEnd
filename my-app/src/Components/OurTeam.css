@@ -1,5 +1,7 @@
 .section-background {
-	background: linear-gradient(135deg, #b987ff 0%, #ffb4b4 100%);
+	/* background: linear-gradient(135deg, #b987ff 0%, #ffb4b4 100%); */
+	background: rgb(238,174,202);
+background: linear-gradient(225deg, rgba(238,174,202,1) 0%, rgba(159,203,255,1) 100%);
 	width: auto;
 	padding: 50px 0px 50px 0px;
 	margin: 30px 75px 50px 75px;
@@ -8,7 +10,7 @@
 }
 
 .team-item{
-	background: #f4f5f6;
+	background: #ffffff;
 	text-align:center;
 	margin:20px 0;
 	padding:50px 20px 40px 20px;

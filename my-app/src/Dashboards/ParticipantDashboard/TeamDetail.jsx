@@ -5,38 +5,45 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
+
+
 const Card1 = ({ teamObj }) => {
   const { name, team } = teamObj
   return (
     <>
       <div className="ideaCard">
         <MDBRow>
+          <>
           <MDBCol md="6">
             <h5 className="fw-bold ">Participant Name</h5>
           </MDBCol>
           <MDBCol md="6">
             <h5 className="">{name}</h5>
           </MDBCol>
+          </>
         </MDBRow>
+        
       </div>
+      <div className="ideaCard">
+         <MDBRow>
+          <>
+          <MDBCol md="6">
+            <h5 className="fw-bold">Team Name</h5>
+          </MDBCol>
+          <MDBCol md="6">
+            <h6 className="">{team?.teamName}</h6>
+          </MDBCol>
+          </>
+         </MDBRow>
+      </div>
+      
     </>
   );
 };
 const Card2 = ({ teamObj }) => {
-
-  const { team } = teamObj
+  const { name, team } = teamObj
   return (
     <>
-      <div className="ideaCard">
-        <MDBRow>
-          <MDBCol md="4">
-            <h5 className="fw-bold">Team Name</h5>
-          </MDBCol>
-          <MDBCol md="4">
-            <h6 className="">{team?.teamName}</h6>
-          </MDBCol>
-        </MDBRow>
-      </div>
       <div className="ideaCard">
         <MDBRow>
           <MDBCol md="4">
@@ -45,6 +52,7 @@ const Card2 = ({ teamObj }) => {
           <MDBCol md="12">
             <h6 className="">{team?.idea?.problemStatement}</h6>
           </MDBCol>
+          
         </MDBRow>
       </div>
       <div className="ideaCard">
@@ -127,10 +135,10 @@ function TeamDetails({ userObj }) {
           <MDBRow>
             {/* {console.log("this is team data")}
             {console.log(teamData.team.idea)} */}
-            <MDBCol md="6">
+            <MDBCol lg="6">
               <Card1 teamObj={teamData} />
             </MDBCol>
-            <MDBCol md="6">
+            <MDBCol lg="12">
               <Card2 teamObj={teamData} />
             </MDBCol>
           </MDBRow>

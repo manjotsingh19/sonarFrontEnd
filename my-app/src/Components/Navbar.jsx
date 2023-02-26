@@ -23,7 +23,7 @@ const Navbar = () => {
    }
 
   return (
-    <div style={{marginBottom:"-51px",paddingLeft:"50px",}} className="flex justify-between items-center h-24  mx-auto px-12 text-black-300">
+    <div style={{marginBottom:"5px",paddingLeft:"50px",}} className="flex justify-between items-center h-24  mx-auto px-12 text-black-300">
       <div><Link to="/">
         {/* <h1 className="w-full text-3xl font-bold text-[#ee4714]"> */}
           <img src="https://www.incedoinc.com/wp-content/uploads/incedo-logo.png" width="101px"/>

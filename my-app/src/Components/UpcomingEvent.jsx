@@ -17,7 +17,7 @@ const UpcomingEvent = () => {
         console.log(error);
       }
     );
-  }, []);
+  }, [event]);
 
   return (
     <>

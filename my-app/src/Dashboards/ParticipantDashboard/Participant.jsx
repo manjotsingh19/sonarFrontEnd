@@ -1,7 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { MDBContainer, MDBFile, MDBInput, MDBBtn, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
-import Reviews from "./Reviews";
 import FileUpload from "./FileUpload";
 import axios from "axios";
 import Navbar from "../../Components/Navbar";

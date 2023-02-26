@@ -51,7 +51,6 @@ const Card = ({ teamObj }) => {
 function Panelist() {
 
   const [team, setTeam] = useState([]);
-
   useEffect(() => {
     
     axios.get('/getTeam')
