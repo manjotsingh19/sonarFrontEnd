@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Navbar from "./Navbar";
 
 function RegistrationForm() {
   const [isSubmit, setSubmit] = useState(false);
@@ -250,6 +251,7 @@ const regexPh = /^\d{10}$/i;
 
   return (
     <>
+    <Navbar />
       <MDBValidation className="row g-3" noValidate>
         <MDBContainer fluid>
           <MDBRow className="justify-content-center align-items-center m-5">
