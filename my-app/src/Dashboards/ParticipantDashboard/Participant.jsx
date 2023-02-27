@@ -37,7 +37,7 @@ function Participant() {
           console.log("this is error in team detail", error);
         }
       );
-  }, []);
+  }, [fetchedData]);
 
 
 
@@ -110,9 +110,28 @@ function Participant() {
           <MDBContainer fluid>
             {/* team details*/}
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-              <MDBBtn color="success">Accepted</MDBBtn>
+              {/* <MDBBtn color="success">Accepted</MDBBtn> */}
 
-{/* ////////////////////////////file upload form////////// */}
+              {/* ////////////////////////////file upload form////////// */}
+              <MDBRow>
+                <MDBCol>
+                  <FileUpload />
+                </MDBCol>
+                &nbsp;
+
+                <MDBCol style={{marginTop:"35px"}}>
+                  <div className="ml-5 pb-2">
+                    <MDBInput label="Github repository link" id="gitHubLink" value={git.gitHubLink} onChange={(e) => handleInput(e)} type="url" />
+                    <br />
+                    <MDBBtn onClick={handleSubmit}>Submit Github repository</MDBBtn>
+                  </div>
+                </MDBCol>
+              </MDBRow>
+
+
+
+
+
               {/* <form>
                 <input
                   type="text"
@@ -128,16 +147,9 @@ function Participant() {
                 <button onClick={submitForm}>Submit</button>
               </form> */}
 
-{/* ////////////////////////////////////////////////////////////// */}
-              <div>
+              {/* ////////////////////////////////////////////////////////////// */}
 
-                <div className="ml-5 pb-2">
-                  {/* <MDBFile label="Upload the presentation file" id="file" name="file"   value={file} onChange={(e) => handleFile(e)} />
-                  <MDBBtn onClick={handleFileSubmit}>Submit file</MDBBtn> */}
-                  <MDBInput label="Github repository link" id="gitHubLink" value={git.gitHubLink} onChange={(e) => handleInput(e)} type="url" />
-                  <MDBBtn onClick={handleSubmit}>Submit Github repository</MDBBtn>
-                </div>
-              </div></>)}
+            </>)}
 
           </MDBContainer>
         </>
@@ -150,9 +162,10 @@ function Participant() {
           <MDBContainer fluid>
             {/* team details*/}
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-              <MDBBtn color="danger">Rejected</MDBBtn>
+              {/* <MDBBtn color="danger">Rejected</MDBBtn> */}
               <div>
-                {"Your Idea is not accepted, Better luck next time"}
+                <h3 style={{color:"red" }} class="text-center">Your Idea is not accepted, Better luck next time</h3>
+                {/* {"Your Idea is not accepted, Better luck next time"} */}
               </div></>)}
 
           </MDBContainer>
@@ -166,7 +179,7 @@ function Participant() {
           <MDBContainer fluid>
             {/* team details*/}
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-               <MDBBtn color="warning">Reverted</MDBBtn>
+              {/* <MDBBtn color="warning">Reverted</MDBBtn> */}
               <div>
 
                 {Object.keys(fetchedData).length > 0 && (

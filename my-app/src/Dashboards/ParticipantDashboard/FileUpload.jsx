@@ -1,5 +1,5 @@
 // import React from "react";
-// import { MDBFile, MDBInput,MDBBtn} from "mdb-react-ui-kit";
+import { MDBFile, MDBInput,MDBBtn} from "mdb-react-ui-kit";
 // import { useState } from "react";
 
 // export default function FileUpload({userData}) {
@@ -25,3 +25,36 @@
 //     </div>
 //   );
 // }
+import React, { useState } from 'react';
+
+function FileUpload() {
+
+      
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  function handleFileInput(e) {
+    setSelectedFile(e.target.files[0]);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    console.log(selectedFile);
+    // submit the form data to the server
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* <input type="file" onChange={handleFileInput} /> */}
+      <MDBFile label="Upload the presentation file"  onChange={handleFileInput} />
+      <br />
+      {/* <button  className="btn btn-secondary" type="submit">Upload</button> */}
+      <MDBBtn type="submit">Upload</MDBBtn>
+    </form>
+  );
+}
+
+export default FileUpload;
+
+

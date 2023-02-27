@@ -1,5 +1,5 @@
 // import "react-datepicker/dist/react-datepicker.css";
-import { MDBRow, MDBCol, MDBTextArea, MDBBtn, MDBCard, MDBCardTitle, MDBCardText, MDBContainer, MDBCardBody } from "mdb-react-ui-kit";
+import { MDBRow, MDBCardHeader, MDBCardFooter, MDBCol, MDBTextArea, MDBBtn, MDBCard, MDBCardTitle, MDBCardText, MDBContainer, MDBCardBody } from "mdb-react-ui-kit";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,67 +7,109 @@ import Swal from "sweetalert2";
 
 
 
+// const Card1 = ({ teamObj }) => {
+//   const { name, team } = teamObj
+//   return (
+//     <>
+//       <div className="ideaCard">
+//         <MDBRow>
+//           <>
+//             <MDBCol md="6">
+//               <h5 className="fw-bold ">Participant Name</h5>
+//             </MDBCol>
+//             <MDBCol md="6">
+//               <h5 className="">{name}</h5>
+//             </MDBCol>
+//           </>
+//         </MDBRow>
+
+//       </div>
+//       <div className="ideaCard">
+//         <MDBRow>
+//           <>
+//             <MDBCol md="6">
+//               <h5 className="fw-bold">Team Name</h5>
+//             </MDBCol>
+//             <MDBCol md="6">
+//               <h6 className="">{team?.teamName}</h6>
+//             </MDBCol>
+//           </>
+//         </MDBRow>
+//       </div>
+
+//     </>
+//   );
+// };
+// const Card2 = ({ teamObj }) => {
+//   const { name, team } = teamObj
+//   return (
+//     <>
+//       <div className="ideaCard">
+//         <MDBRow>
+//           <MDBCol md="4">
+//             <h5 className="fw-bold">Problem Statement</h5>
+//           </MDBCol>
+//           <MDBCol md="12">
+//             <h6 className="">{team?.idea?.problemStatement}</h6>
+//           </MDBCol>
+
+//         </MDBRow>
+//       </div>
+//       <div className="ideaCard">
+//         <MDBRow>
+//           <MDBCol md="4">
+//             <h5 className="fw-bold">Problem Description</h5>
+//           </MDBCol>
+//           <MDBCol md="12">
+//             <h6 className="">{team?.idea?.description}</h6>
+//           </MDBCol>
+//         </MDBRow>
+//       </div>
+//     </>
+//   );
+// };
+
+
+//////////////////////////////////////////////new card///////////////////////////////////////////////////////////
+
 const Card1 = ({ teamObj }) => {
-  const { name, team } = teamObj
+  const { name, team } = teamObj;
+  // console.log(teamObj);
+
+
+
   return (
-    <>
-      <div className="ideaCard">
-        <MDBRow>
-          <>
-            <MDBCol md="6">
-              <h5 className="fw-bold ">Participant Name</h5>
-            </MDBCol>
-            <MDBCol md="6">
-              <h5 className="">{name}</h5>
-            </MDBCol>
-          </>
-        </MDBRow>
+    <MDBCard alignment='center' style={{marginBottom:"20px"}}>
+      <MDBCardHeader>Team Name: {team?.teamName}</MDBCardHeader>
+      <MDBCardHeader>Participant Name: {name}</MDBCardHeader>
+      <MDBCardBody>
+        <MDBCardTitle>Problem Statement: {team?.idea?.problemStatement}</MDBCardTitle>
+        <MDBCardText>Problem Description: {team?.idea?.description}</MDBCardText>
+        {/* <MDBBtn href='#'>Go somewhere</MDBBtn> */}
+      </MDBCardBody>
+      <MDBCardFooter>
+        {team.status == "reverted" && (
+          <MDBBtn href='#' color='warning' disabled>Status: {team.status}</MDBBtn>
+        )}
+        {team.status == "accepted" && (
+          <MDBBtn href='#' color='success' disabled>Status: {team.status}</MDBBtn>
+        )}
+        {team.status == "rejected" && (
+          <MDBBtn href='#' color='danger' disabled>Status: {team.status}</MDBBtn>
+        )}
 
-      </div>
-      <div className="ideaCard">
-        <MDBRow>
-          <>
-            <MDBCol md="6">
-              <h5 className="fw-bold">Team Name</h5>
-            </MDBCol>
-            <MDBCol md="6">
-              <h6 className="">{team?.teamName}</h6>
-            </MDBCol>
-          </>
-        </MDBRow>
-      </div>
+      </MDBCardFooter>
+    </MDBCard>
 
-    </>
-  );
+
+  )
 };
-const Card2 = ({ teamObj }) => {
-  const { name, team } = teamObj
-  return (
-    <>
-      <div className="ideaCard">
-        <MDBRow>
-          <MDBCol md="4">
-            <h5 className="fw-bold">Problem Statement</h5>
-          </MDBCol>
-          <MDBCol md="12">
-            <h6 className="">{team?.idea?.problemStatement}</h6>
-          </MDBCol>
 
-        </MDBRow>
-      </div>
-      <div className="ideaCard">
-        <MDBRow>
-          <MDBCol md="4">
-            <h5 className="fw-bold">Problem Description</h5>
-          </MDBCol>
-          <MDBCol md="12">
-            <h6 className="">{team?.idea?.description}</h6>
-          </MDBCol>
-        </MDBRow>
-      </div>
-    </>
-  );
-};
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function TeamDetails({ userObj }) {
   const [teamData, setTeamData] = useState({});
@@ -134,12 +176,12 @@ function TeamDetails({ userObj }) {
       {flag && (
         <>
           <MDBRow>
-            <MDBCol lg="6">
+            <MDBCol lg="6" class="d-flex justify-content-center align-items-center" >
               <Card1 teamObj={teamData} />
             </MDBCol>
-            <MDBCol lg="12">
+            {/* <MDBCol lg="12">
               <Card2 teamObj={teamData} />
-            </MDBCol>
+            </MDBCol> */}
           </MDBRow>
         </>
       )}
@@ -155,7 +197,7 @@ function TeamDetails({ userObj }) {
                 <MDBTextArea style={{ resize: "none" }} label='Upadate your problem description' id='updatedDescription' value={update.updatedDescription} onChange={(e) => handleInput(e)} rows={3} />
               </MDBCol>
             </MDBRow>
-            <MDBBtn style={{margin:"5px 5px"}} onClick={handleSubmit}>Submit</MDBBtn>
+            <MDBBtn style={{ margin: "5px 5px" }} onClick={handleSubmit}>Submit</MDBBtn>
           </div>
         </>
       )}
