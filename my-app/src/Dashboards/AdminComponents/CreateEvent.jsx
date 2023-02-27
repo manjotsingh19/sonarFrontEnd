@@ -23,7 +23,6 @@ function CreateEvent() {
         if (Object.keys(errors).length === 0 && submitted) 
          {
             // console.log(event);
-
             axios.post('/event', event)
                 .then((response) => {
                     Swal.fire(

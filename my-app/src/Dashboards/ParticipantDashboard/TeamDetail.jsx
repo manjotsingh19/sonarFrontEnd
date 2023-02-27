@@ -6,70 +6,6 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-
-// const Card1 = ({ teamObj }) => {
-//   const { name, team } = teamObj
-//   return (
-//     <>
-//       <div className="ideaCard">
-//         <MDBRow>
-//           <>
-//             <MDBCol md="6">
-//               <h5 className="fw-bold ">Participant Name</h5>
-//             </MDBCol>
-//             <MDBCol md="6">
-//               <h5 className="">{name}</h5>
-//             </MDBCol>
-//           </>
-//         </MDBRow>
-
-//       </div>
-//       <div className="ideaCard">
-//         <MDBRow>
-//           <>
-//             <MDBCol md="6">
-//               <h5 className="fw-bold">Team Name</h5>
-//             </MDBCol>
-//             <MDBCol md="6">
-//               <h6 className="">{team?.teamName}</h6>
-//             </MDBCol>
-//           </>
-//         </MDBRow>
-//       </div>
-
-//     </>
-//   );
-// };
-// const Card2 = ({ teamObj }) => {
-//   const { name, team } = teamObj
-//   return (
-//     <>
-//       <div className="ideaCard">
-//         <MDBRow>
-//           <MDBCol md="4">
-//             <h5 className="fw-bold">Problem Statement</h5>
-//           </MDBCol>
-//           <MDBCol md="12">
-//             <h6 className="">{team?.idea?.problemStatement}</h6>
-//           </MDBCol>
-
-//         </MDBRow>
-//       </div>
-//       <div className="ideaCard">
-//         <MDBRow>
-//           <MDBCol md="4">
-//             <h5 className="fw-bold">Problem Description</h5>
-//           </MDBCol>
-//           <MDBCol md="12">
-//             <h6 className="">{team?.idea?.description}</h6>
-//           </MDBCol>
-//         </MDBRow>
-//       </div>
-//     </>
-//   );
-// };
-
-
 //////////////////////////////////////////////new card///////////////////////////////////////////////////////////
 
 const Card1 = ({ teamObj }) => {
@@ -80,6 +16,9 @@ const Card1 = ({ teamObj }) => {
 
   return (
     <MDBCard alignment='center' style={{marginBottom:"20px"}}>
+      {/* {console.log(teamObj)}; */}
+
+      <MDBCardHeader>Team Id: {team?.teamId}</MDBCardHeader> 
       <MDBCardHeader>Team Name: {team?.teamName}</MDBCardHeader>
       <MDBCardHeader>Participant Name: {name}</MDBCardHeader>
       <MDBCardBody>
@@ -87,27 +26,25 @@ const Card1 = ({ teamObj }) => {
         <MDBCardText>Problem Description: {team?.idea?.description}</MDBCardText>
         {/* <MDBBtn href='#'>Go somewhere</MDBBtn> */}
       </MDBCardBody>
-      <MDBCardFooter>
-        {team.status == "reverted" && (
-          <MDBBtn href='#' color='warning' disabled>Status: {team.status}</MDBBtn>
+      {/* <MDBCardFooter> */}
+        {team?.status == "reverted" && (
+          <MDBBtn href='#' color='warning' disabled>Status: {team?.status}</MDBBtn>
         )}
-        {team.status == "accepted" && (
-          <MDBBtn href='#' color='success' disabled>Status: {team.status}</MDBBtn>
+        {team?.status == "accepted" && (
+          <MDBBtn href='#' color='success' disabled>Status: {team?.status}</MDBBtn>
         )}
-        {team.status == "rejected" && (
-          <MDBBtn href='#' color='danger' disabled>Status: {team.status}</MDBBtn>
+        {team?.status == "rejected" && (
+          <MDBBtn href='#' color='danger' disabled>Status: {team?.status}</MDBBtn>
+        )}
+         {team?.status == "pending" && (
+          <MDBBtn href='#' color='info' disabled>Status: {team?.status}</MDBBtn>
         )}
 
-      </MDBCardFooter>
+      {/* </MDBCardFooter> */}
     </MDBCard>
-
 
   )
 };
-
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -126,24 +63,31 @@ function TeamDetails({ userObj }) {
     const { id, value } = e.target;
     setUpdate({ ...update, [id]: value });
   };
+  const [Submit,setSubmit] = useState(false);
+
+  useState(() => {
+    console.log("form is submitted");
+    setSubmit(false);
+  },[Submit]);
+
+
+  // console.log(teamData.team);
   const handleSubmit = (e) => {
     e.preventDefault();
     teamData.team.idea.problemStatement = update?.updatedStatement;
     teamData.team.idea.description = update?.updatedDescription;
     teamData.team.status = "pending";
-    console.log(teamData);
-
-    axios.post("/updatedIdea", teamData.team.idea).then(
+    
+    axios.post("/updatedIdea", teamData.team).then(
       (response) => {
         // console.log(response);
+        setSubmit(true);
         Swal.fire("Great", "Idea sends succesfully!", "success");
       },
       (error) => {
         console.log(error);
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          icon: "error", title: "Oops...", text: "Something went wrong!",
         });
       }
     );
@@ -164,7 +108,7 @@ function TeamDetails({ userObj }) {
         console.log("this is error in team detail", error);
       }
     );
-  }, [teamData]);
+  }, []);
 
 
   return (

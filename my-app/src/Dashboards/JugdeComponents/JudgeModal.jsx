@@ -1,10 +1,12 @@
-import React, { useState ,useEffect} from "react";
-import { MDBBtn, MDBModal, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBModalFooter, MDBRange } from "mdb-react-ui-kit";
+import React, { useState, useEffect } from "react";
+import { MDBBtn, MDBModal, MDBCol,MDBRow,MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBModalFooter, MDBRange } from "mdb-react-ui-kit";
 import Marking from "./Marking";
 import VideoPlayer from "./VideoPlayer";
 import axios from "axios";
 import Timer from "./Timer";
 import Swal from "sweetalert2";
+import ReactPlayer from "react-player";
+
 
 
 export default function JudgeModal({ item }) {
@@ -18,37 +20,43 @@ export default function JudgeModal({ item }) {
 
   const [judgeData, setJudgeData] = useState(JSON.parse(localStorage.getItem("data")))
 
+  // console.log(teamObj);
+
 
   useEffect(() => {
     setJudgeData(JSON.parse(localStorage.getItem("data")));
   }, [localStorage.getItem("data")])
 
-  const refreshPage=()=>{
+  const refreshPage = () => {
     window.location.reload(false);
   }
 
   const toggleShow = () => setBasicModal(!basicModal);
-  
-console.log(teamObj);
+
+  // console.log(teamObj);
 
   const handleSubmit = (e) => {
     teamObj.marks = parseInt(e.target.value);
-    teamObj.judgeList = item.teamObj.judgeList +judgeData?.id+",";
+    teamObj.judgeList = item.teamObj.judgeList + judgeData?.id + ",";
     // console.log(teamObj);
     setBasicModal(!basicModal);
-    
-    axios.post("/marksChange", teamObj)
-    .then((response) => {
-      // alert("marks added successfully");
-      Swal.fire("Great", "Response Added Successfully!");
 
-    }, (error) => {
-      console.log(error);
-      Swal.fire({icon: "error", title: "Oops...", text: "Something went wrong!"});
-    });
+    axios.post("/marksChange", teamObj)
+      .then((response) => {
+        // alert("marks added successfully");
+        Swal.fire("Great", "Response Added Successfully!");
+
+      }, (error) => {
+        console.log(error);
+        Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong!" });
+      });
     // refreshPage();
   }
 
+
+  useEffect(() => {
+
+  }, []);
 
 
   useEffect(() => {
@@ -57,13 +65,21 @@ console.log(teamObj);
 
   }, [ui, ppt, workflow]);
 
+  console.log(teamObj);
 
+  // console.log("the url is:");
+  // var X = teamObj?.idea?.demo;
+  // var Y = "public";
+  // var Z = X.slice(X.indexOf(Y) + Y.length);
+  // console.log(Z);
+
+  //   const url = "upload/"+teamObj.idea.demo;
 
 
 
   return (
     <>
-    
+
       <div
         className=""
         style={{
@@ -89,77 +105,53 @@ console.log(teamObj);
             </MDBModalHeader>
             <MDBModalBody>
               <Timer></Timer>
-              <div className="">
-                <h4>Problem Statement</h4>
-                <p>{statement}</p>
+
+              <div style={{ width: "100%", wordWrap: "break-word" }}>
+                <h6 style={{ display: "inline" }}>Problem Statement: </h6> <p style={{ display: "inline" }}>{statement}</p>
+                <br />
+                <h6 style={{ display: "inline" }}>Problem Description: </h6> <p style={{ display: "inline" }}>{description}</p>
               </div>
-              <div className="">
-                <h4>Problem Description</h4>
-                <p>{description}</p>
+
+              <div style={{ width: "100%", wordWrap: "break-word" }}>
+
+
+
               </div>
 
               <div className="">
-              <a href={teamObj.gitHubLink} target="_blank">Github link is not given : Github Link </a>
+
+                <a style={{ color: "red" }} href={teamObj.gitHubLink} target="_blank">Github link</a>
               </div>
             </MDBModalBody>
 
-
-            {/* <div className="Video" style={{display: "flex", justifyContent: "center"}}>
-              <VideoPlayer />
-            </div>
-            <div style={{display: "flex", justifyContent: "center", flexDirection: "column",}}>
-
-              <a href="https://1drv.ms/v/s!An5fe6AqNBBhh0f53t7U5g2KZi_j?e=Jm4Svr" target="_blank">
-                <button>Go to Video</button>
-              </a>
-            </div>  */}
-            {
-              /* <Ppt /> */
-              // <Present />
-            }
-            <>
-              {/* <Marking />  /////////////////////marking////////////////////////*/}
-              <div
-                style={{
-                  padding: "10px",
-                }}
-              >
-                <MDBRange defaultValue={ui} onChange={(e) => { setUi(e.target.value); }}min="0" max="10"
-                  step="1"
-                  id="customRange3"
-                  label={`User Interface - ${ui}`}
-                />
-                <MDBRange
-                  defaultValue={ppt}
-                  onChange={(e) => {
-                    setPpt(e.target.value);
-                  }}
-                  min="0"
-                  max="10"
-                  step="1"
-                  id="customRange3"
-                  label={`Presentation - ${ppt}`}
-                />
-                <MDBRange
-                  defaultValue={workflow}
-                  onChange={(e) => {
-                    setWorkflow(e.target.value);
-                  }}
-                  min="0"
-                  max="10"
-                  step="1"
-                  id="customRange3"
-                  label={`Workflow - ${workflow}`}
-                />
-                Total - {total}
-              </div>
-
-              {/* /////////////////////////////////////////////////////////////////////////// */}
-
-
-            </>
-            <MDBModalFooter>
+            {/* ///////////////////////////////////////////      video           ////////////////////////////////////////////////////////// */}
+            <MDBRow>
+              <MDBCol>
+                <div>
+                  {/* {console.log(teamObj.idea.demo)} */}
+                  <video width="100%" height="100%" controls>
+                    <source src={teamObj.idea.demo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </MDBCol>
+              &nbsp;
+              <MDBCol>
+                <div style={{ padding: "10px", }}>
+                  <MDBRange defaultValue={ui} onChange={(e) => { setUi(e.target.value); }} min="0" max="10" step="1" id="customRange3" label={`User Interface - ${ui}`} />
+                  <MDBRange
+                    defaultValue={ppt} onChange={(e) => { setPpt(e.target.value); }} min="0" max="10" step="1" id="customRange3" label={`Presentation - ${ppt}`}
+                  />
+                  <MDBRange defaultValue={workflow} onChange={(e) => { setWorkflow(e.target.value); }} min="0" max="10" step="1" id="customRange3" label={`Workflow - ${workflow}`} />
+                  Total - {total}
+                </div>
+                <MDBModalFooter>
               <MDBBtn color="success" value={total} onClick={(e) => handleSubmit(e)}>Save</MDBBtn>
+            </MDBModalFooter>
+              </MDBCol>
+            </MDBRow>
+            <MDBModalFooter>
+              {/* <MDBBtn color="success" value={total} onClick={(e) => handleSubmit(e)}>Save</MDBBtn> */}
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>

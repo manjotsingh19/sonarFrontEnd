@@ -8,7 +8,7 @@ import {
   MDBModalContent,
   MDBModalHeader,
   MDBModalTitle,
-  MDBModalBody,MDBModalFooter,
+  MDBModalBody, MDBModalFooter,
 } from "mdb-react-ui-kit";
 import Timer from "../JugdeComponents/Timer";
 import Clock from "../JugdeComponents/Clock";
@@ -37,7 +37,7 @@ export default function PanelistModal({ item }) {
     setCommentText(event.target.value);
   };
 
-  const refreshPage=()=>{
+  const refreshPage = () => {
     window.location.reload(false);
   }
 
@@ -47,12 +47,12 @@ export default function PanelistModal({ item }) {
     // console.log(teamObj);
 
     setBasicModal(!basicModal);
-    
+
     axios.post("/statusChange", teamObj)
       .then((response) => {
         // alert(teamObj.status);
         Swal.fire(`Participant ${teamObj.status}`);
-        
+
       }, (error) => {
         console.log(error);
         Swal.fire({
@@ -66,8 +66,8 @@ export default function PanelistModal({ item }) {
     // refreshPage();
   };
 
-  
-  
+
+
   //////////////////////////////////////////////////////////////
 
 
@@ -81,7 +81,6 @@ export default function PanelistModal({ item }) {
     axios.post("/statusChange", teamObj)
       .then((response) => {
         Swal.fire(`Participant ${teamObj.status}`);
-        // alert(teamObj.status);
       }, (error) => {
         console.log(error);
         Swal.fire({
@@ -136,14 +135,13 @@ export default function PanelistModal({ item }) {
               <MDBBtn color="danger" value={"rejected"} onClick={(e) => handleSubmit(e)}>
                 Reject
               </MDBBtn>
-              <MDBBtn color="warning" value={"reverted"}onClick={(e)=>handleButtonClick(e)}>
+              <MDBBtn color="warning" value={"reverted"} onClick={(e) => handleButtonClick(e)}>
                 Revert
               </MDBBtn>
               {showCommentBox && (
                 <div>
-                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write Suggestions"} rows="5"    cols="40" style={{border:"1px solid black" , margin:"5px", marginTop:"10px"}} />
-                  {/* <button onClick={handleCommentSubmit}>Submit</button> */}
-                  <MDBBtn color="info" onClick={handleCommentSubmit} style={{marginBottom:"12px"}}>Submit</MDBBtn>
+                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write Suggestions"} rows="5" cols="40" style={{ border: "1px solid black", margin: "5px", marginTop: "10px" }} />
+                  <MDBBtn color="info" onClick={handleCommentSubmit} style={{ marginBottom: "12px" }}>Submit</MDBBtn>
                 </div>
               )}
             </MDBModalFooter>

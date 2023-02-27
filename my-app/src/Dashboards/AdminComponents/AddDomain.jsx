@@ -41,13 +41,14 @@ function AddDomain() {
     useEffect(() => {
         axios.get('/getDomain')
             .then(response => {
-                // console.log("this  is responsedata" + response.data);
+                // console.log( response.data);
                 setDomainData(response.data);
                 // console.log("this is domain data"+domainData ) ;
                 
             }, (error) => {
                 console.log(error);
             });
+
     }, [domainData]);
 
     

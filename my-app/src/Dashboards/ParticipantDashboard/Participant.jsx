@@ -30,45 +30,20 @@ function Participant() {
     Object.keys(data).length > 0 &&
       axios.get(`/particpantsDetails/${data?.email}`).then(
         (response) => {
-          // console.log(response.data);
+          console.log(response.data);
           setFetchedData(response?.data)
         },
         (error) => {
           console.log("this is error in team detail", error);
         }
       );
-  }, [fetchedData]);
+  }, []);
 
 
 
   const [git, setGit] = useState({
     gitHubLink: '',
   });
-  // const [file, setfile] = useState({
-  //   gitHubLink: '',
-  //   uploadFile:'',
-  // });
-
-  ////////////////////////////////handle file submit//////////////////////////////////////////////////////
-  // const [name, setName] = useState("");
-  // const [selectedFile, setSelectedFile] = useState("");
-
-
-  // const submitForm = () => {
-  //   const formData = new FormData();
-  //   formData.append("name", name);
-  //   formData.append("file", selectedFile);
-
-  //   console.log(formData);
-
-  //   // axios
-  //   //   .post("UPLOAD_URL", formData)
-  //   //   .then((res) => {
-  //   //     alert("File Upload success");
-  //   //   })
-  //   //   .catch((err) => alert("File Upload Error"));
-
-  // };
 
 
   /////////////////////////////////////////////////////////////////////////////////////
@@ -78,6 +53,7 @@ function Participant() {
     const { id, value } = e.target;
     setGit({ ...git, [id]: value });
   }
+
 
   const handleSubmit = () => {
 
@@ -90,16 +66,14 @@ function Participant() {
           'Your GitHub is submitted successfully!',
           'success'
         )
+        setGit({ ...git, gitHubLink: '' });
+
       }, (error) => {
         console.log(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          // footer: '<a href="">Why do I have this issue?</a>'
-        })
+        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!',})
       });
   };
+
 
 
   switch (status) {
@@ -113,39 +87,28 @@ function Participant() {
               {/* <MDBBtn color="success">Accepted</MDBBtn> */}
 
               {/* ////////////////////////////file upload form////////// */}
-              <MDBRow>
-                <MDBCol>
-                  <FileUpload />
-                </MDBCol>
-                &nbsp;
+              {/* {console.log(data)} */}
 
-                <MDBCol style={{marginTop:"35px"}}>
-                  <div className="ml-5 pb-2">
-                    <MDBInput label="Github repository link" id="gitHubLink" value={git.gitHubLink} onChange={(e) => handleInput(e)} type="url" />
-                    <br />
-                    <MDBBtn onClick={handleSubmit}>Submit Github repository</MDBBtn>
-                  </div>
-                </MDBCol>
+              <MDBRow>
+                {!fetchedData?.team?.gitHubLink && (
+                  <MDBCol style={{ marginTop: "35px" }}>
+                    <div className="ml-5 pb-2">
+                      <MDBInput label="Github repository link" id="gitHubLink" value={git.gitHubLink} onChange={(e) => handleInput(e)} type="url" />
+                      <br />
+                      <MDBBtn onClick={handleSubmit}>Submit Github repository</MDBBtn>
+                    </div>
+                  </MDBCol>
+                )}
+                &nbsp;
+                {!fetchedData?.team?.idea?.demo && (
+                  <MDBCol>
+                    <FileUpload userObj={fetchedData?.team?.idea} />
+                  </MDBCol>
+                )};
+
+
               </MDBRow>
 
-
-
-
-
-              {/* <form>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-
-                <input
-                  type="file"
-                  value={selectedFile}
-                  onChange={(e) => setSelectedFile(e.target.files[0])}
-                />
-                <button onClick={submitForm}>Submit</button>
-              </form> */}
 
               {/* ////////////////////////////////////////////////////////////// */}
 
@@ -164,7 +127,7 @@ function Participant() {
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
               {/* <MDBBtn color="danger">Rejected</MDBBtn> */}
               <div>
-                <h3 style={{color:"red" }} class="text-center">Your Idea is not accepted, Better luck next time</h3>
+                <h3 style={{ color: "red" }} class="text-center">Your Idea is not accepted, Better luck next time</h3>
                 {/* {"Your Idea is not accepted, Better luck next time"} */}
               </div></>)}
 
@@ -211,7 +174,7 @@ function Participant() {
           <Navbar />
           <MDBContainer fluid>
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-              <MDBBtn color="info">Pending</MDBBtn>
+              {/* <MDBBtn color="info">Pending</MDBBtn> */}
               <div>
                 {/* Still Waiting for panelist */}
               </div></>)}

@@ -48,32 +48,25 @@ function Judge() {
 
   useEffect(() => {
     setJudgeData(JSON.parse(localStorage.getItem("data")));
-    console.log(judgeData);
+    // console.log(judgeData);
   }, [localStorage.getItem("data")])
 
 
   useEffect(() => {
     axios.get('/getTeam')
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setTeam(response.data);
         // console.log( team);
       }, (error) => {
         console.log(error);
       });
   }, [team]);
+  // console.log(team);
 
   //////////////////////////////////////
-
-
-  //   var str = "ball, apple, mouse,";
-  // var hasApple = str.indexOf('apple') != -1;
-  // console.log(hasApple);
-
   const filtered = team.filter((value, index) => {
     if (judgeData.role_id == "3" && value.status === "accepted" && (value.judgeList == null || value.judgeList.indexOf((judgeData?.id).toString()) == -1)) {
-      // value.judgeList = value.judgeList +data?.id+",";
-      // console.log(value);
       return true;
     }
     else return false;
@@ -83,8 +76,9 @@ function Judge() {
 
   return (
     <>
+    <Navbar/>
       <div className="cards">
-        <Navbar/>
+        
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
           Judge Dashboard
         </h3>

@@ -1,4 +1,4 @@
-import React, { useRef,useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 import Slider from "react-slick";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -6,15 +6,16 @@ import axios from "axios";
 
 
 
-const Card = ({description,endDate,eventId,eventName,startDate,}) => {
+const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 
   return (
-    <div class="" style={{overflow: "hidden", margin: "-20px 10px" }}>
-      <div class="team-item" style ={{border: "0px solid black" , 
-//       // background: "rgb(238,174,202)",
-// background: "linear-gradient(225deg, rgba(238,174,202,1) 0%, rgba(159,203,255,1) 100%)" , 
-height:"50vh"
-}}>
+    <div class="" style={{ overflow: "hidden", margin: "-20px 10px" }}>
+      <div class="team-item" style={{
+        border: "0px solid black", borderRadius: "30px", backgroundColor: "#ffae6e",
+        //       // background: "rgb(238,174,202)",
+        // background: "linear-gradient(225deg, rgba(238,174,202,1) 0%, rgba(159,203,255,1) 100%)" , 
+        height: "50vh"
+      }}>
         <div
           style={{
             display: "flex",
@@ -30,6 +31,9 @@ height:"50vh"
           <p>{description}</p>
         </div>
         <div class="tagline">
+          <p>{ }</p>
+        </div>
+        <div class="tagline">
           <p>Start Date: {startDate}</p>
         </div>
         <div class="tagline">
@@ -42,7 +46,7 @@ height:"50vh"
 
 export default function App() {
   const slider = useRef(null);
-  
+
   const settings = {
     centerMode: true,
     draggable: true,
@@ -62,7 +66,7 @@ export default function App() {
   useEffect(() => {
     axios.get("/getEvent").then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setEvent(response.data);
       },
       (error) => {
@@ -70,20 +74,38 @@ export default function App() {
       }
     );
   }, []);
+  // const date = new Date();
 
-  
-  
+  // let day = date.getDate();
+  // let month = date.getMonth() + 1;
+  // if(month<10)month="0"+month;
+  // let year = date.getFullYear();
+  // let currentDate = `${year}-${month}-${day}`;
+  // console.log(currentDate);
+
+  // const filter = event.filter((value, index)=>{
+  //   const ed = new Date(value.endDate);
+  //   console.log(value.endDate)
+  //   if(ed>=currentDate)return true;
+  //   else return false;
+  // });
+
+  // console.log(filter);
+
+
+
+
   return (
     <>
-    <div className="bg-color">
-      <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Upcoming events</h3>
-    <Slider {...settings} ref={slider}>
-      {event.map((card, i) => (
-        <Card {...card}   />
-      ))}
-    </Slider>
-    </div>
-    
+      <div className="bg-color">
+        <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Upcoming events</h3>
+        <Slider {...settings} ref={slider}>
+          {event.map((card, i) => (
+            <Card {...card} />
+          ))}
+        </Slider>
+      </div>
+
     </>
   );
 }
