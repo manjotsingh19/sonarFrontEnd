@@ -17,6 +17,7 @@ import ShowUsers from "./Dashboards/AdminComponents/ShowUsers";
 function App() {
   return (
     <>
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Frontpage />} />
@@ -31,6 +32,7 @@ function App() {
           <Route path="/showUsers" element={<Protected Component={ShowUsers} />} />
         </Routes>
       </BrowserRouter>
+
     </>
   );
 }

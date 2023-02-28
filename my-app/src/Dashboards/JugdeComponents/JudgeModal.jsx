@@ -9,7 +9,7 @@ import ReactPlayer from "react-player";
 
 
 
-export default function JudgeModal({ item }) {
+export default function JudgeModal({ item, refetch }) {
   const { teamName, description, statement, teamObj } = item;
   const [basicModal, setBasicModal] = useState(false);
   const [ui, setUi] = useState(0);
@@ -46,7 +46,7 @@ export default function JudgeModal({ item }) {
       .then((response) => {
         // alert("marks added successfully");
         Swal.fire("Great", "Response Added Successfully!");
-
+        refetch()
       }, (error) => {
         console.log(error);
         Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong!" });
@@ -57,7 +57,11 @@ export default function JudgeModal({ item }) {
 
   // console.log(teamObj);
 
-
+  useEffect(() => {
+        let data = parseInt(ui) + parseInt(ppt) + parseInt(workflow);
+        setTotal(data);
+    
+      }, [ui, ppt, workflow]);
 
   return (
     <>

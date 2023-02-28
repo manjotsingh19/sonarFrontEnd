@@ -37,11 +37,7 @@ function AddJudges() {
                             setJudges({ ...judges, name: '', email: '', mobile: '', role_id: '', password: '' });
                         }
                         else if (judges.role_id === 3) {
-                            Swal.fire(
-                                'Great',
-                                'Judge added successfully!',
-                                'success'
-                            )
+                            Swal.fire('Great','Judge added successfully!','success')
                             setJudges({ ...judges, name: '', email: '', mobile: '', role_id: '', password: '' });
                         }
 
@@ -54,7 +50,6 @@ function AddJudges() {
         else {
                 setSubmited(false);
             }
-
         }, [errors, submitted]);
 
     const handleSubmit = (e) => {
