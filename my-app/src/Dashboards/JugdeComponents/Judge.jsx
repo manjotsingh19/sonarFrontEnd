@@ -64,9 +64,12 @@ function Judge() {
   }, [team]);
   // console.log(team);
 
+  ///////team.gitHubLink && team.idea.demo///
+
   //////////////////////////////////////
+
   const filtered = team.filter((value, index) => {
-    if (judgeData.role_id == "3" && value.status === "accepted" && (value.judgeList == null || value.judgeList.indexOf((judgeData?.id).toString()) == -1)) {
+    if (judgeData.role_id == "3" && value?.gitHubLink && value?.idea?.demo && value.status === "accepted" && (value.judgeList == null || value.judgeList.indexOf((judgeData?.id).toString()) == -1)) {
       return true;
     }
     else return false;
