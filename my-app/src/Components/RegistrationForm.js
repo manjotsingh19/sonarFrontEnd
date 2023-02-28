@@ -502,7 +502,7 @@ const regexPh = /^\d{10}$/i;
                       id="pass"
                       value={teamForm.pass}
                       onChange={(e) => handleInput(e)}
-                      label=<span style="italicText">Team Password</span>
+                      label=<span style={italicText}>Team Password</span>
                       type="password"
                     />
                     <p style={myStyle}>{errors.pass}</p>

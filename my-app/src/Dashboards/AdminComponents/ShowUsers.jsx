@@ -1,4 +1,4 @@
-import { MDBCardBody, MDBBtn, MDBRow, MDBCard } from 'mdb-react-ui-kit';
+import { MDBCardBody, MDBTable,MDBBtn, MDBRow, MDBCard } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -86,7 +86,8 @@ function ShowUsers() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Panelist table</h4>
-                        <table className="table table-stripped">
+                        <MDBTable bordered borderColor="primary">
+                        {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
                                     <th>Email</th>
@@ -95,7 +96,8 @@ function ShowUsers() {
                                 </tr>
                             </thead>
                             <tbody>{panelistRows}</tbody>
-                        </table>
+                        {/* </table> */}
+                        </MDBTable>
 
 
                     </MDBCardBody>
@@ -106,7 +108,8 @@ function ShowUsers() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Judge table</h4>
-                        <table className="table table-stripped">
+                        <MDBTable bordered borderColor="primary">
+                        {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
                                     <th>Email</th>
@@ -115,7 +118,8 @@ function ShowUsers() {
                                 </tr>
                             </thead>
                             <tbody>{judgeRows}</tbody>
-                        </table>
+                        {/* </table> */}
+                        </MDBTable>
 
 
                     </MDBCardBody>
@@ -126,16 +130,17 @@ function ShowUsers() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Team table</h4>
-                        <table className="table table-stripped">
+                        <MDBTable bordered borderColor="primary">
+                        {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Id                                  </th>
                                     <th>Name</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>{participentRows}</tbody>
-                        </table>
+                        </MDBTable>
                     </MDBCardBody>
                 </MDBCard>
             </MDBRow>
