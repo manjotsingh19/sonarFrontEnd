@@ -21,36 +21,41 @@ function AddJudges() {
     /////////////////////////////Connect to server/////////////////////////////////////////////
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitted) {
-            axios.post('/user', judges)
-                .then((response) => {
-                    // console.log(response);
-                    if (judges.role_id === 2) {
-                        Swal.fire(
-                            'Great',
-                            'Panelist added successfully!',
-                            'success'
-                        )
-                        setJudges({...judges,name: '',email: '',mobile: '',role_id: '',password: ''});
-                    }
-                    else if (judges.role_id === 3) {
-                        Swal.fire(
-                            'Great',
-                            'Judge added successfully!',
-                            'success'
-                        )
-                    }
+            if (!judges.role_id) {
+                Swal.fire({ icon: 'error', title: 'Oops...', text: 'Compulsory field!' })
+            }
+            else {
+                axios.post('/user', judges)
+                    .then((response) => {
+                        // console.log(response);
+                        if (judges.role_id === 2) {
+                            Swal.fire(
+                                'Great',
+                                'Panelist added successfully!',
+                                'success'
+                            )
+                            setJudges({ ...judges, name: '', email: '', mobile: '', role_id: '', password: '' });
+                        }
+                        else if (judges.role_id === 3) {
+                            Swal.fire(
+                                'Great',
+                                'Judge added successfully!',
+                                'success'
+                            )
+                            setJudges({ ...judges, name: '', email: '', mobile: '', role_id: '', password: '' });
+                        }
 
-                }, (error) => {
-                    Swal.fire({icon: 'error',title: 'Oops...',text: 'Something went wrong!',
-                    })
-                });
-
+                    }, (error) => {
+                        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!', })
+                    });
+            }
         }
+
         else {
-            setSubmited(false);
-        }
+                setSubmited(false);
+            }
 
-    }, [errors, submitted]);
+        }, [errors, submitted]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
