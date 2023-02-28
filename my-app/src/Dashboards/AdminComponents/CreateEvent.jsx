@@ -20,8 +20,7 @@ function CreateEvent() {
 
     useEffect(() => {
         // console.log(errors);
-        if (Object.keys(errors).length === 0 && submitted) 
-         {
+        if (Object.keys(errors).length === 0 && submitted) {
             // console.log(event);
             axios.post('/event', event)
                 .then((response) => {
@@ -29,8 +28,8 @@ function CreateEvent() {
                         'Great',
                         'Event added successfully!',
                         'success'
-                      )
-                      setEvent({...event,eventName: '',startDate: '',endDate: '',description: ''});
+                    )
+                    setEvent({ ...event, eventName: '', startDate: '', endDate: '', description: '' });
                 }, (error) => {
                     console.log(error);
                     Swal.fire({
@@ -38,14 +37,14 @@ function CreateEvent() {
                         title: 'Oops...',
                         text: 'Something went wrong!',
                         // footer: '<a href="">Why do I have this issue?</a>'
-                      })
+                    })
                 });
 
         }
-        else{
+        else {
             setSubmited(false);
         }
-    }, [errors,submitted]);
+    }, [errors, submitted]);
 
 
     const handleSubmit = (e) => {
@@ -91,7 +90,7 @@ function CreateEvent() {
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='4' >
-                                <MDBInput id="eventName" value={event.eventName} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='eventName' size='md' type='text' />
+                                <MDBInput id="eventName" value={event.eventName} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Event Name' size='md' type='text' />
                                 <p style={myStyle}>{errors.eventName}</p>
                             </MDBCol>
 
@@ -100,6 +99,7 @@ function CreateEvent() {
                                 <div className="" style={{ bordeRadius: "50px", marginBottom: "15px" }}>
                                     <Form.Control
                                         placeholder="Start date"
+                                        label="Start Date"
                                         type="date"
                                         id="startDate"
                                         value={event.startDate}
