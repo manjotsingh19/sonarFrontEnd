@@ -9,7 +9,7 @@ function AddJudges() {
         name: '',
         email: '',
         mobile: '',
-        role_id: '',
+        role_id: 2,
         password: '',
     });
 
@@ -27,18 +27,23 @@ function AddJudges() {
             else {
                 axios.post('/user', judges)
                     .then((response) => {
+                        // console.log("-----------------------------------", judges)
                         // console.log(response);
-                        if (judges.role_id === 2) {
+                        if (parseInt(judges.role_id) === 2) {
                             Swal.fire(
                                 'Great',
                                 'Panelist added successfully!',
                                 'success'
                             )
-                            setJudges({ ...judges, name: '', email: '', mobile: '', role_id: '', password: '' });
+                            setJudges({ ...judges, name: '', email: '', mobile: '', role_id: 2, password: '' });
                         }
-                        else if (judges.role_id === 3) {
-                            Swal.fire('Great','Judge added successfully!','success')
-                            setJudges({ ...judges, name: '', email: '', mobile: '', role_id: '', password: '' });
+                        else if (parseInt(judges.role_id) === 3) {
+                            Swal.fire(
+                                'Great',
+                                'Judge added successfully!',
+                                'success'
+                            )
+                            setJudges({ ...judges, name: '', email: '', mobile: '', role_id: 3, password: '' });
                         }
 
                     }, (error) => {
@@ -48,9 +53,10 @@ function AddJudges() {
         }
 
         else {
-                setSubmited(false);
-            }
-        }, [errors, submitted]);
+            setSubmited(false);
+        }
+
+    }, [errors, submitted]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -138,11 +144,33 @@ function AddJudges() {
 
                         <MDBRow className=' pb-md-2'>
 
-                            <div onChange={(e) => handleRole(e)}  >
-                                <input type="radio" value={2} name="role_id" /> Panelist
-                                <input type="radio" value={3} name="role_id" style={{ marginLeft: "25px" }} /> Judge
+                            {/* <div onChange={(e) => handleRole(e)}  >
+                                <input type="select" value={2} defaultChecked name="role_id" /> Panelist
+                                <input type="select" value={3} name="role_id" style={{ marginLeft: "25px" }} /> Judge
+                            </div> */}
+                            <div style={{ width: "20vw" }}>
+                                <select defaultValue={2} value={judges.role_id} onChange={(e) => {
+                                    setJudges({
+                                        ...judges,
+                                        role_id: e.target.value
+                                    })
+                                }}>
+                                    <option value={2} defaultChecked >Panelist</option>
+                                    <option value={3}  >Judge</option>
+
+                                </select>
                             </div>
 
+                            {/* <MDBCol md="3" className="align-items-center pt-2 pb-3">
+                                <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "0px solid black", borderRadius: "10px", height: "37px", width: "135px", backgroundColor: "#3b71ca", color: "white", boxShadow: "0 4px 9px -4px #3b71ca", }}>
+                                    <option value="">Select Role</option>
+
+                                    <option value={value.teamForm.domain}>
+                                        {value.domainName}
+                                    </option>
+                                </select>
+                                <p style={myStyle}>{errors.domain}</p>
+                            </MDBCol> */}
 
                         </MDBRow>
                         <div className='col-12 '>

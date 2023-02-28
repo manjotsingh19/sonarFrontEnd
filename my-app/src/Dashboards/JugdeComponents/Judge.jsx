@@ -69,7 +69,7 @@ function Judge() {
   }, [data])
   
 
-  console.log(team);
+  // console.log(team);
 
   ///////team.gitHubLink && team.idea.demo///
 
