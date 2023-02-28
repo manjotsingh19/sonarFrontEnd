@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  MDBTextArea,
-  MDBValidation,
-  MDBContainer,
-  MDBCardBody,
-  MDBCol,
-  MDBRow,
-  MDBCard,
-  MDBBtn,
-  MDBInput,
-} from "mdb-react-ui-kit";
+import { MDBTextArea,MDBValidation,MDBContainer,MDBCardBody,MDBCol,MDBRow,MDBCard,MDBBtn,MDBInput} from "mdb-react-ui-kit";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
