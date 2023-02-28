@@ -7,37 +7,42 @@ function ShowUsers() {
 
     const [user, setUser] = useState([]);
     const [team,setTeam] = useState([]);
+    const [deleted,setDeleted] = useState(false);
+
 
     useEffect(() => {
         axios.get('/getUsers')
             .then(response => {
                 setUser(response.data);
-                // console.log("this is user data" + user);
-
+                // console.log(user);
+                setDeleted(false);
             }, (error) => {
                 console.log(error);
             });
-    }, [user]);
+    }, [deleted]);
 
     useEffect(() => {
         axios.get('/getTeam')
             .then(response => {
                 setTeam(response.data);
-                console.log(team);
-
+                // console.log(team);
+                setDeleted(false);
             }, (error) => {
                 console.log(error);
             });
-    }, []);
+    }, [deleted]);
 
 
     /////////////////////////////////////delete entry from data base////////////////////////////////////////
+
+
+
     const handleDelete = (id) => {
 
         axios.delete(`/deleteUser/${id}`)
         .then((response) => {
             console.log(response);
-
+            setDeleted(true);
         }, (error) => {
             console.log(error);
         });
@@ -94,7 +99,7 @@ function ShowUsers() {
                                 <tr>
                                     <th>Email</th>
                                     <th>Name</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>{panelistRows}</tbody>
@@ -116,7 +121,7 @@ function ShowUsers() {
                                 <tr>
                                     <th>Email</th>
                                     <th>Name</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>{judgeRows}</tbody>

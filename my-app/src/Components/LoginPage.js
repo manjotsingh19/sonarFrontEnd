@@ -24,6 +24,9 @@ function LoginPage() {
     setTeamForm({ ...teamForm, [id]: value });
   };
 
+  const styles = {
+    backgroundImage: "url('./images/login-bg.png')",
+  };
   const handleclick = (e) => {
     e.preventDefault();
     window.login = true;
@@ -34,7 +37,7 @@ function LoginPage() {
         // //////////////send response to dashboard
 
         localStorage.setItem("data", JSON.stringify(response.data));
-        console.log(response.data);
+        // console.log(response.data);
 
         if (response.data.role_id === 4) {
           navigate("/participant");
@@ -63,6 +66,7 @@ function LoginPage() {
 
   return (
     <>
+      <div style={styles}></div>
       <Navbar />
       <MDBContainer fluid className="p-3 my-5 h-custom">
         <MDBRow>

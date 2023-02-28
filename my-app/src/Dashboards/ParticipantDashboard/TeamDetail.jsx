@@ -74,6 +74,11 @@ function TeamDetails({ userObj }) {
   // console.log(teamData.team);
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!update?.updatedStatement || !update?.updatedDescription){
+      Swal.fire({
+        icon: "error", title: "Oops...", text: "Statement or description is empty!"});
+    }
+    else{
     teamData.team.idea.problemStatement = update?.updatedStatement;
     teamData.team.idea.description = update?.updatedDescription;
     teamData.team.status = "pending";
@@ -91,7 +96,7 @@ function TeamDetails({ userObj }) {
         });
       }
     );
-
+  }
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -129,16 +134,16 @@ function TeamDetails({ userObj }) {
           </MDBRow>
         </>
       )}
-      {flag && teamData.team.status == "reverted" && (
+      {flag && teamData?.team?.status == "reverted" && (
         <>
           <div >
             <MDBRow>
               <MDBCol>
-                <MDBTextArea style={{ resize: "none" }} label='Upadate your problem satement' id='updatedStatement' value={update.updatedStatement} onChange={(e) => handleInput(e)} rows={3} />
+                <MDBTextArea style={{ resize: "none" }} label='Update your problem satement' id='updatedStatement' value={update.updatedStatement} onChange={(e) => handleInput(e)} rows={3} />
               </MDBCol>
               &nbsp;
               <MDBCol>
-                <MDBTextArea style={{ resize: "none" }} label='Upadate your problem description' id='updatedDescription' value={update.updatedDescription} onChange={(e) => handleInput(e)} rows={3} />
+                <MDBTextArea style={{ resize: "none" }} label='Update your problem description' id='updatedDescription' value={update.updatedDescription} onChange={(e) => handleInput(e)} rows={3} />
               </MDBCol>
             </MDBRow>
             <MDBBtn style={{ margin: "5px 5px" }} onClick={handleSubmit}>Submit</MDBBtn>

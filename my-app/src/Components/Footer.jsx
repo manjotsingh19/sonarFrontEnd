@@ -11,11 +11,12 @@ import {
 
 const Footer = () => {
   const styles = {
-//     background: "rgb(255,57,57)",
-// background: "linear-gradient(283deg, rgba(255,57,57,0.8746804630055147) 20%, rgba(255,132,0,1) 100%)",
+//  background: "rgb(255,57,57)",
+//  background: "linear-gradient(283deg, rgba(255,57,57,0.8746804630055147) 20%, rgba(255,132,0,1) 100%)",
     background: "rgb(255,170,79)",
-background: "linear-gradient(283deg, rgba(255,170,79,1) 0%, rgba(185,201,255,1) 100%)",
+    background: "linear-gradient(283deg, rgba(255,170,79,1) 0%, rgba(185,201,255,1) 100%)",
     // background: 'linear-gradient(to right, #ffcc00, #ff6666)',
+    // border
   };
   return (
     <div style={styles}>

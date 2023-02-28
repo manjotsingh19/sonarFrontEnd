@@ -20,7 +20,6 @@ function Frontpage() {
       <Navbar />
       <Hero />
       <UpcomingEvents />
-      {/* <UpcomingEvent /> */}
       <Cards />
       <OurTeam />
       <Footer />

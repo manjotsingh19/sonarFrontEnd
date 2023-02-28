@@ -62,7 +62,7 @@ function CreateEvent() {
         const errorsObj = {};
 
         if (!event.eventName) {
-            errorsObj.eventName = 'eventName is required';
+            errorsObj.eventName = 'EventName is required';
         }
         if (!event.description) {
             errorsObj.description = 'Description is required';

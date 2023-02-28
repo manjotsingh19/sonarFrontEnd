@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  MDBTextArea,
-  MDBValidation,
-  MDBContainer,
-  MDBCardBody,
-  MDBCol,
-  MDBRow,
-  MDBCard,
-  MDBBtn,
-  MDBInput,
-} from "mdb-react-ui-kit";
+import { MDBTextArea, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from "mdb-react-ui-kit";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -84,6 +74,8 @@ function RegistrationForm() {
   };
 
   const handleclick = (e) => {
+    // console.log(teamForm);
+
     e.preventDefault();
     serErrors(validate(teamForm));
     setSubmit(true);
@@ -104,7 +96,7 @@ function RegistrationForm() {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Invalid username or password",
+            text: "Participant already exists"
             // footer: '<a href="">Why do I have this issue?</a>'
           });
         }
@@ -117,7 +109,7 @@ function RegistrationForm() {
     // const regex =  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/i;
     const regex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
     // const regexPh = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
-const regexPh = /^\d{10}$/i;
+    const regexPh = /^\d{10}$/i;
     if (!teamForm.team) {
       errorsObj.team = "Team Name is required";
     }
@@ -170,7 +162,7 @@ const regexPh = /^\d{10}$/i;
     } else if (teamForm.pass !== password.confirmPassword) {
       errorsObj.confirmPassword = "Confirm password is not matched";
     }
-    if (!teamForm.domain) {
+    else if (!teamForm.domain) {
       errorsObj.domain = "Domain not specified";
     }
     else if (!teamForm.problemS) {
@@ -189,8 +181,8 @@ const regexPh = /^\d{10}$/i;
         errorsObj.e4 = "This is not a valid email";
       }
     }
-   
-    
+
+
     if (teamForm.ph1 !== "" && teamForm.ph2 !== "" && teamForm.ph3 !== "") {
       if (
         teamForm.ph1 === teamForm.ph2 ||
@@ -238,7 +230,7 @@ const regexPh = /^\d{10}$/i;
         }
       }
     }
-   
+
     return errorsObj;
   };
 
@@ -251,7 +243,7 @@ const regexPh = /^\d{10}$/i;
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <MDBValidation className="row g-3" noValidate>
         <MDBContainer fluid>
           <MDBRow className="justify-content-center align-items-center m-5">
@@ -519,22 +511,8 @@ const regexPh = /^\d{10}$/i;
                     />
                     <p style={myStyle}>{errors.confirmPassword}</p>
                   </MDBCol>
-                </MDBRow>
-
-                {/* ////////////////////////////////domains/////////////////////////////////////// */}
-
-                <MDBRow className="align-items-center pt-2 pb-3">
-                  <MDBCol md="3" className="ps-5">
-                    <select
-                      md="3"
-                      id="domain"
-                      value={teamForm.domain}
-                      onChange={(e) => handleInput(e)}
-                      style={{
-                        border: "1px solid black",
-                        borderRadius: "10px",
-                      }}
-                    >
+                  <MDBCol md="3" className="align-items-center pt-2 pb-3">
+                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "0px solid black", borderRadius: "10px", height: "37px", width: "135px", backgroundColor: "#3b71ca", color: "white", boxShadow: "0 4px 9px -4px #3b71ca", }}>
                       <option value="">Select Domain</option>
 
                       {domain.map((value, index) => (
@@ -543,8 +521,26 @@ const regexPh = /^\d{10}$/i;
                         </option>
                       ))}
                     </select>
+                    <p style={myStyle}>{errors.domain}</p>
                   </MDBCol>
                 </MDBRow>
+
+                {/* ////////////////////////////////domains/////////////////////////////////////// */}
+
+                {/* <MDBRow className="align-items-center pt-2 pb-3">
+                  <MDBCol md="3" className="ps-5">
+                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "1px solid black", borderRadius: "10px", }}>
+                      <option value="">Select Domain</option>
+
+                      {domain.map((value, index) => (
+                        <option value={value.domainId}>
+                          {value.domainName}
+                        </option>
+                      ))}
+                    </select>
+                    <p style={myStyle}>{errors.domain}</p>
+                  </MDBCol>
+                </MDBRow> */}
 
                 <MDBRow className="align-items-center pt-2 pb-3">
                   <MDBCol md="3" className="ps-5">
@@ -583,7 +579,7 @@ const regexPh = /^\d{10}$/i;
                       id="problemD"
                       value={teamForm.problemD}
                       onChange={(e) => handleInput(e)}
-                      label= <span style={italicText}>
+                      label=<span style={italicText}>
                         Enter problem description and proposed solution
                       </span>
                       rows={3}

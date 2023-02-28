@@ -46,6 +46,14 @@ const Card = ({ teamObj }) => {
 };
 function Panelist() {
   const [team, setTeam] = useState([]);
+  const [panelist, setPanelist] = useState(JSON.parse(localStorage.getItem("data")));
+  useEffect(() => {
+    setPanelist(JSON.parse(localStorage.getItem("data")));
+    // console.log(judgeData);
+  }, [localStorage.getItem("data")])
+
+
+
   useEffect(() => {
     axios.get("/getTeam").then(
       (response) => {
@@ -67,9 +75,8 @@ function Panelist() {
     <>
       <Navbar />
       <div className="cards">
-        <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
-          Panelist Dashboard
-        </h3>
+      <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Panelist Dashboard</h3>
+        <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{margin:"-13px"}}>Welcome: {panelist?.name} </h5>
         <MDBRow>
           {filtered.map((value, index) => (
             <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>

@@ -9,11 +9,10 @@ import axios from "axios";
 const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 
   return (
-    <div class="" style={{ overflow: "hidden", margin: "-20px 10px" }}>
-      <div class="team-item" style={{
-        border: "0px solid black", borderRadius: "30px", backgroundColor: "#ffae6e",
-        //       // background: "rgb(238,174,202)",
-        // background: "linear-gradient(225deg, rgba(238,174,202,1) 0%, rgba(159,203,255,1) 100%)" , 
+    <div className="" style={{ overflow: "hidden", margin: "-20px 10px" }}>
+      <div className="team-item" style={{
+        border: "0px solid black", borderRadius: "30px",background: "rgb(210,192,165)",
+        background: "linear-gradient(90deg, rgba(210,192,165,1) 8%, rgba(172,168,237,1) 52%, rgba(56,219,252,1) 94%)",
         height: "50vh"
       }}>
         <div
@@ -27,16 +26,16 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 
         <h3>{eventName}</h3>
 
-        <div class="">
+        <div className="">
           <p>{description}</p>
         </div>
-        <div class="tagline">
+        <div className="tagline">
           <p>{ }</p>
         </div>
-        <div class="tagline">
+        <div className="tagline">
           <p>Start Date: {startDate}</p>
         </div>
-        <div class="tagline">
+        <div className="tagline">
           <p>End Date: {endDate}</p>
         </div>
       </div>
@@ -47,22 +46,8 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 export default function App() {
   const slider = useRef(null);
 
-  const settings = {
-    centerMode: true,
-    draggable: true,
-    centerPadding: "20px",
-    pauseOnHover: true,
-    infinite: true,
-    swipeToSlide: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 1000,
-    autoplaySpeed: 2000,
-    focusOnSelect: true,
-    // fade: true,
-  };
   const [event, setEvent] = useState([]);
+  
   useEffect(() => {
     axios.get("/getEvent").then(
       (response) => {
@@ -73,39 +58,25 @@ export default function App() {
         console.log(error);
       }
     );
+  
   }, []);
-  // const date = new Date();
 
-  // let day = date.getDate();
-  // let month = date.getMonth() + 1;
-  // if(month<10)month="0"+month;
-  // let year = date.getFullYear();
-  // let currentDate = `${year}-${month}-${day}`;
-  // console.log(currentDate);
-
-  // const filter = event.filter((value, index)=>{
-  //   const ed = new Date(value.endDate);
-  //   console.log(value.endDate)
-  //   if(ed>=currentDate)return true;
-  //   else return false;
-  // });
-
-  // console.log(filter);
-
+  const settings = { centerMode: true, draggable: true, centerPadding: "20px", pauseOnHover: true, infinite: true, swipeToSlide: true, slidesToShow: event?.length, slidesToScroll: 1, autoplay: true, speed: 1000, autoplaySpeed: 2000, focusOnSelect: true, };
 
 
 
   return (
     <>
-      <div className="bg-color">
-        <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Upcoming events</h2>
-        <Slider {...settings} ref={slider}>
-          {event.map((card, i) => (
-            <Card {...card} />
-          ))}
-        </Slider>
-      </div>
-
+      {event?.length>0 && (
+        <div className="bg-color">
+          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Upcoming events</h2>
+          <Slider {...settings} ref={slider}>
+            {event.map((card, i) => (
+              <Card {...card} />
+            ))}
+          </Slider>
+        </div>
+      )}
     </>
   );
 }
