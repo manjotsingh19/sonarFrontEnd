@@ -33,7 +33,7 @@ const Cards = () => {
                 src={Double}
                 alt="/"
               />
-              <h2 className="text-2xl font-bold text-center py-8">2nd prize</h2>
+              <h2 className="text-2xl font-bold text-center py-8">2nd Place</h2>
               <div className="text-center font-medium">
                 <h3 className="py-2 border-b mx-8 mt-8">Team Id:  {winners[1]?.teamId}</h3>
                 <h4 className="py-2 border-b mx-8 mt-8">Team Name:</h4>
@@ -48,7 +48,7 @@ const Cards = () => {
                 src={Double}
                 alt="/"
               />
-              <h2 className="text-2xl font-bold text-center py-8">1st Prize</h2>
+              <h2 className="text-2xl font-bold text-center py-8">1st Place</h2>
               <div className="text-center font-medium">
                 <h3 className="py-2 border-b mx-8 mt-8">Team Id:  {winners[0]?.teamId}</h3>
                 <h4 className="py-2 border-b mx-8 mt-8">Team Name:</h4>
@@ -62,7 +62,7 @@ const Cards = () => {
                 src={Double}
                 alt="/"
               />
-              <h2 className="text-2xl font-bold text-center py-8">3rd Prize</h2>
+              <h2 className="text-2xl font-bold text-center py-8">3rd Place</h2>
               <div className="text-center font-medium">
               <h3 className="py-2 border-b mx-8 mt-8">Team Id:  {winners[2]?.teamId}</h3>
                 <h4 className="py-2 border-b mx-8 mt-8">Team Name:</h4>
