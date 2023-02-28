@@ -33,6 +33,12 @@ function AddDomain() {
                     Swal.fire("Great", "Domain added successfully!", "success");
                 }, (error) => {
                     console.log(error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Domain already exists"
+                    });
+                    setDomains({...domains,domainName:''});
                 });
         }
         else{
@@ -53,6 +59,7 @@ function AddDomain() {
                 
             }, (error) => {
                 console.log(error);
+                
             });
 
     }, [load]);
