@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBBtn,
-  MDBIcon,
-  MDBInput,
-  MDBCheckbox,
-} from "mdb-react-ui-kit";
+import {MDBContainer,MDBCol,MDBRow,MDBBtn,MDBIcon,MDBInput,MDBCheckbox,} from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import Admin from "../Dashboards/AdminComponents/Admin";
 import axios from "axios";

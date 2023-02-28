@@ -10,7 +10,8 @@ import Participant from "./Dashboards/ParticipantDashboard/Participant";
 import Panelist from "./Dashboards/PanelistDashboard/Panelist";
 import Judge from "./Dashboards/JugdeComponents/Judge";
 import ChangePassword from './Components/ChangePassword';
-import Protected from './Components/Protected'
+import Protected from './Components/Protected';
+import ShowUsers from "./Dashboards/AdminComponents/ShowUsers";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/panelist" element={<Protected Component={Panelist} />} />
           <Route path="/judge" element={<Protected Component={Judge} />} />
           <Route path="/ChangePassword" element={<ChangePassword />} />
+          <Route path="/showUsers" element={<Protected Component={ShowUsers} />} />
         </Routes>
       </BrowserRouter>
     </>

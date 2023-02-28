@@ -22,8 +22,10 @@ const Cards = () => {
   return (
     <>
       {winners[0]?.marks > 0 && (
-
+        <>
         <div className="w-full py-[10rem] px-4 bg-white">
+        <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Top Scrorers</h2>
+
           <div className="max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8">
             <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300">
               <img
@@ -70,6 +72,7 @@ const Cards = () => {
             </div>
           </div>
         </div>
+        </>
       )}
     </>
   );

@@ -98,7 +98,7 @@ export default function App() {
   return (
     <>
       <div className="bg-color">
-        <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Upcoming events</h3>
+        <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Upcoming events</h2>
         <Slider {...settings} ref={slider}>
           {event.map((card, i) => (
             <Card {...card} />
