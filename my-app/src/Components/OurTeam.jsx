@@ -127,7 +127,7 @@ function OurTeam() {
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/in/va29/",
       atwitter: "https://twitter.com/va2905",
-      agithub: "https://github.com/va-incedo",
+      agithub: "https://github.com/vaibhav-incedo",
       description: "Responsible for the frontend development of the application",
     },
     {
