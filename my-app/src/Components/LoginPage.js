@@ -57,9 +57,10 @@ function LoginPage() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Username or password is incorrect!",
+          text: "Invalid username or password!",
           // footer: '<a href="">Why do I have this issue?</a>'
         });
+        setTeamForm({...teamForm,email:'',password:''});
       }
     );
   };

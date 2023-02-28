@@ -3,6 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 
 function AddDomain() {
@@ -29,6 +30,7 @@ function AddDomain() {
                     setLoad(false);
                     setDomains({...domains,domainName:''});
                     setDomainData([...domainData, domains.domainName]);
+                    Swal.fire("Great", "Domain added successfully!", "success");
                 }, (error) => {
                     console.log(error);
                 });
