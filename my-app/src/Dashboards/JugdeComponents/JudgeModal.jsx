@@ -24,6 +24,7 @@ export default function JudgeModal({ item }) {
 
 
   useEffect(() => {
+    
     setJudgeData(JSON.parse(localStorage.getItem("data")));
   }, [localStorage.getItem("data")])
 
@@ -54,26 +55,7 @@ export default function JudgeModal({ item }) {
   }
 
 
-  useEffect(() => {
-
-  }, []);
-
-
-  useEffect(() => {
-    let data = parseInt(ui) + parseInt(ppt) + parseInt(workflow);
-    setTotal(data);
-
-  }, [ui, ppt, workflow]);
-
-  console.log(teamObj);
-
-  // console.log("the url is:");
-  // var X = teamObj?.idea?.demo;
-  // var Y = "public";
-  // var Z = X.slice(X.indexOf(Y) + Y.length);
-  // console.log(Z);
-
-  //   const url = "upload/"+teamObj.idea.demo;
+  // console.log(teamObj);
 
 
 

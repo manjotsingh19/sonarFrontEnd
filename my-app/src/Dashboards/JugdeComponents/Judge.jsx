@@ -48,7 +48,7 @@ function Judge() {
 
   useEffect(() => {
     setJudgeData(JSON.parse(localStorage.getItem("data")));
-    // console.log(judgeData);
+    console.log(judgeData);
   }, [localStorage.getItem("data")])
 
 
@@ -82,9 +82,8 @@ function Judge() {
     <Navbar/>
       <div className="cards">
         
-        <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
-          Judge Dashboard
-        </h3>
+        <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Judge Dashboard</h3>
+        <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{margin:"-13px"}}>Welcome: {judgeData?.name} </h5>
         <MDBRow>
           {filtered.map((value, index) => (
             <>

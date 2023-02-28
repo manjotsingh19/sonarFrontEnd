@@ -17,17 +17,21 @@ function AddDomain() {
     /////////////////////////////Connect to server/////////////////////////////////////////////
     const [submitted, setSubmited] = useState(false);
 
+    const[load,setLoad] = useState(false);
+
+
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitted) {
             // console.log(domains);
             axios.post('/domain', domains)
                 .then((response) => {
                     // console.log(response);
+                    setLoad(false);
+                    setDomains({...domains,domainName:''});
                     setDomainData([...domainData, domains.domainName]);
                 }, (error) => {
                     console.log(error);
                 });
-
         }
         else{
             setSubmited(false);
@@ -49,7 +53,7 @@ function AddDomain() {
                 console.log(error);
             });
 
-    }, [domainData]);
+    }, [load]);
 
     
     const dropdownData = domainData.map((info) => {
@@ -65,6 +69,7 @@ function AddDomain() {
         e.preventDefault();
         serErrors(validate(domains));
         setSubmited(true);
+        setLoad(true);
     }
 
     const handleInput = (e) => {

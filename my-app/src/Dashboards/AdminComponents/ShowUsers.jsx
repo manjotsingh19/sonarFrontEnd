@@ -99,7 +99,7 @@ function ShowUsers() {
                                 <tr>
                                     <th>Email</th>
                                     <th>Name</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>{panelistRows}</tbody>
@@ -121,7 +121,7 @@ function ShowUsers() {
                                 <tr>
                                     <th>Email</th>
                                     <th>Name</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>{judgeRows}</tbody>

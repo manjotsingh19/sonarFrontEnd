@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBTextArea,MDBValidation,MDBContainer,MDBCardBody,MDBCol,MDBRow,MDBCard,MDBBtn,MDBInput} from "mdb-react-ui-kit";
+import { MDBTextArea, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from "mdb-react-ui-kit";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -162,7 +162,7 @@ function RegistrationForm() {
     } else if (teamForm.pass !== password.confirmPassword) {
       errorsObj.confirmPassword = "Confirm password is not matched";
     }
-    else  if (!teamForm.domain) {
+    else if (!teamForm.domain) {
       errorsObj.domain = "Domain not specified";
     }
     else if (!teamForm.problemS) {
@@ -511,13 +511,8 @@ function RegistrationForm() {
                     />
                     <p style={myStyle}>{errors.confirmPassword}</p>
                   </MDBCol>
-                </MDBRow>
-
-                {/* ////////////////////////////////domains/////////////////////////////////////// */}
-
-                <MDBRow className="align-items-center pt-2 pb-3">
-                  <MDBCol md="3" className="ps-5">
-                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "1px solid black", borderRadius: "10px",}}>
+                  <MDBCol md="3" className="align-items-center pt-2 pb-3">
+                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "0px solid black", borderRadius: "10px", height: "37px", width: "135px", backgroundColor: "#3b71ca", color: "white", boxShadow: "0 4px 9px -4px #3b71ca", }}>
                       <option value="">Select Domain</option>
 
                       {domain.map((value, index) => (
@@ -529,6 +524,23 @@ function RegistrationForm() {
                     <p style={myStyle}>{errors.domain}</p>
                   </MDBCol>
                 </MDBRow>
+
+                {/* ////////////////////////////////domains/////////////////////////////////////// */}
+
+                {/* <MDBRow className="align-items-center pt-2 pb-3">
+                  <MDBCol md="3" className="ps-5">
+                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "1px solid black", borderRadius: "10px", }}>
+                      <option value="">Select Domain</option>
+
+                      {domain.map((value, index) => (
+                        <option value={value.domainId}>
+                          {value.domainName}
+                        </option>
+                      ))}
+                    </select>
+                    <p style={myStyle}>{errors.domain}</p>
+                  </MDBCol>
+                </MDBRow> */}
 
                 <MDBRow className="align-items-center pt-2 pb-3">
                   <MDBCol md="3" className="ps-5">
