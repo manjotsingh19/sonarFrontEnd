@@ -9,9 +9,9 @@ import axios from "axios";
 const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 
   return (
-    <div className="" style={{ overflow: "hidden", margin: "-20px 10px" }}>
+    <div className="" style={{ overflow: "hidden", margin: "-15px 10px" }}>
       <div className="team-item" style={{
-        border: "0px solid black", borderRadius: "30px", background: "rgb(210,192,165)",
+        border: "0px solid black", borderRadius: "30px", /*background: "rgb(210,192,165)",*/
         background: "linear-gradient(90deg, rgba(210,192,165,1) 8%, rgba(172,168,237,1) 52%, rgba(56,219,252,1) 94%)",
         height: "50vh"
       }}>
