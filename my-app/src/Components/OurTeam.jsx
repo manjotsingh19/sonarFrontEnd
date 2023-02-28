@@ -119,8 +119,7 @@ function OurTeam() {
       alinkedin: "https://www.linkedin.com/",
       atwitter: "https://twitter.com/",
       agithub: "https://github.com/",
-      description:
-        "Responsible for the frontend development of the application",
+      description: "Responsible for the frontend development of the application",
     },
     {
       name: "Vaibhav Agarwal",
@@ -128,8 +127,8 @@ function OurTeam() {
       designation: "Software Developer Engineer",
       alinkedin: "https://www.linkedin.com/in/va29/",
       atwitter: "https://twitter.com/va2905",
-      agithub: "https://github.com/va-incedo",
-      description: "Responsible for the backend development of the application",
+      agithub: "https://github.com/vaibhav-incedo",
+      description: "Responsible for the frontend development of the application",
     },
     {
       name: "Yashi Gupta",
