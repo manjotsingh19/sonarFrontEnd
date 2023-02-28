@@ -104,7 +104,7 @@ export default function JudgeModal({ item }) {
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              <Timer></Timer>
+              {/* <Timer></Timer> */}
 
               <div style={{ width: "100%", wordWrap: "break-word" }}>
                 <h6 style={{ display: "inline" }}>Problem Statement: </h6> <p style={{ display: "inline" }}>{statement}</p>

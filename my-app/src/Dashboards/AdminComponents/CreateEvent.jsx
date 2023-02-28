@@ -63,7 +63,7 @@ function CreateEvent() {
         const errorsObj = {};
 
         if (!event.eventName) {
-            errorsObj.eventName = 'eventName is required';
+            errorsObj.eventName = 'EventName is required';
         }
         if (!event.description) {
             errorsObj.description = 'Description is required';
@@ -91,7 +91,7 @@ function CreateEvent() {
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='4' >
-                                <MDBInput id="eventName" value={event.eventName} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='eventName' size='md' type='text' />
+                                <MDBInput id="eventName" value={event.eventName} onChange={(e) => handleInput(e)} wrapperClass='mb-2' required className='col-md-4' label='Event Name' size='md' type='text' />
                                 <p style={myStyle}>{errors.eventName}</p>
                             </MDBCol>
 

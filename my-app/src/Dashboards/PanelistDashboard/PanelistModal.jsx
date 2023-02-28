@@ -42,6 +42,14 @@ export default function PanelistModal({ item }) {
   }
 
   const handleCommentSubmit = () => {
+    if(!commentText){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Comment cannot be empty',
+      });
+    }
+    else{
     teamObj.newComment = commentText;
     teamObj.status = "reverted";
     // console.log(teamObj);
@@ -63,6 +71,7 @@ export default function PanelistModal({ item }) {
       });
     setCommentText('');
     setShowCommentBox(false);
+    }
     // refreshPage();
   };
 
@@ -117,8 +126,8 @@ export default function PanelistModal({ item }) {
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              <Timer />
-              <Clock />
+              {/* <Timer />
+              <Clock /> */}
               <div className="">
                 <h4>Problem Statement</h4>
                 <p>{statement}</p>
@@ -140,7 +149,7 @@ export default function PanelistModal({ item }) {
               </MDBBtn>
               {showCommentBox && (
                 <div>
-                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"write Suggestions"} rows="5" cols="40" style={{ border: "1px solid black", margin: "5px", marginTop: "10px" }} />
+                  <textarea value={commentText} onChange={handleCommentChange} placeholder={"Write Suggestions"} rows="5" cols="40" style={{ border: "1px solid black", margin: "5px", marginTop: "10px" }} />
                   <MDBBtn color="info" onClick={handleCommentSubmit} style={{ marginBottom: "12px" }}>Submit</MDBBtn>
                 </div>
               )}

@@ -105,9 +105,13 @@ function Participant() {
                     <FileUpload userObj={fetchedData?.team?.idea} />
                   </MDBCol>
                 )};
-
-
               </MDBRow>
+
+                <MDBRow>
+                  {fetchedData?.team?.gitHubLink && fetchedData?.team?.idea?.demo &&(
+                     <h3 style={{ color: "green" }} class="text-center">Video and GitHub link uploaded successfully!</h3>
+                  ) }
+                </MDBRow>
 
 
               {/* ////////////////////////////////////////////////////////////// */}
