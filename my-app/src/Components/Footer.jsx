@@ -24,7 +24,7 @@ const Footer = () => {
       <div>
         <h1 className="w-full text-3xl font-bold text-[#ee4714]">Hackcedo</h1>
         <p className="py-4">
-          SAMPLE TEXT
+        
         </p>
         <div className="flex justify-between md:w-[75%] my-6">
           <div>
