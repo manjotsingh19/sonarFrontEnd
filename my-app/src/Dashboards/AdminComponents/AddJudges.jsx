@@ -116,7 +116,7 @@ function AddJudges() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
 
-                        <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Add new Judge/Panellist</h4>
+                        <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Add new Judge/Panelist</h4>
 
                         <MDBRow className='align-items-center pt-0 '>
                             <MDBCol md='3' >
