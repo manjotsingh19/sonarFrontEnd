@@ -139,7 +139,7 @@ function TeamDetails({ userObj }) {
           <div >
             <MDBRow>
               <MDBCol>
-                <MDBTextArea style={{ resize: "none" }} label='Update your problem satement' id='updatedStatement' value={update.updatedStatement} onChange={(e) => handleInput(e)} rows={3} />
+                <MDBTextArea style={{ resize: "none" }} label='Update your problem statement' id='updatedStatement' value={update.updatedStatement} onChange={(e) => handleInput(e)} rows={3} />
               </MDBCol>
               &nbsp;
               <MDBCol>
