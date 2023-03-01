@@ -26,7 +26,7 @@ function FileUpload({ userObj }) {
 
     axios.post('/upload', formData)
       .then((response) => {
-        Swal.fire('Great','Event added successfully!','success')
+        Swal.fire('Great','Video uploaded successfully!','success')
       }, (error) => {
         console.log(error);
         Swal.fire({icon: 'error', title: 'Oops...',text: 'Something went wrong!',})
