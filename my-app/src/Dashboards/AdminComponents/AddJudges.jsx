@@ -27,7 +27,7 @@ function AddJudges() {
             else {
                 axios.post('/user', judges)
                     .then((response) => {
-                        console.log("-----------------------------------", judges)
+                        // console.log("-----------------------------------", judges)
                         // console.log(response);
                         if (parseInt(judges.role_id) === 2) {
                             Swal.fire(

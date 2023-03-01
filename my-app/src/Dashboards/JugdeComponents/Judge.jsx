@@ -7,8 +7,10 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../../Components/Navbar";
 import Swal from "sweetalert2";
+import  FetchTeamData  from '../../hooks/fetch-team-data'
 
-const Card = ({ teamObj }) => {
+
+const Card = ({ teamObj, refetch }) => {
   const { teamId, teamName, idea } = teamObj
   return (
     <div className="ideaCard">
@@ -38,58 +40,58 @@ const Card = ({ teamObj }) => {
           <p className="fw-medium">{idea?.problemStatement}</p>
         </MDBCol>
       </MDBRow>
-      <JudgeModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj }} />
+      <JudgeModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj }} refetch={ refetch} />
     </div>
   );
 };
 function Judge() {
   const [team, setTeam] = useState([]);
   const [judgeData, setJudgeData] = useState(JSON.parse(localStorage.getItem("data")))
+  const { data, refetch } = FetchTeamData();
+
+
 
   useEffect(() => {
     setJudgeData(JSON.parse(localStorage.getItem("data")));
     console.log(judgeData);
   }, [localStorage.getItem("data")])
 
+  useEffect(()=>{
+    if (data) {
+      const filtered = data?.data?.filter((value, index) => {
+        if (judgeData.role_id == "3" && value?.gitHubLink && value?.idea?.demo && value.status === "accepted" && (value.judgeList == null || value.judgeList.indexOf((judgeData?.id).toString()) == -1)) {
+          return true;
+        }
+        else return false;
+      })
+      setTeam(filtered)
+    }
+  }, [data])
+  
 
-  useEffect(() => {
-    axios.get('/getTeam')
-      .then(response => {
-        // console.log(response.data);
-        setTeam(response.data);
-        // console.log( team);
-      }, (error) => {
-        console.log(error);
-      });
-  }, [team]);
   // console.log(team);
 
   ///////team.gitHubLink && team.idea.demo///
 
   //////////////////////////////////////
 
-  const filtered = team.filter((value, index) => {
-    if (judgeData.role_id == "3" && value?.gitHubLink && value?.idea?.demo && value.status === "accepted" && (value.judgeList == null || value.judgeList.indexOf((judgeData?.id).toString()) == -1)) {
-      return true;
-    }
-    else return false;
-  })
+
 
   ////////////////////////////////////
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className="cards">
-        
+
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Judge Dashboard</h3>
-        <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{margin:"-13px"}}>Welcome: {judgeData?.name} </h5>
+        <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{ margin: "-13px" }}>Welcome: {judgeData?.name} </h5>
         <MDBRow>
-          {filtered.map((value, index) => (
+          {team.map((value, index) => (
             <>
               <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
 
-                <Card teamObj={value} />
+                <Card teamObj={value} refetch={ refetch} />
               </MDBCol>
             </>
           ))}
