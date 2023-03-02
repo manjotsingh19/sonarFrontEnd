@@ -1,4 +1,4 @@
-import { validation, MDBListGroup, MDBListGroupItem, MDBTextArea, MDBValidationItem, inputGroup, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBDropdown, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBRadio, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import { MDBSpinner, MDBTextArea, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
@@ -14,14 +14,17 @@ function CreateEvent() {
     });
 
     const [submitted, setSubmited] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitted) {
+            setIsLoading(true);
             axios.post('/event', event)
                 .then((response) => {
+                    setIsLoading(false);
                     Swal.fire(
                         'Great',
                         'Event added successfully!',
@@ -140,6 +143,11 @@ function CreateEvent() {
 
                     </MDBCardBody>
                 </MDBCard>
+                {isLoading && (
+                    <MDBSpinner color='dark' style={{ marginTop: "5px" }} className="justify-content-center">
+                        <span className='visually-hidden'>Loading...</span>
+                    </MDBSpinner>
+                )}
 
             </MDBRow>
         </>

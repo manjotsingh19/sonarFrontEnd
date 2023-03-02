@@ -29,6 +29,9 @@ function Admin() {
             <MDBContainer fluid>
                 {/* //////////////////////add judges/////////////////// */}
                 <AddJudges />
+
+
+                  {/* ////////////////show alll //////////////////////////*/}
                 <div class="col text-center">
                     <MDBBtn onClick={handleSubmit} className="btn btn-default" style={{ width: "25%" }}> Show Users</MDBBtn>
                 </div>
@@ -41,9 +44,6 @@ function Admin() {
                 {/* /////////////////////////////add domain ///////////////////*/}
 
                 <AddDomain />
-
-                {/* ////////////////show alll */}
-                {/* <ShowUsers /> */}
 
             </MDBContainer>
         </>

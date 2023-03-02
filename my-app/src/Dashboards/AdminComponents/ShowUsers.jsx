@@ -23,6 +23,7 @@ function ShowUsers() {
     useEffect(() => {
         axios.get('/getTeam')
             .then(response => {
+                console.log(response.data);
                 setTeam(response.data);
                 setDeleted(false);
             }, (error) => {
@@ -76,6 +77,7 @@ function ShowUsers() {
                     <td>{team.teamId}</td>
                     <td>{team.teamName}</td>
                     <td>{team.status}</td>
+                    <td>{team.marks}</td>
                 </tr>
             );
     });
@@ -134,9 +136,10 @@ function ShowUsers() {
                         {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
-                                    <th>Id                                  </th>
+                                    <th>Id</th>
                                     <th>Name</th>
                                     <th>Status</th>
+                                    <th>Marks</th>
                                 </tr>
                             </thead>
                             <tbody>{participentRows}</tbody>

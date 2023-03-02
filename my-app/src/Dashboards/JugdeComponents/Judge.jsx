@@ -6,7 +6,8 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../../Components/Navbar";
 import Swal from "sweetalert2";
-import  FetchTeamData  from '../../hooks/fetch-team-data'
+import  FetchTeamData  from '../../hooks/fetch-team-data';
+import moment from "moment";
 
 
 const Card = ({ teamObj, refetch }) => {
@@ -46,13 +47,17 @@ const Card = ({ teamObj, refetch }) => {
 function Judge() {
   const [team, setTeam] = useState([]);
   const [judgeData, setJudgeData] = useState(JSON.parse(localStorage.getItem("data")))
+
+  ///////////////////got teams data from api//////////////////
   const { data, refetch } = FetchTeamData();
+
+/////////////////////////////////////////////
 
 
 
   useEffect(() => {
     setJudgeData(JSON.parse(localStorage.getItem("data")));
-    console.log(judgeData);
+    // console.log(judgeData);
   }, [localStorage.getItem("data")])
 
   useEffect(()=>{
@@ -65,8 +70,24 @@ function Judge() {
       })
       setTeam(filtered)
     }
-  }, [data])
-  
+  }, [data]);
+
+  const [event,setEvent] = useState([]);
+
+  useEffect(() => {
+    axios.get('/getEvent')
+      .then(response => {
+        setEvent(response.data);
+        console.log(response.data);
+
+      }, (error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+
+const currDate= moment().format("YYYY-MM-DD");
 
   //////////////////////////////////////
 
@@ -81,6 +102,8 @@ function Judge() {
 
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Judge Dashboard</h3>
         <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{ margin: "-13px" }}>Welcome: {judgeData?.name} </h5>
+
+        {/* {event[0]?.endDate<currDate && ( */}
         <MDBRow>
           {team.map((value, index) => (
             <>
@@ -91,6 +114,7 @@ function Judge() {
             </>
           ))}
         </MDBRow>
+        {/* )} */}
       </div>
     </>);
 }
