@@ -34,11 +34,10 @@ function LoginPage() {
     setSubmit(true);
     axios.post("/login", teamForm).then(
       (response) => {
+
         // //////////////send response to dashboard
 
         localStorage.setItem("data", JSON.stringify(response.data));
-        // console.log(response.data);
-
         if (response.data.role_id === 4) {
           navigate("/participant");
         } else if (response.data.role_id === 3) {
@@ -53,12 +52,10 @@ function LoginPage() {
       },
       (error) => {
         console.log(error);
-        // alert("Username or password is incorrect");
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "Invalid username or password!",
-          // footer: '<a href="">Why do I have this issue?</a>'
         });
         setTeamForm({...teamForm,email:'',password:''});
       }

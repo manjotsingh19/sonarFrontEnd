@@ -66,7 +66,7 @@ function TeamDetails({ userObj }) {
   const [Submit,setSubmit] = useState(false);
 
   useState(() => {
-    console.log("form is submitted");
+    console.log("Form submitted");
     setSubmit(false);
   },[Submit]);
 
@@ -87,7 +87,7 @@ function TeamDetails({ userObj }) {
       (response) => {
         // console.log(response);
         setSubmit(true);
-        Swal.fire("Great", "Idea sends succesfully!", "success");
+        Swal.fire("Great", "Idea sent succesfully!", "success");
       },
       (error) => {
         console.log(error);

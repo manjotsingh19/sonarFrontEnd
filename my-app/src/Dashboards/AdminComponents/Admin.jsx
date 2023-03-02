@@ -45,8 +45,6 @@ function Admin() {
                 {/* ////////////////show alll */}
                 {/* <ShowUsers /> */}
 
-                {/* <MDBBtn onClick={handleSubmit} className=" col-md-12 text-center" style={{marginBottom:"50px"}}> Show Users</MDBBtn> */}
-
             </MDBContainer>
         </>
     )

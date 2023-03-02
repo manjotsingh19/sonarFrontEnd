@@ -1,4 +1,4 @@
-// import "react-datepicker/dist/react-datepicker.css";
+
 import {
   MDBRow,
   MDBCol,
@@ -33,12 +33,11 @@ const Card = ({ teamObj }) => {
             <MDBCol md="12"><h6 className="fw-bold">Problem Statement</h6></MDBCol>
           </MDBRow>
           <MDBRow>
-            <MDBCol md="12"><p className="fw-medium">{idea?.problemStatement}</p></MDBCol>
+            <MDBCol md="12"><p className="fw-medium">{idea?.problemStatement.substring(0,50)}...</p></MDBCol>
           </MDBRow>
           <PanelistModal
             item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }}
           />
-          {/* <PanelistModal userObj = {teamObj}/> */}
         </MDBCardBody>
       </MDBCard>
     </div>
@@ -46,10 +45,12 @@ const Card = ({ teamObj }) => {
 };
 function Panelist() {
   const [team, setTeam] = useState([]);
+
+
   const [panelist, setPanelist] = useState(JSON.parse(localStorage.getItem("data")));
   useEffect(() => {
     setPanelist(JSON.parse(localStorage.getItem("data")));
-    // console.log(judgeData);
+
   }, [localStorage.getItem("data")])
 
 
@@ -57,9 +58,7 @@ function Panelist() {
   useEffect(() => {
     axios.get("/getTeam").then(
       (response) => {
-        // console.log(response.data);
         setTeam(response.data);
-        // console.log("this is team table" + team);
       },
       (error) => {
         console.log(error);
@@ -68,7 +67,8 @@ function Panelist() {
   }, [team]);
 
   const filtered = team.filter((value, index) => {
-    return value.status === "pending";
+    if(value.status === "pending" && (!value?.panelistId || value?.panelistId==panelist.id) )
+    return true;
   });
 
   return (

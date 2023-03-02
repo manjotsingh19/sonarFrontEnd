@@ -14,7 +14,6 @@ function ShowUsers() {
         axios.get('/getUsers')
             .then(response => {
                 setUser(response.data);
-                // console.log(user);
                 setDeleted(false);
             }, (error) => {
                 console.log(error);
@@ -25,7 +24,6 @@ function ShowUsers() {
         axios.get('/getTeam')
             .then(response => {
                 setTeam(response.data);
-                // console.log(team);
                 setDeleted(false);
             }, (error) => {
                 console.log(error);
@@ -78,7 +76,6 @@ function ShowUsers() {
                     <td>{team.teamId}</td>
                     <td>{team.teamName}</td>
                     <td>{team.status}</td>
-                    {/* <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td> */}
                 </tr>
             );
     });
@@ -94,7 +91,6 @@ function ShowUsers() {
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2 ">Panelist table</h4>
                         <MDBTable bordered borderColor="primary">
-                        {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
                                     <th>Email</th>
@@ -103,7 +99,6 @@ function ShowUsers() {
                                 </tr>
                             </thead>
                             <tbody>{panelistRows}</tbody>
-                        {/* </table> */}
                         </MDBTable>
 
 
@@ -116,7 +111,6 @@ function ShowUsers() {
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Judge table</h4>
                         <MDBTable bordered borderColor="primary">
-                        {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
                                     <th>Email</th>
@@ -125,7 +119,6 @@ function ShowUsers() {
                                 </tr>
                             </thead>
                             <tbody>{judgeRows}</tbody>
-                        {/* </table> */}
                         </MDBTable>
 
 
