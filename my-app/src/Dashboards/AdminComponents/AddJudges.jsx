@@ -27,8 +27,6 @@ function AddJudges() {
             else {
                 axios.post('/user', judges)
                     .then((response) => {
-                        // console.log("-----------------------------------", judges)
-                        // console.log(response);
                         if (parseInt(judges.role_id) === 2) {
                             Swal.fire(
                                 'Great',
@@ -47,7 +45,7 @@ function AddJudges() {
                         }
 
                     }, (error) => {
-                        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!', })
+                        Swal.fire({ icon: 'error', title: 'Oops...', text: 'User already exist!', })
                     });
             }
         }
@@ -83,7 +81,6 @@ function AddJudges() {
     const validate = (judges) => {
         const errorsObj = {};
         const regex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-        // const regexPh = /^[0-9]{10}$/;
         const regexPh = /^\d{10}$/i;
         if (!judges.name) {
             errorsObj.name = 'Name is required';
@@ -143,11 +140,6 @@ function AddJudges() {
                         </MDBRow>
 
                         <MDBRow className=' pb-md-2'>
-
-                            {/* <div onChange={(e) => handleRole(e)}  >
-                                <input type="select" value={2} defaultChecked name="role_id" /> Panelist
-                                <input type="select" value={3} name="role_id" style={{ marginLeft: "25px" }} /> Judge
-                            </div> */}
                             <div style={{ width: "20vw" }}>
                                 <select defaultValue={2} value={judges.role_id} onChange={(e) => {
                                     setJudges({
@@ -160,17 +152,6 @@ function AddJudges() {
 
                                 </select>
                             </div>
-
-                            {/* <MDBCol md="3" className="align-items-center pt-2 pb-3">
-                                <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "0px solid black", borderRadius: "10px", height: "37px", width: "135px", backgroundColor: "#3b71ca", color: "white", boxShadow: "0 4px 9px -4px #3b71ca", }}>
-                                    <option value="">Select Role</option>
-
-                                    <option value={value.teamForm.domain}>
-                                        {value.domainName}
-                                    </option>
-                                </select>
-                                <p style={myStyle}>{errors.domain}</p>
-                            </MDBCol> */}
 
                         </MDBRow>
                         <div className='col-12 '>

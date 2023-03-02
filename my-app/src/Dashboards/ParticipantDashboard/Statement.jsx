@@ -1,4 +1,4 @@
-import "react-datepicker/dist/react-datepicker.css";
+/* import "react-datepicker/dist/react-datepicker.css";
 import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
 
 const Card = ({ statement, description }) => {
@@ -24,7 +24,7 @@ function Statement() {
   ];
   return (
     <div className="cards">
-      {/* <h3 className="fw-bold mb-0 pb-0 pb-md-0 mb-md-4 ">Problem Statement</h3> */}
+    
       <MDBRow>
         {data.map((value, index) => (
           <MDBCol md="12" key={index}>
@@ -35,4 +35,4 @@ function Statement() {
     </div>
   );
 }
-export default Statement;
+export default Statement; */

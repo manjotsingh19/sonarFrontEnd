@@ -1,7 +1,6 @@
-//  import "react-datepicker/dist/react-datepicker.css";
+
 import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import JudgeModal from "./JudgeModal";
-// import "./.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +36,7 @@ const Card = ({ teamObj, refetch }) => {
       </MDBRow>
       <MDBRow>
         <MDBCol md="12">
-          <p className="fw-medium">{idea?.problemStatement}</p>
+          <p className="fw-medium">{idea?.problemStatement.substring(0,50)}...</p>
         </MDBCol>
       </MDBRow>
       <JudgeModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj }} refetch={ refetch} />
@@ -68,10 +67,6 @@ function Judge() {
     }
   }, [data])
   
-
-  // console.log(team);
-
-  ///////team.gitHubLink && team.idea.demo///
 
   //////////////////////////////////////
 

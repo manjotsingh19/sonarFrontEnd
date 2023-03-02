@@ -22,9 +22,7 @@
 }
 
 .team-iem:hover{
-	/* background: #5F9EA0; */
 	background: linear-gradient(135deg, #b987ff 0%, #ffb4b4 100%);
-	/* background: linear-gradient(135deg, #ff8000 0%, #ff6d6d 100%); */
 	color: white;
 }
 
@@ -61,11 +59,6 @@
 }
 
 .team-info::after {
-	
-    /* background: #008aff;
-    background: -webkit-linear-gradient(135deg, #6B02FF 0%, #985BEF 100%);
-    background: -o-linear-gradient(bottom right, #6B02FF, #985BEF);
-    background: -moz-linear-gradient(bottom right, #008aff, #1ad2fd); */
 	
     background: linear-gradient(135deg, #6B02FF 0%, #985BEF 100%);
     display: inline-block;

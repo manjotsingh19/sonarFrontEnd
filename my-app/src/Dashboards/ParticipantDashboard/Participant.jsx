@@ -13,7 +13,7 @@ function Participant() {
   const [data, setData] = useState(JSON.parse(localStorage.getItem("data")))
   const [fetchedData, setFetchedData] = useState({});
   const [status, setStatus] = useState("");
-  // console.log(data);
+
 
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function Participant() {
   }, [localStorage.getItem("data")])
 
   useEffect(() => {
-    // console.log(status)
+
     setStatus(fetchedData?.team?.status);
   }, [fetchedData])
 
@@ -56,22 +56,26 @@ function Participant() {
 
 
   const handleSubmit = () => {
+    if (!git?.gitHubLink) {
+      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Please enter GutHubLink!', });
+    }
+    else {
+      fetchedData.team.gitHubLink = git.gitHubLink;
+      // console.log(git);
+      axios.post('/changeGithub', fetchedData.team)
+        .then((response) => {
+          Swal.fire(
+            'Great',
+            'Your GitHub is submitted successfully!',
+            'success'
+          )
+          setGit({ ...git, gitHubLink: '' });
 
-    fetchedData.team.gitHubLink = git.gitHubLink;
-    // console.log(git);
-    axios.post('/changeGithub', fetchedData.team)
-      .then((response) => {
-        Swal.fire(
-          'Great',
-          'Your GitHub is submitted successfully!',
-          'success'
-        )
-        setGit({ ...git, gitHubLink: '' });
-
-      }, (error) => {
-        console.log(error);
-        Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!',})
-      });
+        }, (error) => {
+          console.log(error);
+          Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!', })
+        });
+    }
   };
 
 
@@ -84,10 +88,8 @@ function Participant() {
           <MDBContainer fluid>
             {/* team details*/}
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-              {/* <MDBBtn color="success">Accepted</MDBBtn> */}
 
               {/* ////////////////////////////file upload form////////// */}
-              {/* {console.log(data)} */}
 
               <MDBRow>
                 {!fetchedData?.team?.gitHubLink && (
@@ -107,11 +109,11 @@ function Participant() {
                 )};
               </MDBRow>
 
-                <MDBRow>
-                  {fetchedData?.team?.gitHubLink && fetchedData?.team?.idea?.demo &&(
-                     <h3 style={{ color: "green" }} class="text-center">Video and GitHub link uploaded successfully!</h3>
-                  ) }
-                </MDBRow>
+              <MDBRow>
+                {fetchedData?.team?.gitHubLink && fetchedData?.team?.idea?.demo && (
+                  <h3 style={{ color: "green" }} class="text-center">Video and GitHub link uploaded successfully!</h3>
+                )}
+              </MDBRow>
 
 
               {/* ////////////////////////////////////////////////////////////// */}

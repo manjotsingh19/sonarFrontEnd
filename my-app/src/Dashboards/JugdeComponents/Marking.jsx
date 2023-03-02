@@ -10,18 +10,6 @@ export default function Marking() {
   const [workflow, setWorkflow] = useState(0);
   const [total, setTotal] = useState(0);
 
-  /*const onSubmit = async () => {
-   const response =  await axios.post(
-        {
-            url: 'http://localhost:',
-            data: {
-                ui, ppt, workflow, total
-            }
-        }
-    )
-
-    return response;
-  };*/
 
   useEffect(() => {
     let data = parseInt(ui) + parseInt(ppt) + parseInt(workflow);

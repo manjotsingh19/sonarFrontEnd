@@ -21,7 +21,6 @@ function RegistrationForm() {
   useEffect(() => {
     axios.get("/getDomain").then(
       (response) => {
-        // console.log(response.data);
         setDomain(response.data);
       },
       (error) => {
@@ -34,7 +33,7 @@ function RegistrationForm() {
     setAddBtn(true);
   };
 
-  // for drop down meny only
+  // for drop down menu only
   const handleSelect = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -83,11 +82,9 @@ function RegistrationForm() {
 
   //////////////////connect to server/////////////////////////////////////
   useEffect(() => {
-    // console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
       axios.post("/registrationForm", teamForm).then(
         (response) => {
-          // console.log(response);
           Swal.fire("Great", "Registration Successful!", "success");
           navigate("/logIn");
         },
@@ -97,7 +94,6 @@ function RegistrationForm() {
             icon: "error",
             title: "Oops...",
             text: "Participant already exists"
-            // footer: '<a href="">Why do I have this issue?</a>'
           });
         }
       );
@@ -106,9 +102,7 @@ function RegistrationForm() {
 
   const validate = (teamForm) => {
     const errorsObj = {};
-    // const regex =  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/i;
     const regex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-    // const regexPh = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
     const regexPh = /^\d{10}$/i;
     if (!teamForm.team) {
       errorsObj.team = "Team Name is required";
@@ -526,21 +520,6 @@ function RegistrationForm() {
                 </MDBRow>
 
                 {/* ////////////////////////////////domains/////////////////////////////////////// */}
-
-                {/* <MDBRow className="align-items-center pt-2 pb-3">
-                  <MDBCol md="3" className="ps-5">
-                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "1px solid black", borderRadius: "10px", }}>
-                      <option value="">Select Domain</option>
-
-                      {domain.map((value, index) => (
-                        <option value={value.domainId}>
-                          {value.domainName}
-                        </option>
-                      ))}
-                    </select>
-                    <p style={myStyle}>{errors.domain}</p>
-                  </MDBCol>
-                </MDBRow> */}
 
                 <MDBRow className="align-items-center pt-2 pb-3">
                   <MDBCol md="3" className="ps-5">

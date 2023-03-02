@@ -1,24 +1,21 @@
-import {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-function Protected(props){
-
-    const {Component} = props;
+function Protected(props) {
+    const { Component } = props;
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        if(!window.login){
+    useEffect(() => {
+        if (!window.login) {
             navigate('/login')
         }
     });
-
-    return(
+    return (
         <div>
             <Component />
         </div>
     )
-
 }
 
 export default Protected;

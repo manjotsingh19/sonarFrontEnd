@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MDBBtn, MDBModal, MDBCol,MDBRow,MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBModalFooter, MDBRange } from "mdb-react-ui-kit";
+import { MDBBtn, MDBModal, MDBCol, MDBRow, MDBModalDialog, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalBody, MDBModalFooter, MDBRange } from "mdb-react-ui-kit";
 import Marking from "./Marking";
 import VideoPlayer from "./VideoPlayer";
 import axios from "axios";
@@ -20,11 +20,10 @@ export default function JudgeModal({ item, refetch }) {
 
   const [judgeData, setJudgeData] = useState(JSON.parse(localStorage.getItem("data")))
 
-  // console.log(teamObj);
 
 
   useEffect(() => {
-    
+
     setJudgeData(JSON.parse(localStorage.getItem("data")));
   }, [localStorage.getItem("data")])
 
@@ -34,34 +33,31 @@ export default function JudgeModal({ item, refetch }) {
 
   const toggleShow = () => setBasicModal(!basicModal);
 
-  // console.log(teamObj);
 
   const handleSubmit = (e) => {
     teamObj.marks = parseInt(e.target.value);
     teamObj.judgeList = item.teamObj.judgeList + judgeData?.id + ",";
-    // console.log(teamObj);
+
     setBasicModal(!basicModal);
 
     axios.post("/marksChange", teamObj)
       .then((response) => {
-        // alert("marks added successfully");
+
         Swal.fire("Great", "Response Added Successfully!");
         refetch()
       }, (error) => {
         console.log(error);
         Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong!" });
       });
-    // refreshPage();
+
   }
 
 
-  // console.log(teamObj);
-
   useEffect(() => {
-        let data = parseInt(ui) + parseInt(ppt) + parseInt(workflow);
-        setTotal(data);
-    
-      }, [ui, ppt, workflow]);
+    let data = parseInt(ui) + parseInt(ppt) + parseInt(workflow);
+    setTotal(data);
+
+  }, [ui, ppt, workflow]);
 
   return (
     <>
@@ -71,7 +67,7 @@ export default function JudgeModal({ item, refetch }) {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          //   backgroundColor: "rgba(255, 255, 255, 0.5)",
+
         }}
       >
         <MDBBtn onClick={toggleShow}>Review</MDBBtn>
@@ -115,7 +111,7 @@ export default function JudgeModal({ item, refetch }) {
               <MDBCol>
                 <div>
                   {/* {console.log(teamObj.idea.demo)} */}
-                  <video width="100%" height="100%" controls>
+                  <video width="100%" height="50%" controls>
                     <source src={teamObj.idea.demo} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -126,18 +122,17 @@ export default function JudgeModal({ item, refetch }) {
                 <div style={{ padding: "10px", }}>
                   <MDBRange defaultValue={ui} onChange={(e) => { setUi(e.target.value); }} min="0" max="10" step="1" id="customRange3" label={`User Interface - ${ui}`} />
                   <MDBRange
-                    defaultValue={ppt} onChange={(e) => { setPpt(e.target.value); }} min="0" max="10" step="1" id="customRange3" label={`Presentation - ${ppt}`}
+                    defaultValue={ppt} onChange={(e) => { setPpt(e.target.value); }} min="0" max="10" step="1" id="customRange3" label={`Quality of code - ${ppt}`}
                   />
                   <MDBRange defaultValue={workflow} onChange={(e) => { setWorkflow(e.target.value); }} min="0" max="10" step="1" id="customRange3" label={`Workflow - ${workflow}`} />
                   Total - {total}
                 </div>
                 <MDBModalFooter>
-              <MDBBtn color="success" value={total} onClick={(e) => handleSubmit(e)}>Save</MDBBtn>
-            </MDBModalFooter>
+                  <MDBBtn color="success" value={total} onClick={(e) => handleSubmit(e)}>Save</MDBBtn>
+                </MDBModalFooter>
               </MDBCol>
             </MDBRow>
             <MDBModalFooter>
-              {/* <MDBBtn color="success" value={total} onClick={(e) => handleSubmit(e)}>Save</MDBBtn> */}
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>

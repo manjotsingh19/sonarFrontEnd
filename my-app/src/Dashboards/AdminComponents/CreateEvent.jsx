@@ -19,9 +19,7 @@ function CreateEvent() {
     /////////////////////////////Connect to server/////////////////////////////////////////////
 
     useEffect(() => {
-        // console.log(errors);
         if (Object.keys(errors).length === 0 && submitted) {
-            // console.log(event);
             axios.post('/event', event)
                 .then((response) => {
                     Swal.fire(
@@ -36,7 +34,6 @@ function CreateEvent() {
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Something went wrong!',
-                        // footer: '<a href="">Why do I have this issue?</a>'
                     })
                 });
 

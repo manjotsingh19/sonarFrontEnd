@@ -23,6 +23,13 @@ export default function PanelistModal({ item }) {
   };
 
 
+  const [data, setData] = useState(JSON.parse(localStorage.getItem("data")));
+  useEffect(() => {
+    setData(JSON.parse(localStorage.getItem("data")));
+    // console.log(data);
+  }, [localStorage.getItem("data")])
+
+
   /////////////////////////////////////////comment boxx///////////////////////////////////////////////////////
 
   const [showCommentBox, setShowCommentBox] = useState(false);
@@ -52,13 +59,13 @@ export default function PanelistModal({ item }) {
     else{
     teamObj.newComment = commentText;
     teamObj.status = "reverted";
+    teamObj.panelistId = data.id;
     // console.log(teamObj);
 
     setBasicModal(!basicModal);
 
     axios.post("/statusChange", teamObj)
       .then((response) => {
-        // alert(teamObj.status);
         Swal.fire(`Participant ${teamObj.status}`);
 
       }, (error) => {
@@ -72,7 +79,6 @@ export default function PanelistModal({ item }) {
     setCommentText('');
     setShowCommentBox(false);
     }
-    // refreshPage();
   };
 
 
@@ -83,10 +89,9 @@ export default function PanelistModal({ item }) {
 
   const handleSubmit = (e) => {
     teamObj.status = e.target.value;
-    // console.log(teamObj);
+    teamObj.panelistId = data.id;
 
     setBasicModal(!basicModal);
-    // setObj(teamObj)
     axios.post("/statusChange", teamObj)
       .then((response) => {
         Swal.fire(`Participant ${teamObj.status}`);
@@ -107,7 +112,6 @@ export default function PanelistModal({ item }) {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          //   backgroundColor: "rgba(255, 255, 255, 0.5)",
         }}
       >
         <MDBBtn onClick={toggleShow}>Review</MDBBtn>

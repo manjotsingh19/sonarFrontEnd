@@ -1,4 +1,4 @@
-import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 function ChangePassword() {
-  const [isSubmit,setSubmit] = useState(false);
+  const [isSubmit, setSubmit] = useState(false);
   const navigate = useNavigate();
   const [errors, serErrors] = useState({});
   const [selectedOption, setSelectedOption] = useState("");
@@ -21,9 +21,9 @@ function ChangePassword() {
     color: 'red'
   }
 
-  
-  const[teamForm, setTeamForm] = useState({
-    email:'',
+
+  const [teamForm, setTeamForm] = useState({
+    email: '',
     oldPassword: '',
     newPassword: '',
     confirmPassword: '',
@@ -43,16 +43,6 @@ function ChangePassword() {
     e.preventDefault();
     serErrors(validate(teamForm));
     setSubmit(true);
-    // console.log(JSON.stringify(teamForm));
-    // axios.post('http://localhost:8080/ChangePassword/', teamForm)
-    //     .then((response) => {
-    //       console.log(response);
-    //       alert("Password updated successfully")
-    //       navigate("/logIn")
-    //     }, (error) => {
-    //       console.log(error);
-    //       alert("Username or password is incorrect");
-    //     });
   }
 
   useEffect(() => {
@@ -60,12 +50,14 @@ function ChangePassword() {
     if (Object.keys(errors).length === 0 && isSubmit) {
       console.log(teamForm);
 
-      axios.post('http://localhost:3000/ChangePassword', teamForm)
+      axios.post('/ChangePassword', teamForm)
         .then((response) => {
           console.log(response);
-          Swal.fire("Great", 
-          "Password Updated Successfully!", 
-          "success");
+          Swal.fire("Great",
+            "Password Updated Successfully!",
+            "success");
+          window.status = 'Login';
+          window.login = false;
           navigate("/logIn")
 
         }, (error) => {
@@ -96,7 +88,7 @@ function ChangePassword() {
     else if (teamForm.newPassword.length < 8) {
       errorsObj.newPassword = 'Minimum password length is 8';
     }
-    else if(teamForm.oldPassword == teamForm.newPassword){
+    else if (teamForm.oldPassword == teamForm.newPassword) {
       errorsObj.newPassword = 'Cannot be same as old password';
     }
     else if (!teamForm.confirmPassword) {
@@ -111,39 +103,32 @@ function ChangePassword() {
 
   return (
     <>
-    <Navbar />
-    <MDBContainer fluid className="p-3 my-5 h-custom">
-      
-
-      <MDBRow>
-
-        <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
-        </MDBCol>
-
-        <MDBCol col='4' md='6'>
+      <Navbar />
+      <MDBContainer fluid className="p-3 my-5 h-custom">
 
 
-          <MDBInput id="email" value={teamForm.email} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='Email address'  type='email' size="lg"/>
-          <p style={myStyle}>{errors.email}</p>
-          <MDBInput id="oldPassword" value={teamForm.oldPassword} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='Old Password' type='password' size="lg"/>
-          <p style={myStyle}>{errors.oldPassword}</p>
-          <MDBInput id="newPassword" value={teamForm.newPassword} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='New Password' type='password' size="lg"/>
-          <p style={myStyle}>{errors.newPassword}</p>
-          <MDBInput id="confirmPassword" value={teamForm.confirmPassword} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='Confirm New Password' type='password' size="lg"/>
-          <p style={myStyle}>{errors.confirmPassword}</p>
+        <MDBRow>
 
-          <div className='col-12'>
-                  <MDBBtn onClick={handleclick} type='submit' className='bg-primary shadow-1-strong'> Change Password </MDBBtn>
-          </div>
+          <MDBCol col='10' md='6'>
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
+          </MDBCol>
 
+          <MDBCol col='4' md='6'>
+            <MDBInput id="email" value={teamForm.email} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='Email address' type='email' size="lg" />
+            <p style={myStyle}>{errors.email}</p>
+            <MDBInput id="oldPassword" value={teamForm.oldPassword} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='Old Password' type='password' size="lg" />
+            <p style={myStyle}>{errors.oldPassword}</p>
+            <MDBInput id="newPassword" value={teamForm.newPassword} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='New Password' type='password' size="lg" />
+            <p style={myStyle}>{errors.newPassword}</p>
+            <MDBInput id="confirmPassword" value={teamForm.confirmPassword} onChange={(e) => handleInput(e)} wrapperClass='mb-4' label='Confirm New Password' type='password' size="lg" />
+            <p style={myStyle}>{errors.confirmPassword}</p>
 
-        </MDBCol>
-
-      </MDBRow>
-
-
-    </MDBContainer>
+            <div className='col-12'>
+              <MDBBtn onClick={handleclick} type='submit' className='bg-primary shadow-1-strong'> Change Password </MDBBtn>
+            </div>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     </>
   );
 }
