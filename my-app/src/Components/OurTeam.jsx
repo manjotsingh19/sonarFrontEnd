@@ -20,7 +20,7 @@ const Card = ({
 }) => {
   return (
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <div class="team-item">
+      <div class="team-item" style={{}}>
         <div
           style={{
             display: "flex",
@@ -58,7 +58,7 @@ const Card = ({
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
@@ -146,7 +146,7 @@ function OurTeam() {
       <div class="container">
         <div class="col-md-12 text-center">
           <h1 class="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Meet Our Team</h1>
-          <h3 class="section-subtitle">{message}</h3>
+          <h4 class="section-subtitle">{message}</h4>
         </div>
 
         <div class="row">

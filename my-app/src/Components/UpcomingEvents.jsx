@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 import Slider from "react-slick";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import axios from "axios";
 
 
