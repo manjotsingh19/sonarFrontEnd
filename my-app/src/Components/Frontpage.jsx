@@ -18,7 +18,10 @@ function Frontpage() {
       <Navbar />
       <Hero />
       <UpcomingEvents />
+
+      {/* ///////////   winners   ////////////// */}
       <Cards />
+      {/* ///////////////////////////////////////////// */}
       <OurTeam />
       <Footer />
     </div>

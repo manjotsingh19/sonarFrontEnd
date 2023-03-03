@@ -1,4 +1,4 @@
-import { MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
+import { MDBCardBody, MDBCol, MDBSpinner, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -15,18 +15,21 @@ function AddJudges() {
 
     const [errors, serErrors] = useState({});
     const [submitted, setSubmited] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
 
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitted) {
+            setIsLoading(true);
             if (!judges.role_id) {
                 Swal.fire({ icon: 'error', title: 'Oops...', text: 'Compulsory field!' })
             }
             else {
                 axios.post('/user', judges)
                     .then((response) => {
+                        setIsLoading(false);
                         if (parseInt(judges.role_id) === 2) {
                             Swal.fire(
                                 'Great',
@@ -159,7 +162,14 @@ function AddJudges() {
                         </div>
 
                     </MDBCardBody>
+
+
                 </MDBCard>
+                {isLoading && (
+                    <MDBSpinner color='dark' style={{ marginTop: "5px" }} className="justify-content-center">
+                        <span className='visually-hidden'>Loading...</span>
+                    </MDBSpinner>
+                )}
 
             </MDBRow>
 

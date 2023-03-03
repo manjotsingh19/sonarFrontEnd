@@ -20,7 +20,7 @@ const Card = ({
 }) => {
   return (
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <div class="team-item">
+      <div class="team-item" style={{}}>
         <div
           style={{
             display: "flex",
@@ -58,7 +58,7 @@ const Card = ({
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

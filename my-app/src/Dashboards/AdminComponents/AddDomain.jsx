@@ -1,6 +1,4 @@
-import { validation, MDBListGroup, MDBListGroupItem, MDBTextArea, MDBValidationItem, inputGroup, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBDropdown, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBRadio, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { MDBSpinner,MDBListGroup, MDBListGroupItem, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
@@ -11,24 +9,26 @@ function AddDomain() {
     const [domains, setDomains] = useState({
         domainName: '',
     })
-    const [domainData,setDomainData] = useState([]);
+    const [domainData, setDomainData] = useState([]);
+
 
 
 
     /////////////////////////////Connect to server/////////////////////////////////////////////
     const [submitted, setSubmited] = useState(false);
 
-    const[load,setLoad] = useState(false);
+    const [load, setLoad] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitted) {
-            // console.log(domains);
+            setIsLoading(true);
             axios.post('/domain', domains)
                 .then((response) => {
-                    // console.log(response);
+                    setIsLoading(false);
                     setLoad(false);
-                    setDomains({...domains,domainName:''});
+                    setDomains({ ...domains, domainName: '' });
                     setDomainData([...domainData, domains.domainName]);
                     Swal.fire("Great", "Domain added successfully!", "success");
                 }, (error) => {
@@ -38,17 +38,17 @@ function AddDomain() {
                         title: "Oops...",
                         text: "Domain already exists"
                     });
-                    setDomains({...domains,domainName:''});
+                    setDomains({ ...domains, domainName: '' });
                 });
         }
-        else{
+        else {
             setSubmited(false);
         }
-    }, [errors,submitted]);
+    }, [errors, submitted]);
 
 
     ///////////////////////////////////show domain data///////////////////////////////////////
-   
+
 
     useEffect(() => {
         axios.get('/getDomain')
@@ -56,18 +56,18 @@ function AddDomain() {
                 // console.log( response.data);
                 setDomainData(response.data);
                 // console.log("this is domain data"+domainData ) ;
-                
+
             }, (error) => {
                 console.log(error);
-                
+
             });
 
     }, [load]);
 
-    
+
     const dropdownData = domainData.map((info) => {
         return (
-            <MDBListGroupItem>{info.domainName}</MDBListGroupItem>   
+            <MDBListGroupItem>{info.domainName}</MDBListGroupItem>
         )
     });
 
@@ -127,6 +127,11 @@ function AddDomain() {
 
                     </MDBCardBody>
                 </MDBCard>
+                {isLoading && (
+                    <MDBSpinner color='dark' style={{ marginTop: "5px" }} className="justify-content-center">
+                        <span className='visually-hidden'>Loading...</span>
+                    </MDBSpinner>
+                )}
 
             </MDBRow></>
     )
