@@ -8,6 +8,7 @@ import Header_ from "./Header_";
 import OurTeam from "./OurTeam";
 import "./OurTeam.css";
 import UpcomingEvents from "./UpcomingEvents";
+import Events from "./Events";
 
 function Frontpage() {
   const styles = {
@@ -17,11 +18,12 @@ function Frontpage() {
     <div style={styles}>
       <Navbar />
       <Hero />
+      <Events />
       <UpcomingEvents />
 
       {/* ///////////   winners   ////////////// */}
       <Cards />
-      {/* ///////////////////////////////////////////// */}
+      {/* ////////////////////////////////////// */}
       <OurTeam />
       <Footer />
     </div>
