@@ -12,6 +12,7 @@ import Judge from "./Dashboards/JugdeComponents/Judge";
 import ChangePassword from './Components/ChangePassword';
 import Protected from './Components/Protected';
 import ShowUsers from "./Dashboards/AdminComponents/ShowUsers";
+import UpdateEvent from "./Dashboards/AdminComponents/UpdateEvent";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/judge" element={<Protected Component={Judge} />} />
           <Route path="/ChangePassword" element={<ChangePassword />} />
           <Route path="/showUsers" element={<Protected Component={ShowUsers} />} />
+          <Route path="/updateEvent" element={<Protected Component={UpdateEvent} />} />
         </Routes>
       </BrowserRouter>
 

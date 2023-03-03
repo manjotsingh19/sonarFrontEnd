@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar2 from '../../Components/Navbar2';
 import { Popconfirm } from 'antd';
+import { style } from '@mui/system';
 
 function ShowUsers() {
 
@@ -56,12 +57,15 @@ function ShowUsers() {
                     <td>{info.email}</td>
                     <td>{info.name}</td>
                     <td>
-                        <Popconfirm title="Delete"
-                            description="Are you sure you want to delete the panelist?"
-                            okText="Confirm" cancelText="Cancel" onConfirm={(e) => handleDelete(info.id)}>
-                            <MDBBtn className='me-1' color='danger' >Delete</MDBBtn>
-                        </Popconfirm>
+                            <Popconfirm title="Delete"
+                                description="Are you sure you want to delete the Panelist?"
+
+                                okText="Confirm" cancelText="Cancel" onConfirm={(e) => handleDelete(info.id)} >
+                                <MDBBtn className='me-1' color='danger' >Delete</MDBBtn>
+                            </Popconfirm>
                     </td>
+
+                    {/* <td><MDBBtn onClick={(e) => handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td> */}
                 </tr>
             );
         }
@@ -73,12 +77,15 @@ function ShowUsers() {
                     <td>{info.email}</td>
                     <td>{info.name}</td>
                     <td>
-                        <Popconfirm title="Delete"
-                            description="Are you sure you want to delete the panelist?"
-                            okText="Confirm" cancelText="Cancel" onConfirm={(e) => handleDelete(info.id)}>
-                            <MDBBtn className='me-1' color='danger' >Delete</MDBBtn>
-                        </Popconfirm>
+                            <Popconfirm title="Delete"
+                                description="Are you sure you want to delete the Judge?"
+
+                                okText="Confirm" cancelText="Cancel" onConfirm={(e) => handleDelete(info.id)} >
+                                <MDBBtn className='me-1' color='danger' >Delete</MDBBtn>
+                            </Popconfirm>
                     </td>
+                    
+                    {/* <td><MDBBtn onClick={(e) => handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td> */}
                 </tr>
             );
         }

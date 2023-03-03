@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBTextArea, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from "mdb-react-ui-kit";
+import {MDBSpinner, MDBTextArea, MDBValidation, MDBContainer, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from "mdb-react-ui-kit";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ function RegistrationForm() {
   });
 
   const [domain, setDomain] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     axios.get("/getDomain").then(
@@ -83,20 +84,19 @@ function RegistrationForm() {
   //////////////////connect to server/////////////////////////////////////
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmit) {
-      axios.post("/registrationForm", teamForm).then(
-        (response) => {
+      setIsLoading(true);
+      axios.post("/registrationForm", teamForm)
+        .then((response) => {
+          setIsLoading(false);
           Swal.fire("Great", "Registration Successful!", "success");
           navigate("/logIn");
         },
-        (error) => {
-          console.log(error);
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Participant already exists"
-          });
-        }
-      );
+          (error) => {
+            setIsLoading(false);
+            console.log(error);
+            Swal.fire({ icon: "error", title: "Oops...", text: "Participant already exists" });
+          }
+        );
     }
   }, [errors]);
 
@@ -254,17 +254,7 @@ function RegistrationForm() {
                     </h6>
                   </MDBCol>
                   <MDBCol md="6">
-                    <MDBInput
-                      id="team"
-                      value={teamForm.team}
-                      onChange={(e) => handleInput(e)}
-                      wrapperClass="mb-0"
-                      required
-                      className="col-md-4"
-                      label=<span style={italicText}>Team Name</span>
-                      size="md"
-                      type="text"
-                    />
+                    <MDBInput id="team" value={teamForm.team} onChange={(e) => handleInput(e)} wrapperClass="mb-0" required className="col-md-4" label=<span style={italicText}>Team Name</span> size="md" type="text" />
                     <p style={myStyle}>{errors.team}</p>
                   </MDBCol>
                 </MDBRow>
@@ -277,45 +267,17 @@ function RegistrationForm() {
                   </MDBCol>
 
                   <MDBCol md="3">
-                    <MDBInput
-                      id="n1"
-                      value={teamForm.n1}
-                      onChange={(e) => handleInput(e)}
-                      wrapperClass="mb-2"
-                      required
-                      className="col-md-4"
-                      label=<span style={italicText}>Name</span>
-                      size="md"
-                      type="text"
-                    />
+                    <MDBInput id="n1"  value={teamForm.n1} onChange={(e) => handleInput(e)} wrapperClass="mb-2" required className="col-md-4" label=<span style={italicText}>Name</span> size="md" type="text"  />
                     <p style={myStyle}>{errors.n1}</p>
                   </MDBCol>
 
                   <MDBCol md="3">
-                    <MDBInput
-                      id="e1"
-                      value={teamForm.e1}
-                      onChange={(e) => handleInput(e)}
-                      wrapperClass="mb-2"
-                      label=<span style={italicText}>Email</span>
-                      size="md"
-                      type="email"
-                      required
-                      className="col-md-4"
-                    />
+                    <MDBInput id="e1" value={teamForm.e1}  onChange={(e) => handleInput(e)}  wrapperClass="mb-2" label=<span style={italicText}>Email</span>  size="md"  type="email"  required  className="col-md-4" />
                     <p style={myStyle}>{errors.e1}</p>
                   </MDBCol>
 
                   <MDBCol md="3">
-                    <MDBInput
-                      id="ph1"
-                      value={teamForm.ph1}
-                      onChange={(e) => handleInput(e)}
-                      label=<span style={italicText}>Phone Number</span>
-                      type="phone"
-                      required
-                      className="col-md-4"
-                    />
+                    <MDBInput id="ph1"  value={teamForm.ph1}  onChange={(e) => handleInput(e)}  label=<span style={italicText}>Phone Number</span>  type="phone"  required  className="col-md-4"  />
                     <p style={myStyle}>{errors.ph1}</p>
                   </MDBCol>
                 </MDBRow>
@@ -328,45 +290,17 @@ function RegistrationForm() {
                   </MDBCol>
 
                   <MDBCol md="3">
-                    <MDBInput
-                      id="n2"
-                      value={teamForm.n2}
-                      onChange={(e) => handleInput(e)}
-                      wrapperClass="mb-2"
-                      required
-                      className="col-md-4"
-                      label=<span style={italicText}>Name</span>
-                      size="md"
-                      type="text"
-                    />
+                    <MDBInput id="n2" value={teamForm.n2} onChange={(e) => handleInput(e)} wrapperClass="mb-2" required className="col-md-4" label=<span style={italicText}>Name</span> size="md" type="text" />
                     <p style={myStyle}>{errors.n2}</p>
                   </MDBCol>
 
                   <MDBCol md="3">
-                    <MDBInput
-                      id="e2"
-                      value={teamForm.e2}
-                      onChange={(e) => handleInput(e)}
-                      wrapperClass="mb-2"
-                      label=<span style={italicText}>Email</span>
-                      size="md"
-                      type="email"
-                      required
-                      className="col-md-4"
-                    />
+                    <MDBInput id="e2"  value={teamForm.e2}  onChange={(e) => handleInput(e)}  wrapperClass="mb-2"  label=<span style={italicText}>Email</span>  size="md"  type="email"  required  className="col-md-4" />
                     <p style={myStyle}>{errors.e2}</p>
                   </MDBCol>
 
                   <MDBCol md="3">
-                    <MDBInput
-                      id="ph2"
-                      value={teamForm.ph2}
-                      onChange={(e) => handleInput(e)}
-                      label=<span style={italicText}>Phone Number</span>
-                      type="phone"
-                      required
-                      className="col-md-4"
-                    />
+                    <MDBInput id="ph2" value={teamForm.ph2} onChange={(e) => handleInput(e)} label=<span style={italicText}>Phone Number</span> type="phone" required className="col-md-4" />
                     <p style={myStyle}>{errors.ph2}</p>
                   </MDBCol>
                 </MDBRow>
@@ -430,6 +364,9 @@ function RegistrationForm() {
                   </div>
                 )}
 
+
+                {/* ///////////////////////add more /////////////////////////////////// */}
+
                 {addBtn && (
                   <MDBRow className="align-items-center pt-0 pb-5">
                     <MDBCol md="3" className="ps-5">
@@ -474,6 +411,7 @@ function RegistrationForm() {
                   </MDBRow>
                 )}
 
+{/* //////////////////////////////////////////////////////////////////////////////////////// */}
                 {/* /////////////////////////Password/////////////////////////////////// */}
 
                 <MDBRow className="align-items-center pt-0 ">
@@ -572,7 +510,13 @@ function RegistrationForm() {
 
                 <div className="col-12">
                   <MDBBtn onClick={handleclick}>Submit Form</MDBBtn>
+                  {isLoading && (
+                    <MDBSpinner color='dark' style={{ marginTop: "5px", marginLeft:"40%" }} className="justify-content-center">
+                        <span className='visually-hidden'>Loading...</span>
+                    </MDBSpinner>
+                )}
                 </div>
+                
               </MDBCardBody>
             </MDBCard>
           </MDBRow>

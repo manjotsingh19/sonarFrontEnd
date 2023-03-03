@@ -30,8 +30,12 @@ function LoginPage() {
   const handleclick = (e) => {
     e.preventDefault();
     setSubmit(true);
-    axios.post("/login", teamForm).then(
-      (response) => {
+    if (!teamForm?.email || !teamForm.password) {
+      Swal.fire({ icon: "error", title: "Oops...", text: "Username or password is empty!", });
+    }
+    else {
+      axios.post("/login", teamForm).then(
+        (response) => {
 
         // //////////////send response to dashboard
         window.login = true;
@@ -47,18 +51,15 @@ function LoginPage() {
           navigate("/AdminDashboard");
         }
 
-        ///////////////////////////
-      },
-      (error) => {
-        console.log(error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Invalid username or password!",
-        });
-        setTeamForm({ ...teamForm, email: '', password: '' });
-      }
-    );
+          ///////////////////////////
+        },
+        (error) => {
+          console.log(error);
+          Swal.fire({ icon: "error", title: "Oops...", text: "Invalid username or password!", });
+          setTeamForm({ ...teamForm, email: '', password: '' });
+        }
+      );
+    }
   };
 
   return (
@@ -76,24 +77,8 @@ function LoginPage() {
           </MDBCol>
 
           <MDBCol col="4" md="6">
-            <MDBInput
-              id="email"
-              value={teamForm.email}
-              onChange={(e) => handleInput(e)}
-              wrapperClass="mb-4"
-              label=<span style={italicText}>Email Address</span>
-              type="email"
-              size="lg"
-            />
-            <MDBInput
-              id="password"
-              value={teamForm.password}
-              onChange={(e) => handleInput(e)}
-              wrapperClass="mb-4"
-              label=<span style={italicText}>Password</span>
-              type="password"
-              size="lg"
-            />
+            <MDBInput id="email" value={teamForm.email} onChange={(e) => handleInput(e)} wrapperClass="mb-4" label=<span style={italicText}>Email Address</span> type="email" size="lg" />
+            <MDBInput id="password" value={teamForm.password} onChange={(e) => handleInput(e)} wrapperClass="mb-4" label=<span style={italicText}>Password</span> type="password" size="lg" />
 
             <p className="small fw-bold mt-2 pt-1 mb-2">
               Don't have an account?{" "}
