@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import bgFront from './images/bgFront.jpeg';
+import frontBg from './images/gif04.gif';
 
 const Hero = () => {
   return (
     <div className="text-black" style={{
+      // backgroundImage: `url(${frontBg})`,
       backgroundImage: `url(${bgFront})`,
       backgroundSize: "cover",
     }}>
       <div style={{ margin: '-105px 0px 20px' }} className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
 
-        <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6">Hackcedo
+        <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6" style={{ margin: '150px 0 0 0' }}>Hackcedo
           <div className='text-[#ee4714] md:text-7xl sm:text-6xl text-4xl font-bold md:py-6'>2023</div>
         </h1>
 

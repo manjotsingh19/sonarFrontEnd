@@ -56,14 +56,14 @@
 }
 
 
-/* .team-info p {
+.team-info p {
 	color: #b9b9b9;
 	font-style: italic;
 }
 
 .team-info:hover p {
 	color: #ffffff;
-} */
+}
 
 .team-info::after {
 
@@ -136,7 +136,7 @@
 
 
 .team-icon div a:hover {
-	color: #dedede;
+	color: #eaeaea;
 	-webkit-transition: all 0.25s ease-in-out;
 	-moz-transition: all 0.25s ease-in-out;
 	-ms-transition: all 0.25s ease-in-out;
