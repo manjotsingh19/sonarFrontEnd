@@ -1,7 +1,11 @@
-import { MDBSpinner,MDBListGroup, MDBListGroupItem, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
+import { MDBSpinner, MDBListGroup, MDBListGroupItem, MDBCardBody, MDBCol, MDBRow, MDBCard, MDBBtn, MDBInput } from 'mdb-react-ui-kit';
+import { MDBIcon } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
+import { FaTrash } from 'react-icons/fa';
+import { Popconfirm } from 'antd';
+
 
 
 function AddDomain() {
@@ -10,6 +14,7 @@ function AddDomain() {
         domainName: '',
     })
     const [domainData, setDomainData] = useState([]);
+    const [deleted, setDeleted] = useState(false);
 
 
 
@@ -31,13 +36,10 @@ function AddDomain() {
                     setDomains({ ...domains, domainName: '' });
                     setDomainData([...domainData, domains.domainName]);
                     Swal.fire("Great", "Domain added successfully!", "success");
+                   
                 }, (error) => {
                     console.log(error);
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Domain already exists"
-                    });
+                    Swal.fire({ icon: "error", title: "Oops...", text: "Domain already exists" });
                     setDomains({ ...domains, domainName: '' });
                 });
         }
@@ -55,23 +57,63 @@ function AddDomain() {
             .then(response => {
                 // console.log( response.data);
                 setDomainData(response.data);
-                // console.log("this is domain data"+domainData ) ;
-
+                setDeleted(false);
             }, (error) => {
                 console.log(error);
 
             });
 
-    }, [load]);
+    }, [load,deleted]);
 
 
     const dropdownData = domainData.map((info) => {
         return (
-            <MDBListGroupItem>{info.domainName}</MDBListGroupItem>
+            <>
+                <MDBRow>
+                    <MDBCol md='8' >
+                        <MDBListGroupItem>{info.domainName}</MDBListGroupItem>
+                    </MDBCol>
+
+                    <MDBCol md='4' >
+
+                            <Popconfirm title="Delete"
+                                description="Are you sure you want to delete the domain?"
+
+                                okText="Confirm" cancelText="Cancel"  onConfirm={(e)=>handleDelete(info.domainId)}>
+                                <MDBBtn className='m-1' style={{ backgroundColor: '#ed302f' }}> <FaTrash /></MDBBtn>
+                            </Popconfirm>
+
+                        {/* <MDBBtn className='m-1' style={{ backgroundColor: '#ed302f' }} onClick={(e)=>handleDelete(info.domainId)}>
+                            <FaTrash />
+                        </MDBBtn> */}
+
+                    </MDBCol>
+
+                </MDBRow>
+            </>
         )
     });
 
     ////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////// delete domain ///////////////////////////////////////////////////////
+
+   
+    const handleDelete = (domainId) => {
+
+        axios.delete(`/deleteDomain/${domainId}`)
+        .then((response) => {
+            // console.log(response);
+            Swal.fire("Great", "Domain deleted successfully!", "success");
+            setDeleted(true);
+
+        }, (error) => {
+            Swal.fire({ icon: "error", title: "Oops...", text: "Domain in use" });
+            console.log(error);
+        });
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
     const handleAdd = (e) => {
@@ -113,7 +155,7 @@ function AddDomain() {
                             </MDBCol>
 
                             {/* sbow doamin list */}
-                            <MDBCol md='4' >
+                            <MDBCol md='5' >
                                 <MDBListGroup style={{ overflow: "hidden", overflowY: "scroll", maxHeight: "200px", minWidth: '22rem' }}>
                                     {dropdownData}
                                 </MDBListGroup>
