@@ -24,6 +24,7 @@ function Events() {
             marginLeft: "100px"
         }}>
             <h3>Hackathons</h3>
+
             <MDBTabs className='mb-3'>
                 <MDBTabsItem>
                     <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
