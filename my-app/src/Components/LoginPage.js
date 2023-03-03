@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {MDBContainer,MDBCol,MDBRow,MDBBtn,MDBIcon,MDBInput,MDBCheckbox,} from "mdb-react-ui-kit";
+import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox, } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import Admin from "../Dashboards/AdminComponents/Admin";
 import axios from "axios";
@@ -32,34 +32,35 @@ function LoginPage() {
     window.login = true;
     window.status = "Logout";
     setSubmit(true);
-    axios.post("/login", teamForm).then(
-      (response) => {
+    if (!teamForm?.email || !teamForm.password) {
+      Swal.fire({ icon: "error", title: "Oops...", text: "Username or password is empty!", });
+    }
+    else {
+      axios.post("/login", teamForm).then(
+        (response) => {
 
-        // //////////////send response to dashboard
+          // //////////////send response to dashboard
 
-        localStorage.setItem("data", JSON.stringify(response.data));
-        if (response.data.role_id === 4) {
-          navigate("/participant");
-        } else if (response.data.role_id === 3) {
-          navigate("/judge");
-        } else if (response.data.role_id === 2) {
-          navigate("/panelist");
-        } else if (response.data.role_id === 1) {
-          navigate("/AdminDashboard");
+          localStorage.setItem("data", JSON.stringify(response.data));
+          if (response.data.role_id === 4) {
+            navigate("/participant");
+          } else if (response.data.role_id === 3) {
+            navigate("/judge");
+          } else if (response.data.role_id === 2) {
+            navigate("/panelist");
+          } else if (response.data.role_id === 1) {
+            navigate("/AdminDashboard");
+          }
+
+          ///////////////////////////
+        },
+        (error) => {
+          console.log(error);
+          Swal.fire({ icon: "error", title: "Oops...", text: "Invalid username or password!", });
+          setTeamForm({ ...teamForm, email: '', password: '' });
         }
-
-        ///////////////////////////
-      },
-      (error) => {
-        console.log(error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Invalid username or password!",
-        });
-        setTeamForm({...teamForm,email:'',password:''});
-      }
-    );
+      );
+    }
   };
 
   return (
@@ -77,24 +78,8 @@ function LoginPage() {
           </MDBCol>
 
           <MDBCol col="4" md="6">
-            <MDBInput
-              id="email"
-              value={teamForm.email}
-              onChange={(e) => handleInput(e)}
-              wrapperClass="mb-4"
-              label=<span style={italicText}>Email Address</span>
-              type="email"
-              size="lg"
-            />
-            <MDBInput
-              id="password"
-              value={teamForm.password}
-              onChange={(e) => handleInput(e)}
-              wrapperClass="mb-4"
-              label=<span style={italicText}>Password</span>
-              type="password"
-              size="lg"
-            />
+            <MDBInput id="email" value={teamForm.email} onChange={(e) => handleInput(e)} wrapperClass="mb-4" label=<span style={italicText}>Email Address</span> type="email" size="lg" />
+            <MDBInput id="password" value={teamForm.password} onChange={(e) => handleInput(e)} wrapperClass="mb-4" label=<span style={italicText}>Password</span> type="password" size="lg" />
 
             <p className="small fw-bold mt-2 pt-1 mb-2">
               Don't have an account?{" "}

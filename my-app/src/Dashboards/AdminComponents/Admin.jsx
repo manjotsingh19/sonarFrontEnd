@@ -20,7 +20,10 @@ function Admin() {
         e.preventDefault();
         navigate("/showUsers");
     }
-
+    const handleEvent = (e) => {
+        e.preventDefault();
+        navigate("/updateEvent");
+    }
 
     return (
         <>
@@ -40,6 +43,12 @@ function Admin() {
                 {/* ///////////////////create event///////////////////////////// */}
 
                 <CreateEvent />
+
+                {/* /////////////////////Edit event ////////////////////////////////////////////////// */}
+                <div class="col text-center">
+                    <MDBBtn onClick={handleEvent} className="btn btn-default" style={{ width: "25%" }}> Update Event</MDBBtn>
+                </div>
+
 
                 {/* /////////////////////////////add domain ///////////////////*/}
 

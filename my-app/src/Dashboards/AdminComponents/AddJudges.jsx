@@ -160,10 +160,7 @@ function AddJudges() {
                         <div className='col-12 '>
                             <MDBBtn onClick={handleSubmit} >Add</MDBBtn>
                         </div>
-
                     </MDBCardBody>
-
-
                 </MDBCard>
                 {isLoading && (
                     <MDBSpinner color='dark' style={{ marginTop: "5px" }} className="justify-content-center">
