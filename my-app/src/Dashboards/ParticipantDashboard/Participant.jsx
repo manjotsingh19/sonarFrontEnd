@@ -3,7 +3,7 @@ import { MDBContainer, MDBFile, MDBInput, MDBBtn, MDBCol, MDBRow } from "mdb-rea
 import TeamDetails from "./TeamDetail";
 import FileUpload from "./FileUpload";
 import axios from "axios";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../Components/Navbar2";
 import Swal from 'sweetalert2';
 
 

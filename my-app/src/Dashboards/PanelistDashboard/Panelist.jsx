@@ -10,7 +10,7 @@ import "./Panelist.css";
 import PanelistModal from "./PanelistModal";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../Components/Navbar2";
 import Timer from "../JugdeComponents/Timer";
 
 const Card = ({ teamObj }) => {

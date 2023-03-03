@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import {MDBContainer,MDBCol,MDBRow,MDBBtn,MDBIcon,MDBInput,MDBCheckbox,} from "mdb-react-ui-kit";
+import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox, } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import Admin from "../Dashboards/AdminComponents/Admin";
 import axios from "axios";
 import Participant from "../Dashboards/ParticipantDashboard/Participant";
 import Swal from "sweetalert2";
-import Navbar from "./Navbar";
+import Navbar2 from "./Navbar2";
 
 function LoginPage() {
   const [isSubmit, setSubmit] = useState(false);
@@ -29,14 +29,13 @@ function LoginPage() {
   };
   const handleclick = (e) => {
     e.preventDefault();
-    window.login = true;
-    window.status = "Logout";
     setSubmit(true);
     axios.post("/login", teamForm).then(
       (response) => {
 
         // //////////////send response to dashboard
-
+        window.login = true;
+        window.status = "Logout";
         localStorage.setItem("data", JSON.stringify(response.data));
         if (response.data.role_id === 4) {
           navigate("/participant");
@@ -57,7 +56,7 @@ function LoginPage() {
           title: "Oops...",
           text: "Invalid username or password!",
         });
-        setTeamForm({...teamForm,email:'',password:''});
+        setTeamForm({ ...teamForm, email: '', password: '' });
       }
     );
   };
@@ -65,7 +64,7 @@ function LoginPage() {
   return (
     <>
       <div style={styles}></div>
-      <Navbar />
+      <Navbar2 />
       <MDBContainer fluid className="p-3 my-5 h-custom">
         <MDBRow>
           <MDBCol col="10" md="6">

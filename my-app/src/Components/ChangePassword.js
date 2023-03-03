@@ -2,7 +2,7 @@ import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } 
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './Navbar';
+import Navbar2 from './Navbar2';
 import Swal from "sweetalert2";
 
 
@@ -103,7 +103,7 @@ function ChangePassword() {
 
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <MDBContainer fluid className="p-3 my-5 h-custom">
 
 

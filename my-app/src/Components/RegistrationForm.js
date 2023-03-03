@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Navbar from "./Navbar";
+import Navbar2 from "./Navbar2";
 
 function RegistrationForm() {
   const [isSubmit, setSubmit] = useState(false);
@@ -237,7 +237,7 @@ function RegistrationForm() {
 
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <MDBValidation className="row g-3" noValidate>
         <MDBContainer fluid>
           <MDBRow className="justify-content-center align-items-center m-5">

@@ -1,7 +1,7 @@
 import { MDBCardBody, MDBTable,MDBBtn, MDBRow, MDBCard } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '../../Components/Navbar';
+import Navbar2 from '../../Components/Navbar2';
 
 function ShowUsers() {
 
@@ -85,7 +85,7 @@ function ShowUsers() {
     }
     return (
         <>
-        <Navbar />
+        <Navbar2 />
             <MDBRow className='justify-content-center align-items-center m-5'>
                 <MDBCard>
                     <MDBCardBody className='px-8'>
