@@ -6,7 +6,7 @@ import AddDomain from './AddDomain';
 import { useState, useEffect } from 'react';
 import ShowUsers from './ShowUsers';
 import axios from 'axios';
-import Navbar from '../../Components/Navbar';
+import Navbar from '../../Components/Navbar2';
 import { Link, useNavigate } from "react-router-dom";
 
 

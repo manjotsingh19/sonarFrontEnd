@@ -23,8 +23,8 @@ const Cards = () => {
     <>
       {winners[0]?.marks > 0 && (
         <>
-          <div className="w-full py-[10rem] px-4 bg-white">
-            <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Top Scorers</h2>
+        <div className="w-full py-[10rem] px-4 bg-white">
+        <h2 id="topScorers" className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Top Scorers</h2>
 
             <div className="max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8">
 

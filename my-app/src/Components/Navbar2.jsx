@@ -7,7 +7,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 
-const Navbar = () => {
+const Navbar2 = () => {
   const [nav, setNav] = useState(false);
 
   const [showNavbar, setShowNavbar] = useState(false)
@@ -29,34 +29,6 @@ const Navbar = () => {
     navigate("/logIn");
   };
 
-  var elementName='';
-
-  const handleClickScrollEvents = () => {
-    const elementEvents = document.getElementById('eventList');
-    if (elementEvents) {
-      // 👇 Will scroll smoothly to the top of the next section
-      elementEvents.scrollIntoView({ behavior: 'smooth' });
-    }
-
-  };
-
-  const handleClickScrollTopScorers = () => {
-    const elementEvents = document.getElementById('topScorers');
-    if (elementEvents) {
-      // 👇 Will scroll smoothly to the top of the next section
-      elementEvents.scrollIntoView({ behavior: 'smooth' });
-    }
-
-  };
-
-  const handleClickScrollAboutUs = () => {
-    const elementEvents = document.getElementById('aboutUs');
-    if (elementEvents) {
-      // 👇 Will scroll smoothly to the top of the next section
-      elementEvents.scrollIntoView({ behavior: 'smooth' });
-    }
-
-  };
 
   return (
     // <div style={{marginBottom:"5px",paddingLeft:"50px", backgroundColor:"#d4e4ff"}} className="flex justify-between items-center h-24  mx-auto px-12 text-black-300">
@@ -83,13 +55,10 @@ const Navbar = () => {
         <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul>
             <li>
-              <NavLink onClick={handleClickScrollEvents}>Events</NavLink>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink onClick={handleClickScrollTopScorers}>Top Scorers</NavLink>
-            </li>
-            <li>
-              <NavLink onClick={handleClickScrollAboutUs}>About Us</NavLink>
+              <Link to="/ChangePassword"><Button variant="outlined" color='error'>Update Password</Button></Link>
             </li>
             <li>
               <Button onClick={handleclick} variant="contained" color='error'>{window.status}</Button>
@@ -101,4 +70,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar2;

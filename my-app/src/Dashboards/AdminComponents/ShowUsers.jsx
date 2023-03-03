@@ -107,7 +107,7 @@ function ShowUsers() {
     }
     return (
         <>
-            <Navbar />
+        <Navbar />
             <MDBRow className='justify-content-center align-items-center m-5'>
                 <MDBCard>
                     <MDBCardBody className='px-8'>

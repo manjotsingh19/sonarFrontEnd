@@ -5,7 +5,7 @@ import Admin from "../Dashboards/AdminComponents/Admin";
 import axios from "axios";
 import Participant from "../Dashboards/ParticipantDashboard/Participant";
 import Swal from "sweetalert2";
-import Navbar from "./Navbar";
+import Navbar2 from "./Navbar2";
 
 function LoginPage() {
   const [isSubmit, setSubmit] = useState(false);
@@ -29,8 +29,6 @@ function LoginPage() {
   };
   const handleclick = (e) => {
     e.preventDefault();
-    window.login = true;
-    window.status = "Logout";
     setSubmit(true);
     if (!teamForm?.email || !teamForm.password) {
       Swal.fire({ icon: "error", title: "Oops...", text: "Username or password is empty!", });
@@ -39,18 +37,19 @@ function LoginPage() {
       axios.post("/login", teamForm).then(
         (response) => {
 
-          // //////////////send response to dashboard
-
-          localStorage.setItem("data", JSON.stringify(response.data));
-          if (response.data.role_id === 4) {
-            navigate("/participant");
-          } else if (response.data.role_id === 3) {
-            navigate("/judge");
-          } else if (response.data.role_id === 2) {
-            navigate("/panelist");
-          } else if (response.data.role_id === 1) {
-            navigate("/AdminDashboard");
-          }
+        // //////////////send response to dashboard
+        window.login = true;
+        window.status = "Logout";
+        localStorage.setItem("data", JSON.stringify(response.data));
+        if (response.data.role_id === 4) {
+          navigate("/participant");
+        } else if (response.data.role_id === 3) {
+          navigate("/judge");
+        } else if (response.data.role_id === 2) {
+          navigate("/panelist");
+        } else if (response.data.role_id === 1) {
+          navigate("/AdminDashboard");
+        }
 
           ///////////////////////////
         },
@@ -66,7 +65,7 @@ function LoginPage() {
   return (
     <>
       <div style={styles}></div>
-      <Navbar />
+      <Navbar2 />
       <MDBContainer fluid className="p-3 my-5 h-custom">
         <MDBRow>
           <MDBCol col="10" md="6">
