@@ -28,7 +28,7 @@ const Card = ({
             alignItems: "center",
           }}
         >
-          <img src={image} class="team-img" alt="pic" />
+          <img src={image} class="team-img" alt="Profile pic" />
         </div>
 
         <h3>{name}</h3>
