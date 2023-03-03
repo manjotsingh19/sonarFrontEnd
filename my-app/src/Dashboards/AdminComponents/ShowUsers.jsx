@@ -1,13 +1,14 @@
-import { MDBCardBody, MDBTable,MDBBtn, MDBRow, MDBCard } from 'mdb-react-ui-kit';
+import { MDBCardBody, MDBTable, MDBBtn, MDBRow, MDBCard } from 'mdb-react-ui-kit';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar2 from '../../Components/Navbar2';
+import { Popconfirm } from 'antd';
 
 function ShowUsers() {
 
     const [user, setUser] = useState([]);
-    const [team,setTeam] = useState([]);
-    const [deleted,setDeleted] = useState(false);
+    const [team, setTeam] = useState([]);
+    const [deleted, setDeleted] = useState(false);
 
 
     useEffect(() => {
@@ -39,12 +40,12 @@ function ShowUsers() {
     const handleDelete = (id) => {
 
         axios.delete(`/deleteUser/${id}`)
-        .then((response) => {
-            console.log(response);
-            setDeleted(true);
-        }, (error) => {
-            console.log(error);
-        });
+            .then((response) => {
+                console.log(response);
+                setDeleted(true);
+            }, (error) => {
+                console.log(error);
+            });
 
     }
 
@@ -54,7 +55,13 @@ function ShowUsers() {
                 <tr>
                     <td>{info.email}</td>
                     <td>{info.name}</td>
-                    <td><MDBBtn onClick={(e)=>handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td>
+                    <td>
+                        <Popconfirm title="Delete"
+                            description="Are you sure you want to delete the panelist?"
+                            okText="Confirm" cancelText="Cancel" onConfirm={(e) => handleDelete(info.id)}>
+                            <MDBBtn className='me-1' color='danger' >Delete</MDBBtn>
+                        </Popconfirm>
+                    </td>
                 </tr>
             );
         }
@@ -65,21 +72,27 @@ function ShowUsers() {
                 <tr>
                     <td>{info.email}</td>
                     <td>{info.name}</td>
-                    <td><MDBBtn onClick={(e)=>handleDelete(info.id)}className='me-1' color='danger' >Delete</MDBBtn></td>
+                    <td>
+                        <Popconfirm title="Delete"
+                            description="Are you sure you want to delete the panelist?"
+                            okText="Confirm" cancelText="Cancel" onConfirm={(e) => handleDelete(info.id)}>
+                            <MDBBtn className='me-1' color='danger' >Delete</MDBBtn>
+                        </Popconfirm>
+                    </td>
                 </tr>
             );
         }
     });
     // console.log(info);
     const participentRows = team.map((team) => {
-            return (
-                <tr>
-                    <td>{team.teamId}</td>
-                    <td>{team.teamName}</td>
-                    <td>{team.status}</td>
-                    <td>{team.marks}</td>
-                </tr>
-            );
+        return (
+            <tr>
+                <td>{team.teamId}</td>
+                <td>{team.teamName}</td>
+                <td>{team.status}</td>
+                <td>{team.marks}</td>
+            </tr>
+        );
     });
 
     const myStyle = {
@@ -87,7 +100,7 @@ function ShowUsers() {
     }
     return (
         <>
-        <Navbar2 />
+            <Navbar2 />
             <MDBRow className='justify-content-center align-items-center m-5'>
                 <MDBCard>
                     <MDBCardBody className='px-8'>
@@ -133,7 +146,7 @@ function ShowUsers() {
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Team table</h4>
                         <MDBTable bordered borderColor="primary">
-                        {/* <table className="table table-stripped"> */}
+                            {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -147,7 +160,7 @@ function ShowUsers() {
                     </MDBCardBody>
                 </MDBCard>
             </MDBRow>
-            </>
+        </>
     )
 }
 
