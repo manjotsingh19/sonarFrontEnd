@@ -13,7 +13,7 @@ import {
 import Timer from "../JugdeComponents/Timer";
 import Clock from "../JugdeComponents/Clock";
 
-export default function PanelistModal({ item }) {
+export default function PanelistModal({ item, refetch }) {
   const [basicModal, setBasicModal] = useState(false);
   const { teamName, description, statement, teamObj } = item;
 
@@ -49,35 +49,36 @@ export default function PanelistModal({ item }) {
   }
 
   const handleCommentSubmit = () => {
-    if(!commentText){
+    if (!commentText) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Comment cannot be empty',
       });
     }
-    else{
-    teamObj.newComment = commentText;
-    teamObj.status = "reverted";
-    teamObj.panelistId = data.id;
-    // console.log(teamObj);
+    else {
+      teamObj.newComment = commentText;
+      teamObj.status = "reverted";
+      teamObj.panelistId = data.id;
+      // console.log(teamObj);
 
-    setBasicModal(!basicModal);
+      setBasicModal(!basicModal);
 
-    axios.post("/statusChange", teamObj)
-      .then((response) => {
-        Swal.fire(`Participant ${teamObj.status}`);
+      axios.post("/statusChange", teamObj)
+        .then((response) => {
+          Swal.fire(`Participant ${teamObj.status}`);
+          refetch();
 
-      }, (error) => {
-        console.log(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'An error has occured',
+        }, (error) => {
+          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error has occured',
+          });
         });
-      });
-    setCommentText('');
-    setShowCommentBox(false);
+      setCommentText('');
+      setShowCommentBox(false);
     }
   };
 
@@ -95,6 +96,7 @@ export default function PanelistModal({ item }) {
     axios.post("/statusChange", teamObj)
       .then((response) => {
         Swal.fire(`Participant ${teamObj.status}`);
+        refetch();
       }, (error) => {
         console.log(error);
         Swal.fire({
