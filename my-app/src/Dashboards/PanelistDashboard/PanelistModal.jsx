@@ -10,8 +10,6 @@ import {
   MDBModalTitle,
   MDBModalBody, MDBModalFooter,
 } from "mdb-react-ui-kit";
-import Timer from "../JugdeComponents/Timer";
-import Clock from "../JugdeComponents/Clock";
 
 export default function PanelistModal({ item, refetch }) {
   const [basicModal, setBasicModal] = useState(false);

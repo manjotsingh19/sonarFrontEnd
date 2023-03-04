@@ -1,11 +1,9 @@
 
-import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
+import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import JudgeModal from "./JudgeModal";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
 import Navbar from "../../Components/Navbar2";
-import Swal from "sweetalert2";
 import FetchTeamData from '../../hooks/fetch-team-data';
 import moment from "moment";
 

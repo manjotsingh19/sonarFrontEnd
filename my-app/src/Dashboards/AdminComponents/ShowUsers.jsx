@@ -102,9 +102,6 @@ function ShowUsers() {
         );
     });
 
-    const myStyle = {
-        color: 'red'
-    }
     return (
         <>
             <Navbar2 />

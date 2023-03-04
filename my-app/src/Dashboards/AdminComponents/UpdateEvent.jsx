@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Form from "react-bootstrap/Form";
-import { MDBCardBody, MDBInput, MDBTable, MDBTextArea,MDBSpinner, MDBBtn, MDBRow, MDBCard, MDBCol } from 'mdb-react-ui-kit';
+import { MDBCardBody, MDBInput, MDBTable, MDBTextArea, MDBBtn, MDBRow, MDBCard, MDBCol } from 'mdb-react-ui-kit';
 import Navbar from '../../Components/Navbar';
 import Swal from 'sweetalert2';
 
@@ -85,9 +85,6 @@ function UpdateEvent() {
     }
     return errorsObj;
   }
-  const myStyle = {
-    color: 'red'
-  }
 
 
 
@@ -98,13 +95,13 @@ function UpdateEvent() {
         <MDBCard>
           <MDBCardBody className='px-8'>
             <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2 ">Current Event</h4>
-            <MDBTable bordered borderColor="primary">
+            <MDBTable bordered borderColor="primary" className="text-break">
               <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
+                <tr >
+                  <th style={{width:"6%"}}>Id</th>
+                  <th style={{width:"25%"}}>Name</th>
+                  <th  style={{width:"12%"}}>Start Date</th>
+                  <th style={{width:"12%"}}>End Date</th>
                   <th>Description</th>
                 </tr>
               </thead>

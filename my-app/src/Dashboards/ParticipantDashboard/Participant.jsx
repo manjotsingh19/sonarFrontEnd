@@ -1,5 +1,5 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
-import { MDBContainer, MDBFile, MDBInput, MDBBtn, MDBCol, MDBRow } from "mdb-react-ui-kit";
+import React, { useEffect, useState} from "react";
+import { MDBContainer, MDBInput, MDBBtn, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import TeamDetails from "./TeamDetail";
 import FileUpload from "./FileUpload";
 import axios from "axios";

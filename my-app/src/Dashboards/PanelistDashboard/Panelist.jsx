@@ -1,5 +1,5 @@
 
-import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody,} from "mdb-react-ui-kit";
+import { MDBRow, MDBCol, MDBCard, MDBCardBody,} from "mdb-react-ui-kit";
 import "./Panelist.css";
 import PanelistModal from "./PanelistModal";
 import { useState, useEffect } from "react";
