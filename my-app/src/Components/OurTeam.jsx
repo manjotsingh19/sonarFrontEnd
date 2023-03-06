@@ -146,7 +146,7 @@ function OurTeam() {
       <div class="container">
         <div class="col-md-12 text-center">
           <h1 id="aboutUs" class="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Meet Our Team</h1>
-          <h3 class="section-subtitle">{message}</h3>
+          <h5 class="section-subtitle">{message}</h5>
         </div>
 
         <div class="row">
