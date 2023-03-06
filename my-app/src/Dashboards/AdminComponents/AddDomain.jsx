@@ -70,8 +70,8 @@ function AddDomain() {
         return (
             <>
                 <MDBRow>
-                    <MDBCol md='8' >
-                        <MDBListGroupItem>{info.domainName}</MDBListGroupItem>
+                    <MDBCol md='8'   className="text-break"  >
+                        <MDBListGroupItem  >{info.domainName}</MDBListGroupItem>
                     </MDBCol>
 
                     <MDBCol md='4' >

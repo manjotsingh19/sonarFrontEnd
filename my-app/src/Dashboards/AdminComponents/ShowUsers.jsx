@@ -102,9 +102,6 @@ function ShowUsers() {
         );
     });
 
-    const myStyle = {
-        color: 'red'
-    }
     return (
         <>
             <Navbar2 />
@@ -112,12 +109,12 @@ function ShowUsers() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2 ">Panelist table</h4>
-                        <MDBTable bordered borderColor="primary">
+                        <MDBTable bordered borderColor="primary" className="text-break">
                             <thead>
                                 <tr>
-                                    <th>Email</th>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th style={{width:"33%"}}>Email</th>
+                                    <th style={{width:"33%"}}>Name</th>
+                                    <th style={{width:"33%"}}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>{panelistRows}</tbody>
@@ -132,12 +129,12 @@ function ShowUsers() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Judge table</h4>
-                        <MDBTable bordered borderColor="primary">
+                        <MDBTable bordered borderColor="primary" className="text-break">
                             <thead>
                                 <tr>
-                                    <th>Email</th>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th style={{width:"33%"}}>Email</th>
+                                    <th style={{width:"33%"}}>Name</th>
+                                    <th style={{width:"33%"}}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>{judgeRows}</tbody>
@@ -152,14 +149,14 @@ function ShowUsers() {
                 <MDBCard>
                     <MDBCardBody className='px-8'>
                         <h4 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-2">Team table</h4>
-                        <MDBTable bordered borderColor="primary">
+                        <MDBTable bordered borderColor="primary" className="text-break">
                             {/* <table className="table table-stripped"> */}
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Marks</th>
+                                    <th style={{width:"10%"}}>Id</th>
+                                    <th style={{width:"30%"}}>Name</th>
+                                    <th style={{width:"30%"}}>Status</th>
+                                    <th style={{width:"30%"}}>Marks</th>
                                 </tr>
                             </thead>
                             <tbody>{participentRows}</tbody>

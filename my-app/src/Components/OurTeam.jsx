@@ -19,8 +19,8 @@ const Card = ({
   designation,
 }) => {
   return (
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <div class="team-item" style={{}}>
+    <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div className="team-item" style={{}}>
         <div
           style={{
             display: "flex",
@@ -28,31 +28,31 @@ const Card = ({
             alignItems: "center",
           }}
         >
-          <img src={image} class="team-img" alt="Profile pic" />
+          <img src={image} className="team-img" alt="Profile pic" />
         </div>
 
         <h3>{name}</h3>
 
-        <div class="team-info">
+        <div className="team-info">
           <p>{designation}</p>
         </div>
-        <div class="tagline">
+        <div className="tagline">
           <p>{description}</p>
         </div>
 
-        <div class="team-icon">
+        <div className="team-icon">
           <div>
-            <a href={atwitter} class="twitter">
+            <a href={atwitter} className="twitter">
               <FaTwitter />
             </a>
           </div>
           <div>
-            <a href={agithub} class="github">
+            <a href={agithub} className="github">
               <FaGithub />
             </a>
           </div>
           <div>
-            <a href={alinkedin} class="linkedin">
+            <a href={alinkedin} className="linkedin">
               <FaLinkedin />
             </a>
           </div>
@@ -142,14 +142,14 @@ function OurTeam() {
   let message =
     "People from different tech stacks came together and collaborated in order to come up with this Hack-a-Thon portal";
   return (
-    <section class="section-background">
-      <div class="container">
-        <div class="col-md-12 text-center">
-          <h1 id="aboutUs" class="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Meet Our Team</h1>
-          <h5 class="section-subtitle">{message}</h5>
+    <section className="section-background">
+      <div className="container">
+        <div className="col-md-12 text-center">
+          <h1 id="aboutUs" className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Meet Our Team</h1>
+          <h5 className="section-subtitle">{message}</h5>
         </div>
 
-        <div class="row">
+        <div className="row">
           {data.map((item, index) => (
             <Card key={index} {...item} />
           ))}
