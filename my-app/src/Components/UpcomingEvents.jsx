@@ -49,7 +49,7 @@ export default function App() {
   useEffect(() => {
     axios.get("/getEvent").then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setEvent(response.data);
       },
       (error) => {

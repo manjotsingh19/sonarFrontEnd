@@ -10,7 +10,7 @@ import {
 function Events() {
     const [basicActive, setBasicActive] = useState('tab1');
 
-    const handleBasicClick = (value: string) => {
+    const handleBasicClick = (value) => {
         if (value === basicActive) {
             return;
         }

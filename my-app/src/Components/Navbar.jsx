@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import React, { useState ,useEffect} from "react";
 import { Link } from "react-router-dom";
-import { MDBBtn } from 'mdb-react-ui-kit';
 import Button from '@mui/material/Button';
+import axios from "axios";
 import { useNavigate, NavLink } from 'react-router-dom';
 import './Navbar.css';
 
@@ -57,6 +56,17 @@ const Navbar = () => {
     }
 
   };
+  const [winners, setWinners] = useState([]);
+  useEffect(() => {
+    axios.get('/winners')
+      .then(response => {
+        setWinners(response.data);
+        // console.log(response.data[0]);
+
+      }, (error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     // <div style={{marginBottom:"5px",paddingLeft:"50px", backgroundColor:"#d4e4ff"}} className="flex justify-between items-center h-24  mx-auto px-12 text-black-300">
@@ -85,9 +95,11 @@ const Navbar = () => {
             <li>
               <NavLink onClick={handleClickScrollEvents}>Events</NavLink>
             </li>
+            {winners[0]?.marks > 0 && (
             <li>
               <NavLink onClick={handleClickScrollTopScorers}>Top Scorers</NavLink>
             </li>
+            )}
             <li>
               <NavLink onClick={handleClickScrollAboutUs}>About Us</NavLink>
             </li>

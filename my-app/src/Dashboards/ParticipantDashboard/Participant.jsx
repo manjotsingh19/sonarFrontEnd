@@ -87,7 +87,7 @@ function Participant() {
     axios.get('/getEvent')
       .then(response => {
         setEvent(response.data[0]);
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
 
       }, (error) => {
         console.log(error);

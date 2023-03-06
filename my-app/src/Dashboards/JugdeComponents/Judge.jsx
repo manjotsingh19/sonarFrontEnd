@@ -101,7 +101,7 @@ function Judge() {
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Judge Dashboard</h3>
         <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{ margin: "-13px" }}>Welcome: {judgeData?.name} </h5>
 
-        {event[0]?.endDate < currDate && (
+        {/* {event[0]?.endDate < currDate && ( */}
           <MDBRow>
             {team.map((value, index) => (
               <>
@@ -112,7 +112,7 @@ function Judge() {
               </>
             ))}
           </MDBRow>
-        )}
+        {/* )} */}
       </div>
     </>);
 }

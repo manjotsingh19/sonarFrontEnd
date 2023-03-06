@@ -13,7 +13,7 @@ const Cards = () => {
     axios.get('/winners')
       .then(response => {
         setWinners(response.data);
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
 
       }, (error) => {
         console.log(error);
