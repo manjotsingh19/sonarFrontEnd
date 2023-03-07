@@ -33,6 +33,7 @@ const Cards = () => {
 
                 <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300" style={{background: "linear-gradient(to bottom, #ff9999 0%, #ffff99 100%)"}}>
                   {/* <img className="w-20 mx-auto mt-[-3rem] bg-white" src={Double} alt="/" /> */}
+                  {/* <img src="my-app\src\assets\trophy.png" alt="" /> */}
                   <h2 className="text-2xl font-bold text-center py-8">2nd Place</h2>
                   <div className="text-center font-medium">
                     <h3 className="py-2 border-b mx-8 mt-8">Team Id:  {winners[1]?.teamId}</h3>

@@ -13,6 +13,7 @@ function FileUpload({ userObj }) {
   function handleFileInput(e) {
     setSelectedFile(e.target.files[0]);
   }
+  console.log(userObj);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -38,10 +39,13 @@ function FileUpload({ userObj }) {
 
   return (
     <>
+    {!userObj?.demo && (
+      <>
       <MDBFile label="Upload the presentation video in '.mp4' format only" onChange={handleFileInput} />
       <br />
       <MDBBtn onClick={handleSubmit}>Upload</MDBBtn>
-
+      </>
+      )}
     </>
   );
 }
