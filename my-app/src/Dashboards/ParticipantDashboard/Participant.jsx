@@ -131,12 +131,12 @@ function Participant() {
 
                   <MDBRow>
                     {fetchedData?.team?.gitHubLink && fetchedData?.team?.idea?.demo && (
-                      <h3 style={{ color: "green" }} class="text-center">Video and GitHub link uploaded successfully!</h3>
+                      <h3 style={{ color: "green" }} className="text-center">Video and GitHub link uploaded successfully!</h3>
                     )}
                   </MDBRow>
                 </>
               )}
-              {event?.endDate < currDate && (<h2 style={{ color: "red" }} class="text-center">Event ended</h2>)}
+              {event?.endDate < currDate && (<h2 style={{ color: "red" }} className="text-center">Event ended</h2>)}
               {/* ////////////////////////////////////////////////////////////// */}
 
             </>)}
@@ -153,7 +153,7 @@ function Participant() {
             {/* team details*/}
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
               <div>
-                <h3 style={{ color: "red" }} class="text-center">Your Idea is not accepted, Better luck next time</h3>
+                <h3 style={{ color: "red" }} className="text-center">Your Idea is not accepted, Better luck next time</h3>
               </div></>)}
 
           </MDBContainer>
@@ -191,7 +191,7 @@ function Participant() {
                   {/* edit details */}
                 </div>
               )}
-              {event?.endDate < currDate && (<h2 style={{ color: "red" }} class="text-center">Event ended</h2>)}
+              {event?.endDate < currDate && (<h2 style={{ color: "red" }} className="text-center">Event ended</h2>)}
             </>)}
 
           </MDBContainer></>
@@ -202,7 +202,7 @@ function Participant() {
           <Navbar />
           <MDBContainer fluid>
             {Object.keys(data).length > 0 && (<> <TeamDetails userObj={data} />
-            {event?.endDate < currDate && (<h2 style={{ color: "red" }} class="text-center">Event ended</h2>)}
+            {event?.endDate < currDate && (<h2 style={{ color: "red" }} className="text-center">Event ended</h2>)}
               </>)}
           </MDBContainer>
         </>
