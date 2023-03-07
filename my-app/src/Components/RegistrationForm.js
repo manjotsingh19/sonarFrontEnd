@@ -444,7 +444,7 @@ function RegistrationForm() {
                     <p style={myStyle}>{errors.confirmPassword}</p>
                   </MDBCol>
                   <MDBCol md="3" className="align-items-center pt-2 pb-3">
-                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "0px solid black", borderRadius: "10px", height: "37px", width: "140px", backgroundColor: "#3b71ca", color: "white", boxShadow: "0 4px 9px -4px #3b71ca", }}>
+                    <select md="3" id="domain" value={teamForm.domain} onChange={(e) => handleInput(e)} style={{ border: "0px solid black", borderRadius: "10px", height: "37px", width: "145px", backgroundColor: "#3b71ca", color: "white", boxShadow: "0 4px 9px -4px #3b71ca", }}>
                       <option value="">Select Domain</option>
 
                       {domain.map((value, index) => (
