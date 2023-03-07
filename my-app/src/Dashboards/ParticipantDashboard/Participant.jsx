@@ -31,7 +31,7 @@ function Participant() {
     Object.keys(data).length > 0 &&
       axios.get(`/particpantsDetails/${data?.email}`).then(
         (response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setFetchedData(response?.data)
         },
         (error) => {

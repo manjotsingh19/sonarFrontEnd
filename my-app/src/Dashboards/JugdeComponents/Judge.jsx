@@ -76,7 +76,7 @@ function Judge() {
     axios.get('/getEvent')
       .then(response => {
         setEvent(response.data);
-        console.log(response.data);
+        // console.log(response.data);
 
       }, (error) => {
         console.log(error);
