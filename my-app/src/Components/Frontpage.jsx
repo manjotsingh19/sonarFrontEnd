@@ -18,7 +18,7 @@ function Frontpage() {
     <div style={styles}>
       <Navbar />
       <Hero />
-      <Events />
+      {/* <Events /> */}
       <UpcomingEvents />
 
       {/* ///////////   winners   ////////////// */}
