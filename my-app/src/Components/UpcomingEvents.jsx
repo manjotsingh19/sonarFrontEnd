@@ -10,8 +10,8 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
   return (
     <div className="" style={{ overflow: "hidden", margin: "-15px 10px" }}>
       <div className="team-item" style={{
-        border: "0px solid black", borderRadius: "30px", 
-        background: "linear-gradient(90deg, rgba(210,192,165,1) 8%, rgba(172,168,237,1) 52%, rgba(56,219,252,1) 94%)",
+        border: "0px solid black", borderRadius: "30px",
+        background: "linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(96, 180, 255, 0.8522714994200805) 100%)",
         height: "50vh"
       }}>
         <div
@@ -66,7 +66,7 @@ export default function App() {
     <>
       {event?.length > 0 && (
         <div id="eventList" className="bg-color">
-          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Hack-a-thon Events</h2>
+          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center" style={{ marginTop: '70px' }}>Hack-a-thon Events</h2>
           <Slider {...settings} ref={slider}>
             {event.map((card, i) => (
               <Card {...card} />

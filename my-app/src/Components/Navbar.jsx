@@ -70,7 +70,7 @@ const Navbar = () => {
     // </div>
 
 
-    <nav className="navbar">
+    <nav className="navbar" style={{zIndex: '1'}}>
       <div className="container1">
         <div className="logo">
           <div ><Link to="/">
