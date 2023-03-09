@@ -22,8 +22,8 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
         >
         </div>
 
-<div style={{marginTop:"-2vh"}}>
-        <h3>{eventName.substring(0, 25)}</h3>
+        <div style={{ marginTop: "-2vh" }}>
+          <h3>{eventName.substring(0, 25)}</h3>
 
           <p>{description.substring(0, 100)}...</p>
         </div>

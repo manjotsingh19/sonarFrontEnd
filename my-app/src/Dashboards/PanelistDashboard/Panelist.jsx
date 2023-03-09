@@ -7,8 +7,9 @@ import axios from "axios";
 import Navbar from "../../Components/Navbar2";
 import moment from "moment";
 import FetchTeamData from "../../hooks/fetch-team-data";
+import Timers from "../../Components/Timers";
 
-const Card = ({ teamObj , refetch }) => {
+const Card = ({ teamObj ,  refetch }) => {
   // console.log(teamObj);
 
   const { teamId, teamName, idea } = teamObj;
@@ -53,8 +54,7 @@ const Card = ({ teamObj , refetch }) => {
             <MDBCol md="12"><p className="fw-medium">{idea?.problemStatement.substring(0, 50)}...</p></MDBCol>
           </MDBRow>
           <PanelistModal
-            item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }}
-          />
+            item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, } } refetch={refetch} />
         </MDBCardBody>
       </MDBCard>
        )}
@@ -97,7 +97,7 @@ function Panelist() {
   }, [data]);
 
 
-  console.log(team);
+  // console.log(team);
 
 
   // const filtered = team.filter((value, index) => {
@@ -126,7 +126,7 @@ function Panelist() {
   return (
     <>
       <Navbar />
-      
+       <Timers/>
         <div className="cards">
           <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Panelist Dashboard</h3>
           <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{ margin: "-13px" }}>Welcome: {panelist?.name} </h5>
@@ -134,7 +134,7 @@ function Panelist() {
           <MDBRow>
             {team.map((value, index) => (
               <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
-                <Card teamObj={value}  refetch={refetch}/>
+                <Card teamObj={value} refetch={refetch} />
               </MDBCol>
             ))}
           </MDBRow>

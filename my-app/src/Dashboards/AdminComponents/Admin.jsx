@@ -25,6 +25,9 @@ function Admin() {
         navigate("/updateEvent");
     }
 
+    const handleMail = (e) => {
+
+    }
     return (
         <>
             <Navbar />
@@ -53,6 +56,11 @@ function Admin() {
                 {/* /////////////////////////////add domain ///////////////////*/}
 
                 <AddDomain />
+
+                {/* /////////////////////////////send mail to winners///////////////////////////////////// */}
+                <div className="col text-center">
+                    <MDBBtn onClick={handleMail} className="btn btn-default" style={{ width: "25%",marginBottom:"5%" }}> Send mail to winners</MDBBtn>
+                </div>
 
             </MDBContainer>
         </>

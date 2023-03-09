@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Timers from "../../Components/Timers";
 
 
 //////////////////////////////////////////////new card///////////////////////////////////////////////////////////
@@ -117,6 +118,8 @@ function TeamDetails({ userObj }) {
 
 
   return (
+    <>
+    <Timers></Timers>
     <div className="cards">
       <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">
         Participant Details
@@ -125,7 +128,7 @@ function TeamDetails({ userObj }) {
       {flag && (
         <>
           <MDBRow>
-            <MDBCol lg="6" className="d-flex justify-content-center align-items-center" >
+            <MDBCol lg="6" class="d-flex justify-content-center align-items-center" >
               <Card1 teamObj={teamData} />
             </MDBCol>
             {/* <MDBCol lg="12">
@@ -151,6 +154,7 @@ function TeamDetails({ userObj }) {
         </>
       )}
     </div>
+    </>
   );
 }
 export default TeamDetails;
