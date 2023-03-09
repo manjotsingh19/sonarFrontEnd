@@ -31,7 +31,7 @@ const Card = ({ teamObj , refetch }) => {
           <MDBRow>
             <MDBCol md="12"><p className="fw-medium">{idea?.problemStatement.substring(0, 50)}...</p></MDBCol>
           </MDBRow>
-          <PanelistModal  item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }}  refetch={refetch}/>
+          <PanelistModal  item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }}  refetch={refetch} s/>
         </MDBCardBody>
       </MDBCard>
       )}
@@ -53,8 +53,7 @@ const Card = ({ teamObj , refetch }) => {
             <MDBCol md="12"><p className="fw-medium">{idea?.problemStatement.substring(0, 50)}...</p></MDBCol>
           </MDBRow>
           <PanelistModal
-            item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }}
-          />
+            item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }} refetch={refetch} />
         </MDBCardBody>
       </MDBCard>
        )}
