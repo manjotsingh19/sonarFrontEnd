@@ -65,7 +65,7 @@ export default function App() {
     <>
       {event?.length > 0 && (
         <div id="eventList" className="bg-color">
-          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center">Hack-a-thon Events</h2>
+          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center" style={{ marginTop: '70px' }}>Hack-a-thon Events</h2>
           <Slider {...settings} ref={slider}>
             {event.map((card, i) => (
               <Card {...card} />
