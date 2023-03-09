@@ -55,6 +55,8 @@ const Footer = () => {
         <div /*class="elementor-column elementor-col-50 elementor-inner-column elementor-element"*/ style={{
           display: "flex",
           justifyContent: "right",
+          alignItems: "center",
+          fontSize: "16px",
         }}>
           {" "}
           © Copyright 2023 Incedo Inc.

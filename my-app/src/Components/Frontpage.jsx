@@ -9,6 +9,9 @@ import OurTeam from "./OurTeam";
 import "./OurTeam.css";
 import UpcomingEvents from "./UpcomingEvents";
 import Events from "./Events";
+import backImage from '././images/pexels-eberhard-grossgasteiger-2310713.jpg';
+import { Parallax } from "react-parallax";
+
 
 function Frontpage() {
   const styles = {
@@ -17,16 +20,18 @@ function Frontpage() {
   return (
     <div style={styles}>
       <Navbar />
+      <Parallax strength={-600} bgImage={backImage}>
       <Hero />
+      </Parallax>
       {/* <Events /> */}
       <UpcomingEvents />
-
       {/* ///////////   winners   ////////////// */}
       <Cards />
       {/* ////////////////////////////////////// */}
       <OurTeam />
       <Footer />
     </div>
+    
   );
 }
 
