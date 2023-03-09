@@ -66,7 +66,7 @@ function TeamDetails({ userObj }) {
   const [Submit,setSubmit] = useState(false);
 
   useState(() => {
-    // console.log("Form submitted");
+    console.log("Form submitted");
     setSubmit(false);
   },[Submit]);
 
@@ -125,7 +125,7 @@ function TeamDetails({ userObj }) {
       {flag && (
         <>
           <MDBRow>
-            <MDBCol lg="6" className="d-flex justify-content-center align-items-center" >
+            <MDBCol lg="6" class="d-flex justify-content-center align-items-center" >
               <Card1 teamObj={teamData} />
             </MDBCol>
             {/* <MDBCol lg="12">
