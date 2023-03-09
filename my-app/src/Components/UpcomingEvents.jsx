@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 import Slider from "react-slick";
 import axios from "axios";
 
@@ -8,7 +7,7 @@ import axios from "axios";
 const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 
   return (
-    <div className="" style={{ overflow: "hidden", margin: "-15px 10px" }}>
+    <div className="text-break" style={{ overflow: "hidden", margin: "-15px 10px" }}>
       <div className="team-item" style={{
         border: "0px solid black", borderRadius: "30px",
         background: "linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(96, 180, 255, 0.8522714994200805) 100%)",
@@ -23,10 +22,10 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
         >
         </div>
 
-        <h3>{eventName}</h3>
+<div style={{marginTop:"-2vh"}}>
+        <h3>{eventName.substring(0, 25)}</h3>
 
-        <div className="">
-          <p>{description}</p>
+          <p>{description.substring(0, 100)}...</p>
         </div>
         <div className="tagline">
           <p>{ }</p>
@@ -50,7 +49,7 @@ export default function App() {
   useEffect(() => {
     axios.get("/getEvent").then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setEvent(response.data);
       },
       (error) => {

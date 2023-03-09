@@ -1,12 +1,10 @@
 
-import { MDBRow, MDBCol, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
+import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import JudgeModal from "./JudgeModal";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
 import Navbar from "../../Components/Navbar2";
-import Swal from "sweetalert2";
-import  FetchTeamData  from '../../hooks/fetch-team-data';
+import FetchTeamData from '../../hooks/fetch-team-data';
 import moment from "moment";
 
 
@@ -37,10 +35,10 @@ const Card = ({ teamObj, refetch }) => {
       </MDBRow>
       <MDBRow>
         <MDBCol md="12">
-          <p className="fw-medium">{idea?.problemStatement.substring(0,50)}...</p>
+          <p className="fw-medium">{idea?.problemStatement.substring(0, 50)}...</p>
         </MDBCol>
       </MDBRow>
-      <JudgeModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj }} refetch={ refetch} />
+      <JudgeModal item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj }} refetch={refetch} />
     </div>
   );
 };
@@ -51,7 +49,7 @@ function Judge() {
   ///////////////////got teams data from api//////////////////
   const { data, refetch } = FetchTeamData();
 
-/////////////////////////////////////////////
+  /////////////////////////////////////////////
 
 
 
@@ -60,7 +58,7 @@ function Judge() {
     // console.log(judgeData);
   }, [localStorage.getItem("data")])
 
-  useEffect(()=>{
+  useEffect(() => {
     if (data) {
       const filtered = data?.data?.filter((value, index) => {
         if (judgeData.role_id == "3" && value?.gitHubLink && value?.idea?.demo && value.status === "accepted" && (value.judgeList == null || value.judgeList.indexOf((judgeData?.id).toString()) == -1)) {
@@ -72,13 +70,13 @@ function Judge() {
     }
   }, [data]);
 
-  const [event,setEvent] = useState([]);
+  const [event, setEvent] = useState([]);
 
   useEffect(() => {
     axios.get('/getEvent')
       .then(response => {
         setEvent(response.data);
-        console.log(response.data);
+        // console.log(response.data);
 
       }, (error) => {
         console.log(error);
@@ -87,7 +85,7 @@ function Judge() {
 
 
 
-const currDate= moment().format("YYYY-MM-DD");
+  const currDate = moment().format("YYYY-MM-DD");
 
   //////////////////////////////////////
 
@@ -103,17 +101,17 @@ const currDate= moment().format("YYYY-MM-DD");
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Judge Dashboard</h3>
         <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{ margin: "-13px" }}>Welcome: {judgeData?.name} </h5>
 
-        {/* {event[0]?.endDate<currDate && ( */}
-        <MDBRow>
-          {team.map((value, index) => (
-            <>
-              <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
+        {/* {event[0]?.endDate < currDate && ( */}
+          <MDBRow>
+            {team.map((value, index) => (
+              <>
+                <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
 
-                <Card teamObj={value} refetch={ refetch} />
-              </MDBCol>
-            </>
-          ))}
-        </MDBRow>
+                  <Card teamObj={value} refetch={refetch} />
+                </MDBCol>
+              </>
+            ))}
+          </MDBRow>
         {/* )} */}
       </div>
     </>);

@@ -1,5 +1,12 @@
 .section-background {
 	/* background: linear-gradient(135deg, #b987ff 0%, #ffb4b4 100%); */
+	/* background: #9CECFB; */
+	/* fallback for old browsers */
+	/* background: -webkit-linear-gradient(to right, #3180ff, #65C7F7, #9CECFB); */
+	/* Chrome 10-25, Safari 5.1-6 */
+	/* background: linear-gradient(to right, #3180ff, #65C7F7, #9CECFB); */
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 	background: rgb(238, 174, 202);
 	background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(96, 180, 255, 0.8522714994200805) 100%);
 	width: auto;

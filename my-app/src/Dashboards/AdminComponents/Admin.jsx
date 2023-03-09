@@ -35,7 +35,7 @@ function Admin() {
 
 
                   {/* ////////////////show alll //////////////////////////*/}
-                <div class="col text-center">
+                <div className="col text-center">
                     <MDBBtn onClick={handleSubmit} className="btn btn-default" style={{ width: "25%" }}> Show Users</MDBBtn>
                 </div>
 
@@ -45,7 +45,7 @@ function Admin() {
                 <CreateEvent />
 
                 {/* /////////////////////Edit event ////////////////////////////////////////////////// */}
-                <div class="col text-center">
+                <div className="col text-center">
                     <MDBBtn onClick={handleEvent} className="btn btn-default" style={{ width: "25%" }}> Update Event</MDBBtn>
                 </div>
 
