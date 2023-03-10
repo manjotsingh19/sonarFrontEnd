@@ -29,7 +29,7 @@ body {
 }
 
 .navbar {
-    margin-bottom: 0;
+    margin-bottom: 15px;
     height: 90px;
     background-color: #b6dbfb;
     position: relative;

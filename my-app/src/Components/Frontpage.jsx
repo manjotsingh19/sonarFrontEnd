@@ -20,9 +20,9 @@ function Frontpage() {
   return (
     <div style={styles}>
       <Navbar />
-      <Parallax strength={-600} bgImage={backImage}>
+      {/* <Parallax strength={-600} bgImage={backImage}> */}
       <Hero />
-      </Parallax>
+      {/* </Parallax> */}
       {/* <Events /> */}
       <UpcomingEvents />
       {/* ///////////   winners   ////////////// */}

@@ -43,10 +43,42 @@ export default function App() {
 
   const [event, setEvent] = useState([]);
 
+  // useEffect(() => {
+  //   axios.get("/getEvent").then(
+  //     (response) => {
+  //       // console.log(response.data);
+  //       setEvent(response.data);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+
+  // }, []);
+
   useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 600) {
+        setSettings((prevSettings) => ({
+          ...prevSettings,
+          slidesToShow: 1,
+        }));
+      } 
+      else if (window.innerWidth < 768) {
+        setSettings((prevSettings) => ({
+          ...prevSettings,
+          slidesToShow: (event?.length < 2) ? event?.length : 2,
+        }));
+      }else {
+        setSettings((prevSettings) => ({
+          ...prevSettings,
+          slidesToShow: (event?.length < 3) ? event?.length : 3,
+        }));
+      }
+    }
+    window.addEventListener("resize", handleResize);
     axios.get("/getEvent").then(
       (response) => {
-        // console.log(response.data);
         setEvent(response.data);
       },
       (error) => {
@@ -54,15 +86,30 @@ export default function App() {
       }
     );
 
-  }, []);
+  }, [event]);
+  // const settings = { centerMode: true, draggable: true, centerPadding: "20px", pauseOnHover: true, infinite: true, swipeToSlide: true, slidesToShow: (event?.length < 3) ? event?.length : 3, slidesToScroll: 1, autoplay: true, speed: 1000, autoplaySpeed: 2000, focusOnSelect: true, };
 
-  const settings = { centerMode: true, draggable: true, centerPadding: "20px", pauseOnHover: true, infinite: true, swipeToSlide: true, slidesToShow: (event?.length < 3) ? event?.length : 3, slidesToScroll: 1, autoplay: true, speed: 1000, autoplaySpeed: 2000, focusOnSelect: true, };
+  const [settings, setSettings] = useState({
+    centerMode: true,
+    draggable: true,
+    centerPadding: "20px",
+    pauseOnHover: true,
+    infinite: true,
+    swipeToSlide: true,
+    slidesToShow: (event?.length < 3) ? event?.length : 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 2000,
+    focusOnSelect: true,
+  });
+  
 
   return (
     <>
       {event?.length > 0 && (
-        <div id="eventList" className="bg-color">
-          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center" style={{ marginTop: '70px' }}>Hack-a-thon Events</h2>
+        <div id="eventList" className="bg-color" style={{ marginTop: '70px' }}>
+          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-5 text-center" >Hack-a-thon Events</h2>
           <Slider {...settings} ref={slider}>
             {event.map((card, i) => (
               <Card {...card} />

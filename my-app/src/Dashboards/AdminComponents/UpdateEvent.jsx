@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Form from "react-bootstrap/Form";
 import { MDBCardBody, MDBInput, MDBTable, MDBTextArea, MDBBtn, MDBRow, MDBCard, MDBCol } from 'mdb-react-ui-kit';
-import Navbar from '../../Components/Navbar';
+import Navbar2 from '../../Components/Navbar2';
 import Swal from 'sweetalert2';
 
 function UpdateEvent() {
@@ -90,7 +90,7 @@ function UpdateEvent() {
 
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <MDBRow className='justify-content-center align-items-center m-5'>
         <MDBCard>
           <MDBCardBody className='px-8'>

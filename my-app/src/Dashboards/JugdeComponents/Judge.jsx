@@ -6,6 +6,7 @@ import axios from "axios";
 import Navbar from "../../Components/Navbar2";
 import FetchTeamData from '../../hooks/fetch-team-data';
 import moment from "moment";
+import Timers from "../../Components/Timers";
 
 
 const Card = ({ teamObj, refetch }) => {
@@ -87,7 +88,16 @@ function Judge() {
 
   const currDate = moment().format("YYYY-MM-DD");
 
-  //////////////////////////////////////
+  let date = new Date(event[0]?.endDate);
+
+  // add 5 days
+  date.setDate(date.getDate() + 3);
+
+  const evaluationDate = moment(date).format("YYYY-MM-DD");
+
+  // console.log(evaluationDate);
+  // console.log(currDate < evaluationDate);
+  // //////////////////////////////////////
 
 
 
@@ -96,23 +106,29 @@ function Judge() {
   return (
     <>
       <Navbar />
+      {/* {event[0]?.endDate < currDate && (
+      <Timers endDate={evaluationDate}/>
+      )} */}
       <div className="cards">
 
         <h3 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center ">Judge Dashboard</h3>
         <h5 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center" style={{ margin: "-13px" }}>Welcome: {judgeData?.name} </h5>
 
-        {/* {event[0]?.endDate < currDate && ( */}
-          <MDBRow>
-            {team.map((value, index) => (
-              <>
-                <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
+        {event[0]?.endDate < currDate && (
+        <MDBRow>
+          {team.map((value, index) => (
+            <>
+              <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
 
-                  <Card teamObj={value} refetch={refetch} />
-                </MDBCol>
-              </>
-            ))}
-          </MDBRow>
-        {/* )} */}
+                <Card teamObj={value} refetch={refetch} />
+              </MDBCol>
+            </>
+          ))}
+        </MDBRow>
+        )}
+        {event[0]?.endDate >= currDate && (
+          <h2 className="fw-bold mb-2 pb-2 pb-md-0 mb-md-4 text-center " >Evaluation period will start after {event[0]?.endDate}</h2>
+        )}
       </div>
     </>);
 }
