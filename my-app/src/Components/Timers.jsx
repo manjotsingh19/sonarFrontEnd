@@ -68,7 +68,7 @@ const Timers = ({endDate}) => {
 
     return (
         <>
-            {Object.keys(event).length > 0 && timerComponents.length > 0 &&  (
+            {Object.keys(event).length > 0 && timerComponents.length>0 &&(
                 <div>
                     <h5>Event ends in: </h5> <span>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</span>
                 </div>
