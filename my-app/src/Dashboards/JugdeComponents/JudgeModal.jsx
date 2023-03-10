@@ -3,7 +3,6 @@ import { MDBBtn, MDBModal, MDBCol, MDBRow, MDBModalDialog, MDBModalContent, MDBM
 import Marking from "./Marking";
 import VideoPlayer from "./VideoPlayer";
 import axios from "axios";
-import Timer from "./Timer";
 import Swal from "sweetalert2";
 import ReactPlayer from "react-player";
 
@@ -49,7 +48,6 @@ export default function JudgeModal({ item, refetch }) {
         console.log(error);
         Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong!" });
       });
-
   }
 
 

@@ -54,9 +54,9 @@ const Navbar2 = () => {
         </div>
         <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul>
-            <li>
+            {/* <li>
               <NavLink to="/">Home</NavLink>
-            </li>
+            </li> */}
             <li>
               <Link to="/ChangePassword"><Button variant="outlined" color='error'>Update Password</Button></Link>
             </li>

@@ -25,6 +25,19 @@ function Admin() {
         navigate("/updateEvent");
     }
 
+    const handleMail = (e) => {
+        e.preventDefault();
+        axios.post("/winnersMail").then(
+            (response) => {
+              console.log(response.data);
+              console.log("mail send")
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+    }
+    
     return (
         <>
             <Navbar />
@@ -53,6 +66,11 @@ function Admin() {
                 {/* /////////////////////////////add domain ///////////////////*/}
 
                 <AddDomain />
+
+                {/* /////////////////////////////send mail to winners///////////////////////////////////// */}
+                <div className="col text-center">
+                    <MDBBtn onClick={handleMail} className="btn btn-default" style={{ width: "25%",marginBottom:"5%" }}> Send mail to winners</MDBBtn>
+                </div>
 
             </MDBContainer>
         </>
