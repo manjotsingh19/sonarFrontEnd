@@ -10,7 +10,7 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
     <div className="text-break" style={{ overflow: "hidden", margin: "-15px 10px" }}>
       <div className="team-item" style={{
         border: "0px solid black", borderRadius: "30px",
-        background: "linear-gradient(270deg, rgba(210,192,165,1) 8%, rgba(172,168,237,1) 52%, rgba(56,219,252,1) 94%)",
+        background: "linear-gradient(345deg, rgba(255,255,255,1) 0%, rgba(96,180,255,1) 100%)",
         height: "50vh"
       }}>
         <div
@@ -26,9 +26,6 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
           <h3>{eventName.substring(0, 25)}</h3>
 
           <p>{description.substring(0, 100)}...</p>
-        </div>
-        <div className="tagline">
-          <p>{ }</p>
         </div>
         <div className="tagline">
           <p>Start Date: {startDate}</p>
