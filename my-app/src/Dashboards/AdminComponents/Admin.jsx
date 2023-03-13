@@ -8,6 +8,8 @@ import ShowUsers from './ShowUsers';
 import axios from 'axios';
 import Navbar from '../../Components/Navbar2';
 import { Link, useNavigate } from "react-router-dom";
+import moment from 'moment';
+import Swal from 'sweetalert2';
 
 
 
@@ -29,8 +31,7 @@ function Admin() {
         e.preventDefault();
         axios.post("/winnersMail").then(
             (response) => {
-              console.log(response.data);
-              console.log("mail send")
+                Swal.fire('Great', 'Mail sends successfully!', 'success');
             },
             (error) => {
               console.log(error);
@@ -38,6 +39,21 @@ function Admin() {
           );
     }
     
+    const [event, setEvent] = useState({});
+    useEffect(() => {
+        axios.get("/getEvent").then(
+          (response) => {
+            setEvent(response.data[0]);
+            console.log(response.data[0]);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    
+      }, []);
+      const currDate = moment().format("YYYY-MM-DD");
+
     return (
         <>
             <Navbar />
@@ -68,9 +84,11 @@ function Admin() {
                 <AddDomain />
 
                 {/* /////////////////////////////send mail to winners///////////////////////////////////// */}
+                {event.endDate <currDate && (
                 <div className="col text-center">
                     <MDBBtn onClick={handleMail} className="btn btn-default" style={{ width: "25%",marginBottom:"5%" }}> Send mail to winners</MDBBtn>
                 </div>
+                )}
 
             </MDBContainer>
         </>
