@@ -60,36 +60,34 @@ export default function App() {
   // }, []);
 
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 600) {
-        setSettings((prevSettings) => ({
-          ...prevSettings,
-          slidesToShow: 1,
-        }));
-      } 
-      else if (window.innerWidth < 768) {
-        setSettings((prevSettings) => ({
-          ...prevSettings,
-          slidesToShow: (event?.length < 2) ? event?.length : 2,
-        }));
-      }else {
-        setSettings((prevSettings) => ({
-          ...prevSettings,
-          slidesToShow: (event?.length < 3) ? event?.length : 3,
-        }));
-      }
+    if (window.innerWidth < 600) {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        slidesToShow: 1,
+      }));
     }
-    window.addEventListener("resize", handleResize);
-    axios.get("/getEvent").then(
-      (response) => {
-        setEvent(response.data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    else if (window.innerWidth < 768) {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        slidesToShow: (event?.length < 2) ? event?.length : 2,
+      }));
+    } else {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        slidesToShow: (event?.length < 3) ? event?.length : 3,
+      }));
+    }
+      // window.addEventListener("resize", handleResize);
+      axios.get("/getEvent").then(
+        (response) => {
+          setEvent(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
 
-  }, [event]);
+    }, [event]);
   // const settings = { centerMode: true, draggable: true, centerPadding: "20px", pauseOnHover: true, infinite: true, swipeToSlide: true, slidesToShow: (event?.length < 3) ? event?.length : 3, slidesToScroll: 1, autoplay: true, speed: 1000, autoplaySpeed: 2000, focusOnSelect: true, };
 
   const [settings, setSettings] = useState({
@@ -99,14 +97,14 @@ export default function App() {
     pauseOnHover: true,
     infinite: true,
     swipeToSlide: true,
-    slidesToShow: (event?.length < 3) ? event?.length : 3,
+    slidesToShow: (event?.length >= 3) ? 3 : event?.length,
     slidesToScroll: 1,
     autoplay: true,
     speed: 1000,
     autoplaySpeed: 2000,
     focusOnSelect: true,
   });
-  
+
 
   return (
     <>
