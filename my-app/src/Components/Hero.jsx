@@ -1,11 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import bgFront from './images/bgFront.jpeg';
-import frontBg from './images/gif04.gif';
-import backImage from '././images/pexels-eberhard-grossgasteiger-2310713.jpg';
-import { Parallax } from "react-parallax";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import moment from "moment";
+
 
 const Hero = () => {
+  const currDate = moment().format("YYYY-MM-DD");
+  const [event, setEvent] = useState({});
+
+  useEffect(() => {
+    axios.get('/getEvent')
+      .then(response => {
+        setEvent(response.data[0]);
+        // console.log(response.data[0]);
+
+      }, (error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
 
     // <Parallax strength={-600} bgImage={backImage}>
@@ -26,15 +40,17 @@ const Hero = () => {
           Hackcedo is essentially online tool that help people manage their projects within a set timeframe. Project creation, progress tracking, deadlines, prize organization - this platform has it all.
         </p>
 
-        <Link to="/registrationForm">
-          <button className="bg-[#3b71ca] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-white">
-            Register
-          </button>
-        </Link>
+        {currDate >= event.startDate && currDate <= event.endDate && (
+          <Link to="/registrationForm">
+            <button className="bg-[#3b71ca] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-white">
+              Register
+            </button>
+          </Link>
+        )}
         {/* <Link to="/logIn" style={{ color: "white" }}><MDBBtn  >LogIn</MDBBtn></Link> */}
       </div>
-    {/* </div > */}
-    {/* // </Parallax> */}
+      {/* </div > */}
+      {/* // </Parallax> */}
     </>
   );
 };
