@@ -43,33 +43,21 @@ export default function App() {
 
   const [event, setEvent] = useState([]);
 
-  // const settings = { centerMode: true, draggable: true, centerPadding: "20px", pauseOnHover: true, infinite: true, swipeToSlide: true, slidesToShow: (event?.length < 3) ? event?.length : 3, slidesToScroll: 1, autoplay: true, speed: 1000, autoplaySpeed: 2000, focusOnSelect: true, };
+  // useEffect(() => {
+  //   axios.get("/getEvent").then(
+  //     (response) => {
+  //       // console.log(response.data);
+  //       setEvent(response.data);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
 
-  const [settings, setSettings] = useState({
-    centerMode: true,
-    draggable: true,
-    centerPadding: "20px",
-    pauseOnHover: true,
-    infinite: true,
-    swipeToSlide: true,
-    slidesToShow: (event?.length < 3) ? event?.length : 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 1000,
-    autoplaySpeed: 2000,
-    focusOnSelect: true,
-  });
-
-  ///////////////////////////////
+  // }, []);
 
   useEffect(() => {
-    if (window.innerWidth > 768) {
-      setSettings((prevSettings) => ({
-        ...prevSettings,
-        slidesToShow: (event?.length < 3) ? event?.length : 3,
-      }));
-    }
-    else if (window.innerWidth < 600) {
+    if (window.innerWidth < 600) {
       setSettings((prevSettings) => ({
         ...prevSettings,
         slidesToShow: 1,
@@ -80,63 +68,40 @@ export default function App() {
         ...prevSettings,
         slidesToShow: (event?.length < 2) ? event?.length : 2,
       }));
+    } else {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        slidesToShow: (event?.length < 3) ? event?.length : 3,
+      }));
     }
+      // window.addEventListener("resize", handleResize);
+      axios.get("/getEvent").then(
+        (response) => {
+          setEvent(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
 
+    }, [event]);
+  // const settings = { centerMode: true, draggable: true, centerPadding: "20px", pauseOnHover: true, infinite: true, swipeToSlide: true, slidesToShow: (event?.length < 3) ? event?.length : 3, slidesToScroll: 1, autoplay: true, speed: 1000, autoplaySpeed: 2000, focusOnSelect: true, };
 
-    // window.addEventListener("resize", handleResize);
-    axios.get("/getEvent").then(
-      (response) => {
-        setEvent(response.data);
-        // console.log(event);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-  }, [event]);
-
-  /////////////////////////////////////////////
+  const [settings, setSettings] = useState({
+    centerMode: true,
+    draggable: true,
+    centerPadding: "20px",
+    pauseOnHover: true,
+    infinite: true,
+    swipeToSlide: true,
+    slidesToShow: (event?.length >= 3) ? 3 : event?.length,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 2000,
+    focusOnSelect: true,
+  });
   
-  // const [windowWidth, setWindowWidth] = useState(800);
-
-  // useEffect(() => {
-  //   const handleWindowResize = () => {
-  //     setWindowWidth(window.innerWidth);
-  //     console.log(windowWidth);
-  //   };
-
-  //   window.addEventListener('resize', handleWindowResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleWindowResize);
-  //   };
-  // });
-  // ////////////////////////////////////////////
-  // useEffect(() => {
-  //   if (windowWidth > 768) {
-  //     setSettings((prevSettings) => ({
-  //       ...prevSettings,
-  //       slidesToShow: (event?.length < 3) ? event?.length : 3,
-  //     }));
-  //   }
-  //   else if (windowWidth < 768) {
-  //     setSettings((prevSettings) => ({
-  //       ...prevSettings,
-  //       slidesToShow: (event?.length < 2) ? event?.length : 2,
-  //     }));
-  //   }
-  //   else if (windowWidth < 600) {
-  //     setSettings((prevSettings) => ({
-  //       ...prevSettings,
-  //       slidesToShow: 1,
-  //     }));
-  //   }
-
-  // }, [windowWidth])
-
-  //////////////////////////
-
 
   return (
     <>
