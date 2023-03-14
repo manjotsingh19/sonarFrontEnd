@@ -54,11 +54,21 @@ function Participant() {
     const { id, value } = e.target;
     setGit({ ...git, [id]: value });
   }
-
+  const isValidUrl = urlString=> {
+    try { 
+      return Boolean(new URL(urlString)); 
+    }
+    catch(e){ 
+      return false; 
+    }
+}
 
   const handleSubmit = () => {
     if (!git?.gitHubLink) {
       Swal.fire({ icon: 'error', title: 'Oops...', text: 'Please enter GutHubLink!', });
+    }
+    else if(!(isValidUrl(git?.gitHubLink))){
+      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Please enter valid GutHub Link!', });
     }
     else {
       fetchedData.team.gitHubLink = git.gitHubLink;
@@ -126,7 +136,7 @@ function Participant() {
                       <MDBCol>
                         <FileUpload userObj={fetchedData?.team?.idea} />
                       </MDBCol>
-                    )};
+                    )}
                   </MDBRow>
 
                   <MDBRow>

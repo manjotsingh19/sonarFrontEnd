@@ -67,7 +67,7 @@ function TeamDetails({ userObj }) {
   const [Submit, setSubmit] = useState(false);
 
   useState(() => {
-    console.log("Form submitted");
+    // console.log("Form submitted");
     setSubmit(false);
   }, [Submit]);
 
