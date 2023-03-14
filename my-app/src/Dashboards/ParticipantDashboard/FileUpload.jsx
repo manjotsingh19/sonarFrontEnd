@@ -38,7 +38,7 @@ function FileUpload({ userObj }) {
 
       axios.post('/upload', formData)
         .then((response) => {
-          console.log(selectedFile);
+          // console.log(selectedFile);
           setSubmit(true);
           Swal.fire('Great', 'Video uploaded successfully!', 'success')
         }, (error) => {
