@@ -18,15 +18,20 @@ function Admin() {
 
     const navigate = useNavigate();
 
+    //////////////////show user button////////////////////////
+
     const handleSubmit = (e) => {
         e.preventDefault();
         navigate("/showUsers");
     }
+
+    /////////////////update event/////////////////////////////
     const handleEvent = (e) => {
         e.preventDefault();
         navigate("/updateEvent");
     }
 
+    ////////////////////handle mail for winners/////////////////
     const handleMail = (e) => {
         e.preventDefault();
         axios.post("/winnersMail").then(
@@ -38,13 +43,15 @@ function Admin() {
             }
           );
     }
+
+    //////////////////////api call for get the event/////////////////////
     
     const [event, setEvent] = useState({});
     useEffect(() => {
         axios.get("/getEvent").then(
           (response) => {
             setEvent(response.data[0]);
-            console.log(response.data[0]);
+            // console.log(response.data[0]);
           },
           (error) => {
             console.log(error);

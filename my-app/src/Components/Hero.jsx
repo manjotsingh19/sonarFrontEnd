@@ -21,13 +21,6 @@ const Hero = () => {
   }, []);
 
   return (
-
-    // <Parallax strength={-600} bgImage={backImage}>
-    // {/* <div className="text-black" style={{
-    //   // backgroundImage: `url(${frontBg})`,
-    //   backgroundImage: `url(${bgFront})`,
-    //   backgroundSize: "cover",
-    // }}> */}
     <>
       <div style={{ margin: '-105px 0px 20px' }} className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
 
@@ -47,10 +40,7 @@ const Hero = () => {
             </button>
           </Link>
         )}
-        {/* <Link to="/logIn" style={{ color: "white" }}><MDBBtn  >LogIn</MDBBtn></Link> */}
       </div>
-      {/* </div > */}
-      {/* // </Parallax> */}
     </>
   );
 };

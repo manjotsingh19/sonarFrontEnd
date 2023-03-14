@@ -12,6 +12,7 @@ function ShowUsers() {
     const [deleted, setDeleted] = useState(false);
 
 
+    /////////////////////api calls//////////////////////
     useEffect(() => {
         axios.get('/getUsers')
             .then(response => {
@@ -25,7 +26,6 @@ function ShowUsers() {
     useEffect(() => {
         axios.get('/getTeam')
             .then(response => {
-                console.log(response.data);
                 setTeam(response.data);
                 setDeleted(false);
             }, (error) => {
@@ -35,8 +35,6 @@ function ShowUsers() {
 
 
     /////////////////////////////////////delete entry from data base////////////////////////////////////////
-
-
 
     const handleDelete = (id) => {
 
@@ -84,13 +82,10 @@ function ShowUsers() {
                                 <MDBBtn className='me-1' color='danger' >Delete</MDBBtn>
                             </Popconfirm>
                     </td>
-                    
-                    {/* <td><MDBBtn onClick={(e) => handleDelete(info.id)} className='me-1' color='danger' >Delete</MDBBtn></td> */}
                 </tr>
             );
         }
     });
-    // console.log(info);
     const participentRows = team.map((team) => {
         return (
             <tr>

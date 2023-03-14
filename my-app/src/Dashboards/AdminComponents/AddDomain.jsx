@@ -36,7 +36,7 @@ function AddDomain() {
                     setDomains({ ...domains, domainName: '' });
                     setDomainData([...domainData, domains.domainName]);
                     Swal.fire("Great", "Domain added successfully!", "success");
-                   
+
                 }, (error) => {
                     // console.log(error);
                     setIsLoading(false);
@@ -64,30 +64,23 @@ function AddDomain() {
 
             });
 
-    }, [load,deleted]);
+    }, [load, deleted]);
 
 
     const dropdownData = domainData.map((info) => {
         return (
             <>
                 <MDBRow>
-                    <MDBCol md='8'   className="text-break"  >
+                    <MDBCol md='8' className="text-break"  >
                         <MDBListGroupItem  >{info.domainName}</MDBListGroupItem>
                     </MDBCol>
-
                     <MDBCol md='4' >
+                        <Popconfirm title="Delete"
+                            description="Are you sure you want to delete the domain?"
 
-                            <Popconfirm title="Delete"
-                                description="Are you sure you want to delete the domain?"
-
-                                okText="Confirm" cancelText="Cancel"  onConfirm={(e)=>handleDelete(info.domainId)}>
-                                <MDBBtn className='m-1' style={{ backgroundColor: '#ed302f' }}> <FaTrash /></MDBBtn>
-                            </Popconfirm>
-
-                        {/* <MDBBtn className='m-1' style={{ backgroundColor: '#ed302f' }} onClick={(e)=>handleDelete(info.domainId)}>
-                            <FaTrash />
-                        </MDBBtn> */}
-
+                            okText="Confirm" cancelText="Cancel" onConfirm={(e) => handleDelete(info.domainId)}>
+                            <MDBBtn className='m-1' style={{ backgroundColor: '#ed302f' }}> <FaTrash /></MDBBtn>
+                        </Popconfirm>
                     </MDBCol>
 
                 </MDBRow>
@@ -96,26 +89,29 @@ function AddDomain() {
     });
 
     ////////////////////////////////////////////////////////////////////////////////////////////
+
     /////////////////////////////////////// delete domain ///////////////////////////////////////////////////////
 
-   
+
     const handleDelete = (domainId) => {
 
         axios.delete(`/deleteDomain/${domainId}`)
-        .then((response) => {
-            // console.log(response);
-            Swal.fire("Great", "Domain deleted successfully!", "success");
-            setDeleted(true);
+            .then((response) => {
+                // console.log(response);
+                Swal.fire("Great", "Domain deleted successfully!", "success");
+                setDeleted(true);
 
-        }, (error) => {
-            Swal.fire({ icon: "error", title: "Oops...", text: "Domain in use" });
-            console.log(error);
-        });
+            }, (error) => {
+                Swal.fire({ icon: "error", title: "Oops...", text: "Domain in use" });
+                console.log(error);
+            });
 
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    ////////////////////////////////Add domiain////////////////////////////////////////
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -129,6 +125,10 @@ function AddDomain() {
         setDomains({ ...domains, [id]: value });
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////Validations on domain ///////////////////////////////
+    
     const validate = (domains) => {
         const errorsObj = {};
         if (!domains.domainName) {

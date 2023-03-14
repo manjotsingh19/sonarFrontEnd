@@ -58,6 +58,8 @@ function CreateEvent() {
         setEvent({ ...event, [id]: value });
     }
 
+    ////////////////validations check for event////////////////////////////
+
     const validate = (event) => {
         const errorsObj = {};
 

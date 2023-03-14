@@ -59,6 +59,9 @@ function AddJudges() {
 
     }, [errors, submitted]);
 
+
+    //////////////////////////////handle add judges button////////////////////////////////////////////////
+
     const handleSubmit = (e) => {
         e.preventDefault();
         serErrors(validate(judges));
@@ -80,6 +83,9 @@ function AddJudges() {
         const x = e.target.value;
         setJudges({ ...judges, role_id: parseInt(x) });
     }
+
+
+    /////////////////////validations for judge//////////////////////////////
 
     const validate = (judges) => {
         const errorsObj = {};
