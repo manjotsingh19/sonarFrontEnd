@@ -38,7 +38,8 @@ function AddDomain() {
                     Swal.fire("Great", "Domain added successfully!", "success");
                    
                 }, (error) => {
-                    console.log(error);
+                    // console.log(error);
+                    setIsLoading(false);
                     Swal.fire({ icon: "error", title: "Oops...", text: "Domain already exists" });
                     setDomains({ ...domains, domainName: '' });
                 });
