@@ -14,7 +14,7 @@ function ChangePassword() {
   const [selectedOption, setSelectedOption] = useState("");
   const [addBtn, setAddBtn] = useState(false);
   const [password, setPassword] = useState({
-    confirmPassword: "",
+    confirmPassword:"",
   });
 
   const myStyle = {
