@@ -26,7 +26,7 @@ function ChangePassword() {
     email: '',
     oldPassword: '',
     newPassword: '',
-    confirmPassword: '',
+    confirmPassword:'',
   });
 
   const handlePass = (e) => {
