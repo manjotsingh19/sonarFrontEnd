@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import axios from "axios";
 
 
-
+///////////////////////card of upcoming event////////////////////////
 const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 
   return (
@@ -40,22 +40,9 @@ const Card = ({ description, endDate, eventId, eventName, startDate, }) => {
 
 export default function App() {
   const slider = useRef(null);
-
   const [event, setEvent] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get("/getEvent").then(
-  //     (response) => {
-  //       // console.log(response.data);
-  //       setEvent(response.data);
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-
-  // }, []);
-
+  ///////////////////////display according to screen size////////////////////////////
   useEffect(() => {
     if (window.innerWidth < 600) {
       setSettings((prevSettings) => ({
@@ -74,7 +61,6 @@ export default function App() {
         slidesToShow: (event?.length < 3) ? event?.length : 3,
       }));
     }
-      // window.addEventListener("resize", handleResize);
       axios.get("/getEvent").then(
         (response) => {
           setEvent(response.data);
@@ -85,7 +71,6 @@ export default function App() {
       );
 
     }, [event]);
-  // const settings = { centerMode: true, draggable: true, centerPadding: "20px", pauseOnHover: true, infinite: true, swipeToSlide: true, slidesToShow: (event?.length < 3) ? event?.length : 3, slidesToScroll: 1, autoplay: true, speed: 1000, autoplaySpeed: 2000, focusOnSelect: true, };
 
   const [settings, setSettings] = useState({
     centerMode: true,

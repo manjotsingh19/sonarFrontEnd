@@ -19,6 +19,8 @@ function RegistrationForm() {
   const [domain, setDomain] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  //////////////Get domain////////////////////////
+
   useEffect(() => {
     axios.get("/getDomain").then(
       (response) => {
@@ -38,6 +40,8 @@ function RegistrationForm() {
   const handleSelect = (event) => {
     setSelectedOption(event.target.value);
   };
+
+  //////////////set Team Form //////////////////
 
   const [teamForm, setTeamForm] = useState({
     team: "",
@@ -74,14 +78,12 @@ function RegistrationForm() {
   };
 
   const handleclick = (e) => {
-    // console.log(teamForm);
-
     e.preventDefault();
     serErrors(validate(teamForm));
     setSubmit(true);
   };
 
-  //////////////////connect to server/////////////////////////////////////
+  //////////////////connect to server///////////////////////////
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmit) {
       setIsLoading(true);
@@ -99,6 +101,8 @@ function RegistrationForm() {
         );
     }
   }, [errors]);
+
+  /////////////////validation checks///////////////////////
 
   const validate = (teamForm) => {
     const errorsObj = {};

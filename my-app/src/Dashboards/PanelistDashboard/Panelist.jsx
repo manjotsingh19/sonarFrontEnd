@@ -9,13 +9,13 @@ import moment from "moment";
 import FetchTeamData from "../../hooks/fetch-team-data";
 import Timers from "../../Components/Timers";
 
-const Card = ({ teamObj ,  refetch }) => {
-  // console.log(teamObj);
+const Card = ({ teamObj ,  refetch, isLoading }) => {
+  console.log(teamObj);
 
   const { teamId, teamName, idea } = teamObj;
   return (
     <div className="teamCard">
-      {teamObj?.newComment &&  (
+      {!isLoading &&teamObj?.newComment && (
       <MDBCard style={{backgroundColor:"#f2db0d"}}>
         <MDBCardBody >
           <MDBRow>
@@ -32,11 +32,11 @@ const Card = ({ teamObj ,  refetch }) => {
           <MDBRow>
             <MDBCol md="12"><p className="fw-medium">{idea?.problemStatement.substring(0, 50)}...</p></MDBCol>
           </MDBRow>
-          <PanelistModal  item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }}  refetch={refetch} s/>
+          <PanelistModal  item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, }}  refetch={refetch} />
         </MDBCardBody>
       </MDBCard>
       )}
-       {!teamObj?.newComment &&  (
+       {!teamObj?.newComment  && (
         <MDBCard >
         <MDBCardBody >
           <MDBRow>
@@ -54,7 +54,7 @@ const Card = ({ teamObj ,  refetch }) => {
             <MDBCol md="12"><p className="fw-medium">{idea?.problemStatement.substring(0, 50)}...</p></MDBCol>
           </MDBRow>
           <PanelistModal
-            item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, } } refetch={refetch} />
+            item={{ teamId, teamName, statement: idea.problemStatement, description: idea.description, teamObj, } } refetch={refetch}  />
         </MDBCardBody>
       </MDBCard>
        )}
@@ -84,12 +84,12 @@ function Panelist() {
   //   );
   // }, [team]);
 
-  const { data, refetch } = FetchTeamData();
+  const { data, refetch , isLoading} = FetchTeamData();
 
   useEffect(()=>{
     if (data) {
       const filtered = data?.data?.filter((value, index) => {
-        if (value.status === "pending" && (!value?.panelistId || value?.panelistId == panelist.id)) return true;
+        if (value?.status === "pending" && (!value?.panelistId || value?.panelistId == panelist.id)) return true;
         else return false;
       })
       setTeam(filtered)
@@ -141,7 +141,7 @@ function Panelist() {
           <MDBRow>
             {team.map((value, index) => (
               <MDBCol style={{ marginBottom: "25px" }} md="4" key={index}>
-                <Card teamObj={value} refetch={refetch} />
+                <Card teamObj={value} refetch={refetch} isLoadint={isLoading} />
               </MDBCol>
             ))}
           </MDBRow>

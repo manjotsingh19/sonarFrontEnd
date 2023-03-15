@@ -80,6 +80,39 @@ export default function PanelistModal({ item, refetch }) {
   };
 
 
+  // const handleCommentSubmit = async () => {
+  //   if (!commentText) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: 'Comment cannot be empty',
+  //     });
+  //   }
+  //   else {
+  //     teamObj.newComment = commentText;
+  //     teamObj.status = "reverted";
+  //     teamObj.panelistId = data.id;
+  //     // console.log(teamObj);
+
+  //     setBasicModal(!basicModal);
+  //     try {
+  //       axios.post("/statusChange", teamObj)
+  //       await Swal.fire(`Participant ${teamObj.status}`);
+  //       await refetch()
+  //     } catch (err) {
+  //       console.log(err);
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Oops...',
+  //         text: 'An error has occured',
+  //       });
+  //     }
+  //     setCommentText('');
+  //     setShowCommentBox(false);
+     
+  //   }
+  // };
+
 
   //////////////////////////////////////////////////////////////
 
